@@ -3,7 +3,7 @@
 /**
  * TestCase class for menu class.
  */
-class TestMenu extends PHPUnit_Framework_TestCase
+class TestMenuBuilder extends PHPUnit_Framework_TestCase
 {
 	protected $test_areas;
 	protected $test_options;
