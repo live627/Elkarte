@@ -111,7 +111,7 @@ class Unread
 	 * Sets the sorting query and the direction
 	 *
 	 * @param string $query - The query to be used in the ORDER clause
-	 * @param bool|int $asc - If the sorting is ascending or not
+	 * @param boolean $asc - If the sorting is ascending or not
 	 */
 	public function setSorting($query, $asc)
 	{
@@ -213,7 +213,7 @@ class Unread
 	 *                       the messages table
 	 * @param int $start - position to start the query
 	 * @param int $limit - number of entries to grab
-	 * @param bool|int $include_avatars - if avatars should be retrieved as well
+	 * @param boolean $include_avatars - if avatars should be retrieved as well
 	 * @return mixed[] - see Topic_Util::prepareContext
 	 */
 	private function _getUnreadTopics($join, $start, $limit, $include_avatars = false)
@@ -378,7 +378,7 @@ class Unread
 	 *
 	 * @param int $start - position to start the query
 	 * @param int $limit - number of entries to grab
-	 * @param bool|int $include_avatars - if avatars should be retrieved as well
+	 * @param boolean $include_avatars - if avatars should be retrieved as well
 	 * @return mixed[] - see Topic_Util::prepareContext
 	 */
 	private function _getUnreadReplies($start, $limit, $include_avatars = false)

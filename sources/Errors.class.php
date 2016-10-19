@@ -79,7 +79,7 @@ class Errors
 	/**
 	 * Halts execution, optionally displays an error message
 	 *
-	 * @param string|integer $error
+	 * @param string $error
 	 */
 	protected function terminate($error = '')
 	{
@@ -313,7 +313,7 @@ class Errors
 	 *
 	 * - It dies with fatal_error() if the error_level matches with error_reporting.
 	 *
-	 * @param Exception|Throwable $e The error. Since the code shall work with php 5 and 7
+	 * @param Exception $e The error. Since the code shall work with php 5 and 7
 	 *                               we cannot type-hint the function parameter.
 	 * @param string|null $err_file
 	 * @param int|null $err_line
@@ -472,7 +472,7 @@ class Errors
 		$context['error_title'] = isset($context['error_title']) ? $context['error_title'] : $txt['error_occurred'];
 		$context['error_message'] = isset($context['error_message']) ? $context['error_message'] : $error_message;
 		$context['error_code'] = isset($error_code) ? 'id="' . htmlspecialchars($error_code) . '" ' : '';
-		$context['page_title'] = empty($context['page_title']) ? $context['error_title'] : $context['page_title'] ;
+		$context['page_title'] = empty($context['page_title']) ? $context['error_title'] : $context['page_title'];
 
 		// Load the template and set the sub template.
 		loadTemplate('Errors');

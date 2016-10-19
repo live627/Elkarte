@@ -194,7 +194,7 @@ class Drafts_PersonalMessage_Module implements ElkArte\sources\modules\Module_In
 	 * - Will load a draft if selected is supplied via post
 	 *
 	 * @param int $member_id
-	 * @param int|bool $id_pm = false if set, it will try to load drafts for this id
+	 * @param integer $id_pm = false if set, it will try to load drafts for this id
 	 *
 	 * @return bool
 	 */

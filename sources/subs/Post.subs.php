@@ -1525,7 +1525,7 @@ function lastPost()
  * - if editing is true, returns $message|$message[errors], else returns array($subject, $message)
  *
  * @package Posts
- * @param int|bool $editing
+ * @param integer $editing
  * @param int|null|false $topic
  * @param string $first_subject
  * @param int $msg_id

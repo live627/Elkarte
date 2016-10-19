@@ -1326,6 +1326,7 @@ function getTopicInfo($topic_parameters, $full = '', $selects = array(), $tables
  *
  * @param int $topic id of a topic
  * @param int|null $msg the id of a message, if empty, t.id_first_msg is used
+ * @return string|null
  */
 function getTopicInfoByMsg($topic, $msg = null)
 {

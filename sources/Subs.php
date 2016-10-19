@@ -339,7 +339,7 @@ function constructPageIndex($base_url, &$start, $max_value, $num_per_page, $flex
  * - Caches the formatting data from the setting for optimization.
  *
  * @param float $number The float value to apply comma formatting
- * @param integer|bool $override_decimal_count = false or number of decimals
+ * @param integer $override_decimal_count = false or number of decimals
  */
 function comma_format($number, $override_decimal_count = false)
 {
@@ -1231,7 +1231,7 @@ function host_from_ip($ip)
  * Chops a string into words and prepares them to be inserted into (or searched from) the database.
  *
  * @param string $text The string to process
- * @param int|null $max_chars = 20
+ * @param integer $max_chars = 20
  *     - if encrypt = true this is the maximum number of bytes to use in integer hashes (for searching)
  *     - if encrypt = false this is the maximum number of letters in each word
  * @param bool $encrypt = false Used for custom search indexes to return an int[] array representing the words
@@ -1535,7 +1535,7 @@ function prepareSearchEngines()
  *
  * @param resource $messages_request holds a query result
  * @param bool $reset
- * @return integer|boolean
+ * @return integer|null
  */
 function currentContext($messages_request, $reset = false)
 {
@@ -1788,7 +1788,7 @@ function response_prefix()
  * is less than 255 characters (for database limits)
  *
  * @param string $value - The string to evaluate as valid email
- * @return bool|string - The email if valid, false if not a valid email
+ * @return string|false - The email if valid, false if not a valid email
  */
 function isValidEmail($value)
 {

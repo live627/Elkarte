@@ -386,7 +386,7 @@ class Theme extends \Theme
 		{
 			if (!empty($this->css_rules['all']))
 			{
-				$style_tag .=  '
+				$style_tag .= '
 	' . $this->css_rules['all'];
 			}
 			if (!empty($this->css_rules['media']))

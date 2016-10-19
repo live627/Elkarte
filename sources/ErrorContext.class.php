@@ -109,7 +109,7 @@ class Error_Context
 	/**
 	 * Remove an error from the list
 	 *
-	 * @param mixed[]|mixed $error error code
+	 * @param string $error error code
 	 */
 	public function removeError($error)
 	{
