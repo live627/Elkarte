@@ -151,7 +151,7 @@ class ManageMail_Controller extends Action_Controller
 						'class' => 'centertext',
 					),
 					'data' => array(
-						'function' => function($rowData) {
+						'function' => function ($rowData) {
 							global $txt;
 
 							// We probably have a text label with your priority.

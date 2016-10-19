@@ -345,7 +345,7 @@ function markMessages($personal_messages = null, $label = null, $owner = null)
  * Mark the specified personal messages as unread.
  *
  * @package PersonalMessage
- * @param int|int[] $personal_messages
+ * @param integer $personal_messages
  */
 function markMessagesUnread($personal_messages)
 {

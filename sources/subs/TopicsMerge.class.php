@@ -132,7 +132,7 @@ class TopicsMerge
 	/**
 	 * The first error occurred
 	 *
-	 * @return array|string
+	 * @return string|null
 	 */
 	public function firstError()
 	{

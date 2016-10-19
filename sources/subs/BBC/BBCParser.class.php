@@ -427,7 +427,7 @@ class BBCParser
 	 * Turn smiley parsing on/off
 	 *
 	 * @param bool $toggle
-	 * @return \BBC\Parser
+	 * @return BBCParser
 	 */
 	public function doSmileys($toggle)
 	{
@@ -1341,7 +1341,7 @@ class BBCParser
 	/**
 	 * Enable the parsing of smileys
 	 *
-	 * @param bool|true $enable
+	 * @param boolean $enable
 	 *
 	 * @return $this
 	 */

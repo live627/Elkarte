@@ -331,7 +331,7 @@ class Database_MySQL extends Database_Abstract
 	 * http://www.greywyvern.com/code/php/utf8_html.phps
 	 *
 	 * @param string $c
-	 * @return integer|false
+	 * @return integer
 	 */
 	private function _uniord($c)
 	{

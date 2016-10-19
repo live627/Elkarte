@@ -1051,7 +1051,7 @@ class Email_Parse
 	 * Validates that the ip is a valid ip4 address
 	 *
 	 * @param string|null $string
-	 * @return array
+	 * @return string|null
 	 */
 	private function _parse_ip($string)
 	{

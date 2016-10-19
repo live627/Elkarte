@@ -980,7 +980,7 @@ class Html_2_Md
 	 * Helper function to adjust wrapping width for long-ish links
 	 *
 	 * @param string $markdown
-	 * @param bool|int $buffer
+	 * @param integer $buffer
 	 */
 	private function _check_link_lenght($markdown, $buffer = false)
 	{

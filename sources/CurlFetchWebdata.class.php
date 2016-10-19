@@ -121,7 +121,7 @@ class Curl_Fetch_Webdata
 	 * - Calls _setOptions to set the curl opts array values based on the defaults and user input
 	 *
 	 * @param string $url the site we are going to fetch
-	 * @param mixed[]|string $post_data data to send in the curl request as post data
+	 * @param string $post_data data to send in the curl request as post data
 	 */
 	public function get_url_data($url, $post_data = array())
 	{
