@@ -2267,7 +2267,7 @@ class InstallInstructions_install_1_1
 				array('onlineEnable', '0'),
 				array('cal_enabled', '0'),
 				array('cal_limityear', '10'),
-				array('cal_minyear', '2008'),
+				array('cal_minyear', date('Y') - 4),
 				array('cal_daysaslink', '0'),
 				array('cal_defaultboard', ''),
 				array('cal_showholidays', '1'),
