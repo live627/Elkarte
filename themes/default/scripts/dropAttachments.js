@@ -305,7 +305,7 @@
 			// Server Failure is always an option when sending files
 			this.setServerFail = function(data) {
 				this.setProgress(0);
-				$button.removeClass('fa-times-circle').addClass('fa-exclamation-triangle');
+				$button.removeClass('i-close').addClass('i-alert');
 			};
 
 			// The file upload is successful, remove our abort event and swap the class
@@ -326,7 +326,7 @@
 		 */
 		fileUploadedInterface = function($control, $button, data) {
 			$button.off('click');
-			$button.removeClass('abort fa-times-circle').addClass('remove fa-minus-circle');
+			$button.removeClass('abort i-close').addClass('remove i-delete');
 
 			// Update the uploaded file with its ID
 			$button.attr('id', data.curFileNum);
