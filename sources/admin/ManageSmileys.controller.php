@@ -1441,6 +1441,7 @@ class ManageSmileys_Controller extends Action_Controller
 		$testing = false;
 		$destination = '';
 		$name = '';
+		$base_name = '';
 
 		if (isset($this->_req->query->set_gz))
 		{
@@ -1522,7 +1523,7 @@ class ManageSmileys_Controller extends Action_Controller
 
 		// See if it is installed?
 		if (isSmileySetInstalled($smileyInfo['id']))
-			fata_lang_error('package_installed_warning1');
+			\Errors::instance()->fatal_lang_error('package_installed_warning1');
 
 		// Everything is fine, now it's time to do something, first we test
 		$actions = parsePackageInfo($smileyInfo['xml'], true, 'install');

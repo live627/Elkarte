@@ -345,6 +345,7 @@ class Database_PostgreSQL extends Database_Abstract
 	 * @param string $table
 	 * @param string|null $field = null
 	 * @param resource|null $connection = null
+	 * @throws Elk_Exception
 	 */
 	public function insert_id($table, $field = null, $connection = null)
 	{
@@ -540,6 +541,7 @@ class Database_PostgreSQL extends Database_Abstract
 	 * @param mixed[] $keys
 	 * @param bool $disable_trans = false
 	 * @param resource|null $connection = null
+	 * @throws Elk_Exception
 	 */
 	public function insert($method = 'replace', $table, $columns, $data, $keys, $disable_trans = false, $connection = null)
 	{
@@ -676,6 +678,7 @@ class Database_PostgreSQL extends Database_Abstract
 	 * @param bool $new_table
 	 *
 	 * @return string the query to insert the data back in, or an empty string if the table was empty.
+	 * @throws Elk_Exception
 	 */
 	public function insert_sql($tableName, $new_table = false)
 	{
@@ -754,6 +757,7 @@ class Database_PostgreSQL extends Database_Abstract
 	 * @param string $tableName - the table
 	 *
 	 * @return string - the CREATE statement as string
+	 * @throws Elk_Exception
 	 */
 	public function db_table_sql($tableName)
 	{
@@ -884,6 +888,7 @@ class Database_PostgreSQL extends Database_Abstract
 	 *
 	 * @param string $table
 	 * @param string $backup_table
+	 * @throws Elk_Exception
 	 */
 	public function db_backup_table($table, $backup_table)
 	{
