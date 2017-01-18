@@ -19,6 +19,7 @@
  * Updates the settings table as well as $modSettings... only does one at a time if $update is true.
  *
  * What it does:
+ *
  * - Updates both the settings table and $modSettings array.
  * - All of changeArray's indexes and values are assumed to have escaped apostrophes (')!
  * - If a variable is already set to what you want to change it to, that
@@ -134,6 +135,7 @@ function removeSettings($toRemove)
  * Constructs a page list.
  *
  * What it does:
+ *
  * - Builds the page list, e.g. 1 ... 6 7 [8] 9 10 ... 15.
  * - Flexible_start causes it to use "url.page" instead of "url;start=page".
  * - Very importantly, cleans up the start value passed, and forces it to
@@ -269,6 +271,7 @@ function constructPageIndex($base_url, &$start, $max_value, $num_per_page, $flex
  * Formats a number.
  *
  * What it does:
+ *
  * - Uses the format of number_format to decide how to format the number.
  *   for example, it might display "1 234,50".
  * - Caches the formatting data from the setting for optimization.
@@ -327,6 +330,7 @@ function byte_format($number)
  * Format a time to make it look purdy.
  *
  * What it does:
+ *
  * - Returns a pretty formatted version of time based on the user's format in $user_info['time_format'].
  * - Applies all necessary time offsets to the timestamp, unless offset_type is set.
  * - If todayMod is set and show_today was not not specified or true, an
@@ -447,6 +451,7 @@ function htmlTime($timestamp)
  * Gets the current time with offset.
  *
  * What it does:
+ *
  * - Always applies the offset in the time_offset setting.
  *
  * @param bool $use_user_offset = true if use_user_offset is true, applies the user's offset as well
@@ -540,6 +545,7 @@ function pc_next_permutation($p, $size)
  * Highlight any code.
  *
  * What it does:
+ *
  * - Uses PHP's highlight_string() to highlight PHP syntax
  * - does special handling to keep the tabs in the code available.
  * - used to parse PHP code from inside [code] and [php] tags.
@@ -564,6 +570,7 @@ function highlight_php_code($code)
  * Ends execution and redirects the user to a new location
  *
  * What it does:
+ *
  * - Makes sure the browser doesn't come back and repost the form data.
  * - Should be used whenever anything is posted.
  * - Calls AddMailQueue to process any mail queue items its can
@@ -625,6 +632,7 @@ function redirectexit($setLocation = '', $refresh = false)
  * URL fixer for redirect exit
  *
  * What it does:
+ *
  * - Similar to the callback function used in ob_sessrewrite
  * - Evoked by enabling queryless_urls for systems that support that function
  *
@@ -644,6 +652,7 @@ function redirectexit_callback($matches)
  * Ends execution.
  *
  * What it does:
+ *
  * - Takes care of template loading and remembering the previous URL.
  * - Calls ob_start() with ob_sessrewrite to fix URLs if necessary.
  *
@@ -854,6 +863,7 @@ function template_footer()
  * Output the Javascript files
  *
  * What it does:
+ *
  * - tabbing in this function is to make the HTML source look proper
  * - outputs jQuery/jQueryUI from the proper source (local/CDN)
  * - if deferred is set function will output all JS (source & inline) set to load at page end
@@ -1069,6 +1079,7 @@ function text2words($text, $max_chars = 20, $encrypt = false)
  * Sets up all of the top menu buttons
  *
  * What it does:
+ *
  * - Defines every master item in the menu, as well as any sub-items
  * - Ensures the chosen action is set so the menu is highlighted
  * - Saves them in the cache if it is available and on
@@ -1095,6 +1106,7 @@ function elk_seed_generator()
  * Process functions of an integration hook.
  *
  * What it does:
+ *
  * - Calls all functions of the given hook.
  * - Supports static class method calls.
  *
@@ -1144,6 +1156,7 @@ function add_integration_function($hook, $function, $file = '', $permanent = tru
  * Remove an integration hook function.
  *
  * What it does:
+ *
  * - Removes the given function from the given hook.
  * - Does nothing if the function is not available.
  *
@@ -1160,6 +1173,7 @@ function remove_integration_function($hook, $function, $file = '')
  * Decode numeric html entities to their UTF8 equivalent character.
  *
  * What it does:
+ *
  * - Callback function for preg_replace_callback in subs-members
  * - Uses capture group 2 in the supplied array
  * - Does basic scan to ensure characters are inside a valid range
@@ -1204,6 +1218,7 @@ function replaceEntities__callback($matches)
  * Converts html entities to utf8 equivalents
  *
  * What it does:
+ *
  * - Callback function for preg_replace_callback
  * - Uses capture group 1 in the supplied array
  * - Does basic checks to keep characters inside a viewable range.
@@ -1240,6 +1255,7 @@ function fixchar__callback($matches)
  * Strips out invalid html entities, replaces others with html style &#123; codes
  *
  * What it does:
+ *
  * - Callback function used of preg_replace_callback in various $ent_checks,
  * - For example strpos, strlen, substr etc
  *
@@ -1284,6 +1300,7 @@ function prepareSearchEngines()
  * This function receives a request handle and attempts to retrieve the next result.
  *
  * What it does:
+ *
  * - It is used by the controller callbacks from the template, such as
  * posts in topic display page, posts search results page, or personal messages.
  *
@@ -1320,6 +1337,7 @@ function currentContext($messages_request, $reset = false)
  * Helper function to insert an array in to an existing array
  *
  * What it does:
+ *
  * - Intended for addon use to allow such things as
  * - Adding in a new menu item to an existing menu array
  *
@@ -1358,6 +1376,7 @@ function elk_array_insert($input, $key, $insert, $where = 'before', $assoc = tru
  * Run a scheduled task now
  *
  * What it does:
+ *
  * - From time to time it may be necessary to fire a scheduled task ASAP
  * - This function sets the scheduled task to be called before any other one
  *
@@ -1464,6 +1483,7 @@ function replaceBasicActionUrl($string)
  * This function creates a new GenericList from all the passed options.
  *
  * What it does:
+ *
  * - Calls integration hook integrate_list_"unique_list_id" to allow easy modifying
  *
  * @param mixed[] $listOptions associative array of option => value
@@ -1481,6 +1501,7 @@ function createList($listOptions)
  * This handy function retrieves a Request instance and passes it on.
  *
  * What it does:
+ *
  * - To get hold of a Request, you can use this function or directly Request::instance().
  * - This is for convenience, it simply delegates to Request::instance().
  */
@@ -1493,6 +1514,7 @@ function request()
  * Meant to replace any usage of $db_last_error.
  *
  * What it does:
+ *
  * - Reads the file db_last_error.txt, if a time() is present returns it,
  * otherwise returns 0.
  */
@@ -1653,6 +1675,7 @@ function isBrowser($browser)
  * Replace all vulgar words with respective proper words. (substring or whole words..)
  *
  * What it does:
+ *
  * - it censors the passed string.
  * - if the admin setting allow_no_censored is on it does not censor unless force is also set.
  * - if the admin setting allow_no_censored is off will censor words unless the user has set
