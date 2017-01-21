@@ -200,6 +200,7 @@ abstract class Action_Controller
 	 * Finds modules registered to a certain controller
 	 *
 	 * What it does:
+	 *
 	 * - Uses the controllers generic hook name to find modules
 	 * - Searches for modules registered against the module name
 	 * - Example
@@ -241,6 +242,7 @@ abstract class Action_Controller
 	 * Default action handler.
 	 *
 	 * What it does:
+	 *
 	 * - This will be called by the dispatcher in many cases.
 	 * - It may set up a menu, sub-dispatch at its turn to the method matching ?sa= parameter
 	 * or simply forward the request to a known default method.

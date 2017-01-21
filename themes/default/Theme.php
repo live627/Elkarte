@@ -386,6 +386,7 @@ class Theme extends BaseTheme
 	 * Output the Javascript files
 	 *
 	 * What it does:
+	 *
 	 * - Tabbing in this function is to make the HTML source look proper
 	 * - Outputs jQuery/jQueryUI from the proper source (local/CDN)
 	 * - If deferred is set function will output all JS (source & inline) set to load at page end
@@ -882,6 +883,7 @@ class Theme extends BaseTheme
 	 * Sets up all of the top menu buttons
 	 *
 	 * What it does:
+	 *
 	 * - Defines every master item in the menu, as well as any sub-items
 	 * - Ensures the chosen action is set so the menu is highlighted
 	 * - Saves them in the cache if it is available and on

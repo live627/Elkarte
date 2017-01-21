@@ -181,6 +181,8 @@ class Errors extends AbstractModel
 	/**
 	 * Similar to log_error, it accepts a language index as the error.
 	 *
+	 * What it does:
+	 *
 	 * - Takes care of loading the forum default language
 	 * - Logs the error (forwarding to log_error)
 	 *
@@ -214,6 +216,8 @@ class Errors extends AbstractModel
 	/**
 	 * An irrecoverable error.
 	 *
+	 * What it does:
+	 *
 	 * - This function stops execution and displays an error message.
 	 * - It logs the error message if $log is specified.
 	 *
@@ -231,6 +235,7 @@ class Errors extends AbstractModel
 	 * Shows a fatal error with a message stored in the language file.
 	 *
 	 * What it does:
+	 *
 	 * - This function stops execution and displays an error message by key.
 	 * - uses the string with the error_message_key key.
 	 * - logs the error in the forum's default language while displaying the error
@@ -314,6 +319,7 @@ class Errors extends AbstractModel
 	 * Show a message for the (full block) maintenance mode.
 	 *
 	 * What it does:
+	 *
 	 * - It shows a complete page independent of language files or themes.
 	 * - It is used only if $maintenance = 2 in Settings.php.
 	 * - It stops further execution of the script.
@@ -344,6 +350,7 @@ class Errors extends AbstractModel
 	 * Show an error message for the connection problems.
 	 *
 	 * What it does:
+	 *
 	 * - It shows a complete page independent of language files or themes.
 	 * - It is used only if there's no way to connect to the database.
 	 * - It stops further execution of the script.
@@ -402,6 +409,7 @@ class Errors extends AbstractModel
 	 * Show an error message for load average blocking problems.
 	 *
 	 * What it does:
+	 *
 	 * - It shows a complete page independent of language files or themes.
 	 * - It is used only if the load averages are too high to continue execution.
 	 * - It stops further execution of the script.

@@ -223,6 +223,7 @@ class Util
 	 * Shorten a string of text
 	 *
 	 * What it does:
+	 *
 	 * - Shortens a text string to a given visual length
 	 * - Considers certain html entities as 1 in length, &amp; &nbsp; etc
 	 * - Optionally adds ending ellipsis that honor length or are appended
@@ -441,6 +442,7 @@ class Util
 	/**
 	 * Wrappers for unserialize
 	 * What it does:
+	 *
 	 * - if using PHP < 7 it will use ext/safe_unserialize
 	 * - if using PHP > 7 will use the built in unserialize
 	 *
