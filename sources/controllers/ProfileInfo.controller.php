@@ -53,7 +53,7 @@ class ProfileInfo_Controller extends Action_Controller
 		if (!isset($context['user']['is_owner']))
 			$context['user']['is_owner'] = (int) $this->_memID === (int) $user_info['id'];
 
-		loadLanguage('Profile');
+		theme()->getTemplates()->loadLanguageFile('Profile');
 	}
 
 	/**
@@ -958,8 +958,8 @@ class ProfileInfo_Controller extends Action_Controller
 		// Verify if the user has sufficient permissions.
 		isAllowedTo('manage_permissions');
 
-		loadLanguage('ManagePermissions');
-		loadLanguage('Admin');
+		theme()->getTemplates()->loadLanguageFile('ManagePermissions');
+		theme()->getTemplates()->loadLanguageFile('Admin');
 		loadTemplate('ManageMembers');
 		loadTemplate('ProfileInfo');
 
@@ -1310,7 +1310,7 @@ class ProfileInfo_Controller extends Action_Controller
 		{
 			include_once(SUBSDIR . '/Who.subs.php');
 			$action = determineActions($user_profile[$this->_memID]['url']);
-			loadLanguage('index');
+			theme()->getTemplates()->loadLanguageFile('index');
 
 			if ($action !== false)
 			{

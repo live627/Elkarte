@@ -53,7 +53,7 @@ class Help_Controller extends Action_Controller
 		global $scripturl, $context, $txt;
 
 		loadTemplate('Help');
-		loadLanguage('Manual');
+		theme()->getTemplates()->loadLanguageFile('Manual');
 
 		// We need to know where our wiki is.
 		$context['wiki_url'] = 'https://github.com/elkarte/Elkarte/wiki';
@@ -108,11 +108,11 @@ class Help_Controller extends Action_Controller
 		$help_str = Util::htmlspecialchars($this->_req->query->help);
 
 		// Load the admin help language file and template.
-		loadLanguage('Help');
+		theme()->getTemplates()->loadLanguageFile('Help');
 
 		// Load permission specific help
 		if (substr($help_str, 0, 14) == 'permissionhelp')
-			loadLanguage('ManagePermissions');
+			theme()->getTemplates()->loadLanguageFile('ManagePermissions');
 
 		// Load our template
 		loadTemplate('Help');

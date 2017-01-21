@@ -37,8 +37,8 @@ class ManageMail_Controller extends Action_Controller
 	{
 		global $context, $txt;
 
-		loadLanguage('Help');
-		loadLanguage('ManageMail');
+		theme()->getTemplates()->loadLanguageFile('Help');
+		theme()->getTemplates()->loadLanguageFile('ManageMail');
 
 		$subActions = array(
 			'browse' => array($this, 'action_browse', 'permission' => 'admin_forum'),
@@ -299,7 +299,7 @@ class ManageMail_Controller extends Action_Controller
 		global $txt, $modSettings, $txtBirthdayEmails;
 
 		// We need $txtBirthdayEmails
-		loadLanguage('EmailTemplates');
+		theme()->getTemplates()->loadLanguageFile('EmailTemplates');
 
 		$body = $txtBirthdayEmails[(empty($modSettings['birthday_email']) ? 'happy_birthday' : $modSettings['birthday_email']) . '_body'];
 		$subject = $txtBirthdayEmails[(empty($modSettings['birthday_email']) ? 'happy_birthday' : $modSettings['birthday_email']) . '_subject'];

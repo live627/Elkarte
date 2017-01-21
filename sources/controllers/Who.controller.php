@@ -59,7 +59,7 @@ class Who_Controller extends Action_Controller
 
 		// Load the 'Who' template.
 		loadTemplate('Who');
-		loadLanguage('Who');
+		theme()->getTemplates()->loadLanguageFile('Who');
 
 		// Sort out... the column sorting.
 		$sort_methods = array(
@@ -259,7 +259,7 @@ class Who_Controller extends Action_Controller
 		global $context, $txt;
 
 		require_once(SUBSDIR . '/Who.subs.php');
-		loadLanguage('Who');
+		theme()->getTemplates()->loadLanguageFile('Who');
 
 		$context += prepareCreditsData();
 

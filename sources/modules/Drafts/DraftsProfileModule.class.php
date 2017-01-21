@@ -70,6 +70,6 @@ class Drafts_Profile_Module implements ElkArte\sources\modules\Module_Interface
 	public function pre_load($post_errors)
 	{
 		if (empty($post_errors))
-			loadLanguage('Drafts');
+			theme()->getTemplates()->loadLanguageFile('Drafts');
 	}
 }

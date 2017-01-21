@@ -123,7 +123,7 @@ class Drafts_Post_Module implements ElkArte\sources\modules\Module_Interface
 		// Build a list of drafts that they can load into the editor
 		if (!empty(self::$_drafts_save))
 		{
-			loadLanguage('Drafts');
+			theme()->getTemplates()->loadLanguageFile('Drafts');
 
 			$this->_prepareDraftsContext($user_info['id'], $topic);
 
@@ -270,7 +270,7 @@ class Drafts_Post_Module implements ElkArte\sources\modules\Module_Interface
 			return false;
 
 		// We haz drafts
-		loadLanguage('Drafts');
+		theme()->getTemplates()->loadLanguageFile('Drafts');
 		require_once(SUBSDIR . '/Drafts.subs.php');
 
 		// has a specific draft has been selected?  Load it up if there is not already a message already in the editor

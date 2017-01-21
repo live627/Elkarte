@@ -120,8 +120,8 @@ class ManageThemes_Controller extends Action_Controller
 		}
 
 		// Load the important language files...
-		loadLanguage('ManageThemes');
-		loadLanguage('Settings');
+		theme()->getTemplates()->loadLanguageFile('ManageThemes');
+		theme()->getTemplates()->loadLanguageFile('Settings');
 
 		// No guests in here.
 		is_not_guest();
@@ -202,7 +202,7 @@ class ManageThemes_Controller extends Action_Controller
 		// No guests in here.
 		if ($user_info['is_guest'])
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => $txt['not_guests']
@@ -232,7 +232,7 @@ class ManageThemes_Controller extends Action_Controller
 			$this->{$subActions[$this->_req->query->sa]}();
 		else
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => $txt['error_sa_not_set']
@@ -257,7 +257,7 @@ class ManageThemes_Controller extends Action_Controller
 	{
 		global $context, $modSettings;
 
-		loadLanguage('Admin');
+		theme()->getTemplates()->loadLanguageFile('Admin');
 
 		// Saving?
 		if (isset($this->_req->post->save))
@@ -332,7 +332,7 @@ class ManageThemes_Controller extends Action_Controller
 
 		// Load in the helpers we need
 		require_once(SUBSDIR . '/Themes.subs.php');
-		loadLanguage('Admin');
+		theme()->getTemplates()->loadLanguageFile('Admin');
 
 		if (isset($this->_req->query->th))
 			return $this->action_setthemesettings();
@@ -549,10 +549,10 @@ class ManageThemes_Controller extends Action_Controller
 		$old_settings = $settings;
 
 		loadTheme($theme, false);
-		loadLanguage('Profile');
+		theme()->getTemplates()->loadLanguageFile('Profile');
 
 		// @todo Should we just move these options so they are no longer theme dependant?
-		loadLanguage('PersonalMessage');
+		theme()->getTemplates()->loadLanguageFile('PersonalMessage');
 
 		// Let the theme take care of the settings.
 		loadTemplate('Settings');
@@ -642,7 +642,7 @@ class ManageThemes_Controller extends Action_Controller
 
 		// Select the best fitting tab.
 		$context[$context['admin_menu_name']]['current_subsection'] = 'list';
-		loadLanguage('Admin');
+		theme()->getTemplates()->loadLanguageFile('Admin');
 
 		// Fetch the smiley sets...
 		$sets = explode(',', 'none,' . $modSettings['smiley_sets_known']);
@@ -659,10 +659,10 @@ class ManageThemes_Controller extends Action_Controller
 		loadTheme($theme, false);
 
 		// Also load the actual themes language file - in case of special settings.
-		loadLanguage('Settings', '', true, true);
+		theme()->getTemplates()->loadLanguageFile('Settings', '', true, true);
 
 		// And the custom language strings...
-		loadLanguage('ThemeStrings', '', false, true);
+		theme()->getTemplates()->loadLanguageFile('ThemeStrings', '', false, true);
 
 		// Let the theme take care of the settings.
 		loadTemplate('Settings');
@@ -855,7 +855,7 @@ class ManageThemes_Controller extends Action_Controller
 		// Validate what was sent
 		if (checkSession('get', '', false))
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => $txt['session_verify_fail'],
@@ -867,7 +867,7 @@ class ManageThemes_Controller extends Action_Controller
 		// Not just any John Smith can send in a api request
 		if (!allowedTo('admin_forum'))
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => $txt['cannot_admin_forum'],
@@ -878,7 +878,7 @@ class ManageThemes_Controller extends Action_Controller
 		// Even if you are John Smith, you still need a ticket
 		if (!validateToken('admin-tr', 'request', true, false))
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => $txt['token_verify_fail'],
@@ -893,7 +893,7 @@ class ManageThemes_Controller extends Action_Controller
 		// You can't delete the default theme!
 		if ($theme == 1)
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => $txt['no_access'],
@@ -952,7 +952,7 @@ class ManageThemes_Controller extends Action_Controller
 		if (!$modSettings['theme_allow'] && $settings['disable_user_variant'] && !allowedTo('admin_forum'))
 			throw new Elk_Exception('no_access', false);
 
-		loadLanguage('Profile');
+		theme()->getTemplates()->loadLanguageFile('Profile');
 		loadTemplate('ManageThemes');
 
 		// Build the link tree.
@@ -1747,7 +1747,7 @@ class ManageThemes_Controller extends Action_Controller
 		// Session timed out.
 		else
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 
 			// Notify the template of trouble
 			$context['session_error'] = true;

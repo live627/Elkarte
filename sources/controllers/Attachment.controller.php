@@ -98,7 +98,7 @@ class Attachment_Controller extends Action_Controller
 		global $context, $modSettings, $txt;
 
 		$resp_data = array();
-		loadLanguage('Errors');
+		theme()->getTemplates()->loadLanguageFile('Errors');
 		$context['attachments']['can']['post'] = !empty($modSettings['attachmentEnable']) && $modSettings['attachmentEnable'] == 1 && (allowedTo('post_attachment') || ($modSettings['postmod_active'] && allowedTo('post_unapproved_attachments')));
 
 		// Set up the template details
@@ -117,7 +117,7 @@ class Attachment_Controller extends Action_Controller
 		// We should have files, otherwise why are we here?
 		if (isset($_FILES['attachment']))
 		{
-			loadLanguage('Post');
+			theme()->getTemplates()->loadLanguageFile('Post');
 
 			$attach_errors = AttachmentErrorContext::context();
 			$attach_errors->activate();
@@ -188,7 +188,7 @@ class Attachment_Controller extends Action_Controller
 		// Make sure the session is valid
 		if (checkSession('request', '', false) !== '')
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['json_data'] = array('result' => false, 'data' => $txt['session_timeout']);
 
 			return false;
@@ -226,13 +226,13 @@ class Attachment_Controller extends Action_Controller
 
 			if ($result !== true)
 			{
-				loadLanguage('Errors');
+				theme()->getTemplates()->loadLanguageFile('Errors');
 				$context['json_data'] = array('result' => false, 'data' => $txt[!empty($result) ? $result : 'attachment_not_found']);
 			}
 		}
 		else
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['json_data'] = array('result' => false, 'data' => $txt['attachment_not_found']);
 		}
 	}
@@ -397,7 +397,7 @@ class Attachment_Controller extends Action_Controller
 		// No point in a nicer message, because this is supposed to be an attachment anyway...
 		if (!file_exists($filename))
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 
 			header((preg_match('~HTTP/1\.[01]~i', $this->_req->server->SERVER_PROTOCOL) ? $this->_req->server->SERVER_PROTOCOL : 'HTTP/1.0') . ' 404 Not Found');
 			header('Content-Type: text/plain; charset=UTF-8');
@@ -605,7 +605,7 @@ class Attachment_Controller extends Action_Controller
 		// No point in a nicer message, because this is supposed to be an attachment anyway...
 		if (!file_exists($filename))
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 
 			header((preg_match('~HTTP/1\.[01]~i', $this->_req->server->SERVER_PROTOCOL) ? $this->_req->server->SERVER_PROTOCOL : 'HTTP/1.0') . ' 404 Not Found');
 			header('Content-Type: text/plain; charset=UTF-8');

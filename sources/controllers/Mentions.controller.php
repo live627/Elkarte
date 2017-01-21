@@ -156,7 +156,7 @@ class Mentions_Controller extends Action_Controller
 		is_not_guest();
 
 		require_once(SUBSDIR . '/Mentions.subs.php');
-		loadLanguage('Mentions');
+		theme()->getTemplates()->loadLanguageFile('Mentions');
 
 		$this->_buildUrl();
 
@@ -381,7 +381,7 @@ class Mentions_Controller extends Action_Controller
 		$totalMentions = countUserMentions($all, $type);
 		$mentions = array();
 		$round = 0;
-		loadLanguage('Mentions');
+		theme()->getTemplates()->loadLanguageFile('Mentions');
 
 		$this->_registerEvents($type);
 
@@ -478,7 +478,7 @@ class Mentions_Controller extends Action_Controller
 				$mentioning->updateStatus($id_mention, $mark);
 				break;
 			case 'readall':
-				loadLanguage('Mentions');
+				theme()->getTemplates()->loadLanguageFile('Mentions');
 				$mentions = $this->list_loadMentions((int) $this->_page, $this->_items_per_page, $this->_sort, $this->_all, $this->_type);
 				$mentioning->markread($mentions);
 				break;

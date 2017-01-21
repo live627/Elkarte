@@ -475,7 +475,7 @@ class Display_Controller extends Action_Controller
 				addJavascriptVar(array(
 					'likemsg_are_you_sure' => JavaScriptEscape($txt['likemsg_are_you_sure']),
 				));
-				loadLanguage('Errors');
+				theme()->getTemplates()->loadLanguageFile('Errors');
 
 				// Initiate likes and the tooltips for likes
 				addInlineJavascript('

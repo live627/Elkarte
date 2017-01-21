@@ -79,7 +79,7 @@ class Elk_Exception extends Exception
 	 * - A plain text message
 	 * - An array with the following structure:
 	 *		array(
-	 *			0 => language to load (use loadLanguage)
+	 *			0 => language to load (use theme()->getTemplates()->loadLanguageFile)
 	 *			1 => index of $txt
 	 *		)
 	 * - A namespaced index in the form:
@@ -87,7 +87,7 @@ class Elk_Exception extends Exception
 	 *   - a "language" followed by a "dot" followed by the "index"
 	 *   - "language" can be any character matched by \w
 	 *   - "index" can be anything
-	 * - "language" is loaded by loadLanguage.
+	 * - "language" is loaded by theme()->getTemplates()->loadLanguageFile.
 	 *
 	 * @return string[]
 	 */
@@ -132,7 +132,7 @@ class Elk_Exception extends Exception
 
 		list ($msg, $lang) = $this->parseMessage($message);
 		$this->logMessage($message, $lang);
-		//~ loadLanguage($lang);
+		theme()->getTemplates()->loadLanguageFile($lang);
 
 		$msg = !isset($txt[$msg]) ? $msg : (empty($this->sprintf) ? $txt[$msg] : vsprintf($txt[$msg], $this->sprintf));
 
@@ -150,9 +150,9 @@ class Elk_Exception extends Exception
 	 */
 	protected function logMessage($msg, $lang)
 	{
-		global $user_info, $language, $txt;
+		global $language, $txt;
 
-
+		theme()->getTemplates()->loadLanguageFile($lang, $language);
 		$msg = !isset($txt[$msg]) ? $msg : (empty($this->sprintf) ? $txt[$msg] : vsprintf($txt[$msg], $this->sprintf));
 		E::instance()->log_error($msg, 'general', $this->getFile(), $this->getLine());
 	}

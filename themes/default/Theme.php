@@ -1129,14 +1129,14 @@ class Theme extends BaseTheme
 		// Output is fully XML
 		if (isset($_REQUEST['xml']))
 		{
-			loadLanguage('index+Addons');
+			theme()->getTemplates()->loadLanguageFile('index+Addons');
 			$this->getTemplates()->load('Xml');
 			$this->getLayers()->removeAll();
 		}
 		// These actions don't require the index template at all.
 		elseif (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], $simpleActions))
 		{
-			loadLanguage('index+Addons');
+			theme()->getTemplates()->loadLanguageFile('index+Addons');
 			$this->getLayers()->removeAll();
 		}
 		else
@@ -1157,7 +1157,7 @@ class Theme extends BaseTheme
 
 			// ...and attempt to load their associated language files.
 			$required_files = implode('+', array_merge($templates, array('Addons')));
-			loadLanguage($required_files, '', false);
+			theme()->getTemplates()->loadLanguageFile($required_files, '', false);
 
 			// Custom template layers?
 			if (isset($settings['theme_layers']))

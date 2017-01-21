@@ -30,7 +30,7 @@ class Reminder_Controller extends Action_Controller
 	{
 		global $txt, $context;
 
-		loadLanguage('Profile');
+		theme()->getTemplates()->loadLanguageFile('Profile');
 		loadTemplate('Reminder');
 
 		$context['page_title'] = $txt['authentication_reminder'];
@@ -169,7 +169,7 @@ class Reminder_Controller extends Action_Controller
 	{
 		global $txt, $context;
 
-		loadLanguage('Login');
+		theme()->getTemplates()->loadLanguageFile('Login');
 
 		// You need a code!
 		if (!isset($this->_req->query->code))
@@ -213,7 +213,7 @@ class Reminder_Controller extends Action_Controller
 		if ($this->_req->post->passwrd1 === '')
 			throw new Elk_Exception('no_password', false);
 
-		loadLanguage('Login');
+		theme()->getTemplates()->loadLanguageFile('Login');
 
 		// Get the code as it should be from the database.
 		require_once(SUBSDIR . '/Members.subs.php');
@@ -282,7 +282,7 @@ class Reminder_Controller extends Action_Controller
 		if (empty($this->_req->post->uid))
 			throw new Elk_Exception('username_no_exist', false);
 
-		loadLanguage('Login');
+		theme()->getTemplates()->loadLanguageFile('Login');
 
 		// Get the information from the database.
 		require_once(SUBSDIR . '/Members.subs.php');
@@ -355,7 +355,7 @@ function secretAnswerInput()
 	checkSession();
 
 	// Strings for the register auto javascript clever stuffy wuffy.
-	loadLanguage('Login');
+	theme()->getTemplates()->loadLanguageFile('Login');
 
 	// Check they entered something...
 	if (empty($_POST['uid']))

@@ -118,7 +118,7 @@ class Register_Controller extends Action_Controller
 		if (isset($this->_req->post->show_contact))
 			redirectexit('action=register;sa=contact');
 
-		loadLanguage('Login');
+		theme()->getTemplates()->loadLanguageFile('Login');
 		loadTemplate('Register');
 
 		// Do we need them to agree to the registration agreement, first?
@@ -130,7 +130,7 @@ class Register_Controller extends Action_Controller
 		if (!empty($modSettings['show_DisplayNameOnRegistration']))
 		{
 			$context['insert_display_name'] = true;
-			loadLanguage('Profile');
+			theme()->getTemplates()->loadLanguageFile('Profile');
 		}
 		else
 		{
@@ -162,7 +162,7 @@ class Register_Controller extends Action_Controller
 				// Are they saying they're under age, while under age registration is disabled?
 				if (empty($modSettings['coppaType']) && empty($_SESSION['skip_coppa']))
 				{
-					loadLanguage('Login');
+					theme()->getTemplates()->loadLanguageFile('Login');
 					throw new Elk_Exception('under_age_registration_prohibited', false, array($modSettings['coppaAge']));
 				}
 			}
@@ -283,7 +283,7 @@ class Register_Controller extends Action_Controller
 		// Are they under age, and under age users are banned?
 		if (!empty($modSettings['coppaAge']) && empty($modSettings['coppaType']) && empty($_SESSION['skip_coppa']))
 		{
-			loadLanguage('Login');
+			theme()->getTemplates()->loadLanguageFile('Login');
 			throw new Elk_Exception('under_age_registration_prohibited', false, array($modSettings['coppaAge']));
 		}
 
@@ -294,7 +294,7 @@ class Register_Controller extends Action_Controller
 		// Failing that, check the time limit for excessive speed.
 		if (time() - $_SESSION['register']['timenow'] < $_SESSION['register']['limit'])
 		{
-			loadLanguage('Login');
+			theme()->getTemplates()->loadLanguageFile('Login');
 			$reg_errors->addError('too_quickly');
 		}
 
@@ -661,7 +661,7 @@ class Register_Controller extends Action_Controller
 			if (empty($context['agreement']))
 			{
 				// No file found or a blank file, log the error so the admin knows there is a problem!
-				loadLanguage('Errors');
+				theme()->getTemplates()->loadLanguageFile('Errors');
 				Errors::instance()->log_error($txt['registration_agreement_missing'], 'critical');
 				throw new Elk_Exception('registration_disabled', false);
 			}
@@ -726,7 +726,7 @@ class Register_Controller extends Action_Controller
 		if (!empty($modSettings['registration_fields']))
 		{
 			// Setup some important context.
-			loadLanguage('Profile');
+			theme()->getTemplates()->loadLanguageFile('Profile');
 			loadTemplate('Profile');
 
 			$context['user']['is_owner'] = true;
@@ -768,7 +768,7 @@ class Register_Controller extends Action_Controller
 		if (!empty($user_info['id']))
 			redirectexit();
 
-		loadLanguage('Login');
+		theme()->getTemplates()->loadLanguageFile('Login');
 		loadTemplate('Login');
 		loadJavascriptFile('sha256.js', array('defer' => true));
 
@@ -946,7 +946,7 @@ class Register_Controller extends Action_Controller
 			}
 			elseif ($this->_row['validation_code'] === '')
 			{
-				loadLanguage('Profile');
+				theme()->getTemplates()->loadLanguageFile('Profile');
 				throw new Elk_Exception($txt['registration_not_approved'] . ' <a href="' . $scripturl . '?action=register;sa=activate;user=' . $this->_row['member_name'] . '">' . $txt['here'] . '</a>.', false);
 			}
 
@@ -969,7 +969,7 @@ class Register_Controller extends Action_Controller
 	{
 		global $context, $modSettings, $txt;
 
-		loadLanguage('Login');
+		theme()->getTemplates()->loadLanguageFile('Login');
 		loadTemplate('Register');
 
 		// No User ID??
@@ -1058,7 +1058,7 @@ class Register_Controller extends Action_Controller
 		// Show a window that will play the verification code (play sound)
 		elseif (isset($this->_req->query->sound))
 		{
-			loadLanguage('Login');
+			theme()->getTemplates()->loadLanguageFile('Login');
 			loadTemplate('Register');
 
 			$context['verification_sound_href'] = $scripturl . '?action=register;sa=verificationcode;rand=' . md5(mt_rand()) . ($verification_id ? ';vid=' . $verification_id : '') . ';format=.wav';
@@ -1117,7 +1117,7 @@ class Register_Controller extends Action_Controller
 		if (!$user_info['is_guest'] || empty($modSettings['enable_contactform']) || $modSettings['enable_contactform'] === 'disabled')
 			redirectexit();
 
-		loadLanguage('Login');
+		theme()->getTemplates()->loadLanguageFile('Login');
 		loadTemplate('Register');
 
 		// Submitted the contact form?
@@ -1131,7 +1131,7 @@ class Register_Controller extends Action_Controller
 
 			// No errors, yet.
 			$context['errors'] = array();
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 
 			// Could they get the right send topic verification code?
 			require_once(SUBSDIR . '/VerificationControls.class.php');

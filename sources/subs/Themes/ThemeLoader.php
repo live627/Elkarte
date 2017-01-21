@@ -399,7 +399,7 @@ class ThemeLoader
 		// Any theme-related strings that need to be loaded?
 		if (!empty($settings['require_theme_strings']))
 		{
-			loadLanguage('ThemeStrings', '', false);
+			theme()->getTemplates()->loadLanguageFile('ThemeStrings', '', false);
 		}
 
 		// We allow theme variants, because we're cool.

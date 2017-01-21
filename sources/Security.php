@@ -192,7 +192,7 @@ function is_not_guest($message = '', $is_fatal = true)
 		$_SESSION['login_url'] = $_SERVER['REQUEST_URL'];
 
 	// Load the Login template and language file.
-	loadLanguage('Login');
+	theme()->getTemplates()->loadLanguageFile('Login');
 
 	// Apparently we're not in a position to handle this now. Let's go to a safer location for now.
 	if (!theme()->getLayers()->hasLayers())
@@ -1113,7 +1113,7 @@ function isAllowedTo($permission, $boards = null)
 		// If they are a guest, show a login. (because the error might be gone if they do!)
 		if ($user_info['is_guest'])
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			is_not_guest($txt['cannot_' . $error_permission]);
 		}
 

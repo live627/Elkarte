@@ -51,7 +51,7 @@ class Reports_Controller extends Action_Controller
 
 		// Let's get our things running...
 		loadTemplate('Reports');
-		loadLanguage('Reports');
+		theme()->getTemplates()->loadLanguageFile('Reports');
 
 		$context['page_title'] = $txt['generate_reports'];
 
@@ -169,7 +169,7 @@ class Reports_Controller extends Action_Controller
 		require_once(SUBSDIR . '/Membergroups.subs.php');
 		require_once(SUBSDIR . '/Reports.subs.php');
 
-		loadLanguage('ManagePermissions');
+		theme()->getTemplates()->loadLanguageFile('ManagePermissions');
 		loadPermissionProfiles();
 
 		// Get every moderator.

@@ -69,7 +69,7 @@ class Likes_Controller extends Action_Controller
 		{
 			if (empty($this->_likes_response))
 			{
-				loadLanguage('Errors');
+				theme()->getTemplates()->loadLanguageFile('Errors');
 				$this->_likes_response = array('result' => false, 'data' => $txt['like_unlike_error']);
 			}
 		}
@@ -91,7 +91,7 @@ class Likes_Controller extends Action_Controller
 		{
 			if (empty($this->_likes_response))
 			{
-				loadLanguage('Errors');
+				theme()->getTemplates()->loadLanguageFile('Errors');
 				$this->_likes_response = array('result' => false, 'data' => $txt['like_unlike_error']);
 			}
 		}
@@ -253,7 +253,7 @@ class Likes_Controller extends Action_Controller
 		// If they have exceeded their limits, provide a message for the ajax response
 		if ($check === false)
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$wait = $modSettings['likeWaitTime'] > 60 ? round($modSettings['likeWaitTime'] / 60, 2) : $modSettings['likeWaitTime'];
 			$error = sprintf($txt['like_wait_time'], $wait, ($modSettings['likeWaitTime'] < 60 ? strtolower($txt['minutes']) : $txt['hours']));
 			$this->_likes_response = array('result' => false, 'data' => $error);
@@ -492,7 +492,7 @@ class Likes_Controller extends Action_Controller
 		global $context, $txt, $scripturl;
 
 		require_once(SUBSDIR . '/Likes.subs.php');
-		loadLanguage('Profile');
+		theme()->getTemplates()->loadLanguageFile('Profile');
 
 		// Get the message in question
 		$message = $this->_req->getQuery('msg', 'intval', 0);
@@ -639,7 +639,7 @@ class Likes_Controller extends Action_Controller
 		// And you can see the stats
 		isAllowedTo('like_posts_stats');
 
-		loadLanguage('LikePosts');
+		theme()->getTemplates()->loadLanguageFile('LikePosts');
 
 		$subActions = array(
 			'messagestats' => array($this, 'action_messageStats'),
@@ -682,7 +682,7 @@ class Likes_Controller extends Action_Controller
 		isAllowedTo('like_posts_stats');
 
 		// Load the required files
-		loadLanguage('LikePosts');
+		theme()->getTemplates()->loadLanguageFile('LikePosts');
 		loadJavascriptFile('like_posts.js');
 		loadTemplate('LikePostsStats');
 

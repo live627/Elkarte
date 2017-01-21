@@ -94,7 +94,7 @@ class Packages_Controller extends Action_Controller
 		isAllowedTo('admin_forum');
 
 		// Load all the basic stuff.
-		loadLanguage('Packages');
+		theme()->getTemplates()->loadLanguageFile('Packages');
 		loadTemplate('Packages');
 		loadCSSFile('admin.css');
 		$context['page_title'] = $txt['package'];

@@ -89,7 +89,7 @@ class News_Controller extends Action_Controller
 		if (empty($modSettings['xmlnews_enable']))
 			obExit(false);
 
-		loadLanguage('Stats');
+		theme()->getTemplates()->loadLanguageFile('Stats');
 		$txt['xml_rss_desc'] = replaceBasicActionUrl($txt['xml_rss_desc']);
 
 		// Default to latest 5.  No more than whats defined in the ACP or 255

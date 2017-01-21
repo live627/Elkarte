@@ -58,7 +58,7 @@ class Emailpost_Controller extends Action_Controller
 		require_once(SUBSDIR . '/Emailpost.subs.php');
 
 		// Init
-		loadLanguage('Maillist');
+		theme()->getTemplates()->loadLanguageFile('Maillist');
 		detectServer()->setMemoryLimit('128M');
 
 		// Load the email parser and get some data to work with
@@ -171,9 +171,9 @@ class Emailpost_Controller extends Action_Controller
 			$pbe['response_prefix'] = $txt['response_prefix'];
 		else
 		{
-			loadLanguage('index', $language, false);
+			theme()->getTemplates()->loadLanguageFile('index', $language, false);
 			$pbe['response_prefix'] = $txt['response_prefix'];
-			loadLanguage('index');
+			theme()->getTemplates()->loadLanguageFile('index');
 		}
 
 		// Allow for new topics to be started via a email subject change
@@ -232,7 +232,7 @@ class Emailpost_Controller extends Action_Controller
 		require_once(SUBSDIR . '/Emailpost.subs.php');
 
 		// Init
-		loadLanguage('Maillist');
+		theme()->getTemplates()->loadLanguageFile('Maillist');
 		detectServer()->setMemoryLimit('256M');
 
 		// Get the data from one of our sources
@@ -341,7 +341,7 @@ class Emailpost_Controller extends Action_Controller
 
 		// Init
 		$pbe = array();
-		loadLanguage('Maillist');
+		theme()->getTemplates()->loadLanguageFile('Maillist');
 
 		// Load the email parser and get some data to work with
 		$email_message = new Email_Parse();

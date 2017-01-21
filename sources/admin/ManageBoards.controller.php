@@ -50,7 +50,7 @@ class ManageBoards_Controller extends Action_Controller
 		global $context, $txt;
 
 		// Everything's gonna need this.
-		loadLanguage('ManageBoards');
+		theme()->getTemplates()->loadLanguageFile('ManageBoards');
 
 		// Format: 'sub-action' => array('controller', 'function', 'permission'=>'need')
 		$subActions = array(
@@ -445,7 +445,7 @@ class ManageBoards_Controller extends Action_Controller
 		getBoardTree();
 
 		// For editing the profile we'll need this.
-		loadLanguage('ManagePermissions');
+		theme()->getTemplates()->loadLanguageFile('ManagePermissions');
 		require_once(SUBSDIR . '/ManagePermissions.subs.php');
 		loadPermissionProfiles();
 
@@ -795,7 +795,7 @@ class ManageBoards_Controller extends Action_Controller
 		global $txt;
 
 		// We need to borrow a string from here
-		loadLanguage('ManagePermissions');
+		theme()->getTemplates()->loadLanguageFile('ManagePermissions');
 
 		// Load the boards list - for the recycle bin!
 		require_once(SUBSDIR . '/Boards.subs.php');

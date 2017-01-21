@@ -85,7 +85,7 @@ class Stats_Controller extends Action_Controller
 		}
 
 		// Stats it is
-		loadLanguage('Stats');
+		theme()->getTemplates()->loadLanguageFile('Stats');
 		loadTemplate('Stats');
 		loadJavascriptFile('stats.js');
 

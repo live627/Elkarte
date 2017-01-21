@@ -105,7 +105,7 @@ function checkImageContents($fileName, $extensiveCheck = false)
 	$fp = fopen($fileName, 'rb');
 	if (!$fp)
 	{
-		loadLanguage('Post');
+		theme()->getTemplates()->loadLanguageFile('Post');
 		throw new Elk_Exception('attach_timeout');
 	}
 

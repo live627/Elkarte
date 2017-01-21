@@ -147,8 +147,8 @@ class Post_Controller extends Action_Controller
 	{
 		global $context;
 
-		loadLanguage('Post');
-		loadLanguage('Errors');
+		theme()->getTemplates()->loadLanguageFile('Post');
+		theme()->getTemplates()->loadLanguageFile('Errors');
 
 		$context['robot_no_index'] = true;
 		$this->_template_layers->add('postarea');
@@ -686,7 +686,7 @@ class Post_Controller extends Action_Controller
 			return $this->action_post();
 
 		require_once(SUBSDIR . '/Boards.subs.php');
-		loadLanguage('Post');
+		theme()->getTemplates()->loadLanguageFile('Post');
 
 		// Trigger the prepare_save_post event
 		$this->_events->trigger('prepare_save_post', array('topic_info' => &$topic_info));
@@ -1151,7 +1151,7 @@ class Post_Controller extends Action_Controller
 	{
 		global $user_info, $context;
 
-		loadLanguage('Post');
+		theme()->getTemplates()->loadLanguageFile('Post');
 
 		// Where we going if we need to?
 		$context['post_box_name'] = isset($_GET['pb']) ? $_GET['pb'] : '';

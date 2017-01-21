@@ -85,7 +85,7 @@ class Profile_Controller extends Action_Controller
 
 		// Don't reload this as we may have processed error strings.
 		if (empty($post_errors))
-			loadLanguage('Profile');
+			theme()->getTemplates()->loadLanguageFile('Profile');
 		loadTemplate('Profile');
 
 		// Trigger profile pre-load event
@@ -668,7 +668,7 @@ class Profile_Controller extends Action_Controller
 			if (!empty($post_errors))
 			{
 				// Load the language file so we can give a nice explanation of the errors.
-				loadLanguage('Errors');
+				theme()->getTemplates()->loadLanguageFile('Errors');
 				$context['post_errors'] = $post_errors;
 			}
 			elseif (!empty($profile_vars))

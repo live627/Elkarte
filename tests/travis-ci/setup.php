@@ -294,7 +294,7 @@ Class Elk_Testing_Setup
 		//~ require_once(SUBSDIR . '/Topic.subs.php');
 		//~ updateTopicStats();
 
-		//~ loadLanguage('Install');
+		//~ theme()->getTemplates()->loadLanguageFile('Install');
 		//~ updateSubjectStats(1, htmlspecialchars($txt['default_topic_subject']));
 	}
 

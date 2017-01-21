@@ -81,7 +81,7 @@ class Jslocale_Controller extends Action_Controller
 		global $modSettings;
 
 		if (!empty($language_file))
-			loadLanguage($language_file);
+			theme()->getTemplates()->loadLanguageFile($language_file);
 
 		theme()->getLayers()->removeAll();
 

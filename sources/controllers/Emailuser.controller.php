@@ -124,7 +124,7 @@ class Emailuser_Controller extends Action_Controller
 		// Guests can't mark things.
 		if (empty($topic))
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => $txt['not_a_topic']
@@ -135,7 +135,7 @@ class Emailuser_Controller extends Action_Controller
 		// Is the session valid?
 		if (checkSession('post', '', false))
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'url' => $scripturl . '?action=emailuser;sa=sendtopic;topic=' . $topic . '.0',
@@ -148,7 +148,7 @@ class Emailuser_Controller extends Action_Controller
 		$row = getTopicInfo($topic, 'message');
 		if (empty($row))
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => $txt['not_a_topic']
@@ -159,7 +159,7 @@ class Emailuser_Controller extends Action_Controller
 		// Can't send topic if its unapproved and using post moderation.
 		if ($modSettings['postmod_active'] && !$row['approved'])
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => $txt['not_approved_topic']
@@ -170,7 +170,7 @@ class Emailuser_Controller extends Action_Controller
 		$is_spam = spamProtection('sendtopic', false);
 		if ($is_spam !== false)
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = array(
 				'error' => 1,
 				'text' => sprintf($txt['sendtopic_WaitTime_broken'], $is_spam)
@@ -185,7 +185,7 @@ class Emailuser_Controller extends Action_Controller
 		$result = $this->_sendTopic($row);
 		if ($result !== true)
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			$context['xml_data'] = $result;
 			return;
 		}
@@ -482,8 +482,8 @@ class Emailuser_Controller extends Action_Controller
 		}
 
 		// Show the inputs for the comment, etc.
-		loadLanguage('Post');
-		loadLanguage('Errors');
+		theme()->getTemplates()->loadLanguageFile('Post');
+		theme()->getTemplates()->loadLanguageFile('Errors');
 		loadTemplate('Emailuser');
 
 		addInlineJavascript('

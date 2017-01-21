@@ -677,7 +677,7 @@ function loadBoard()
 		}
 		elseif ($user_info['is_guest'])
 		{
-			loadLanguage('Errors');
+			theme()->getTemplates()->loadLanguageFile('Errors');
 			is_not_guest($txt['topic_gone']);
 		}
 		else

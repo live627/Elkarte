@@ -32,7 +32,7 @@ class ManageSearchEngines_Controller extends Action_Controller
 	{
 		global $context, $txt;
 
-		loadLanguage('Search');
+		theme()->getTemplates()->loadLanguageFile('Search');
 		loadTemplate('ManageSearch');
 
 		$subActions = array(
@@ -386,7 +386,7 @@ class ManageSearchEngines_Controller extends Action_Controller
 		global $context, $txt, $scripturl, $modSettings;
 
 		// Load the template and language just incase.
-		loadLanguage('Search');
+		theme()->getTemplates()->loadLanguageFile('Search');
 		loadTemplate('ManageSearch');
 
 		// Did they want to delete some or all entries?

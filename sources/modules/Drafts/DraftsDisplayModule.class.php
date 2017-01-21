@@ -79,7 +79,7 @@ class Drafts_Display_Module implements ElkArte\sources\modules\Module_Interface
 		// Build a list of drafts that they can load into the editor
 		if (!empty($context['drafts_save']))
 		{
-			loadLanguage('Drafts');
+			theme()->getTemplates()->loadLanguageFile('Drafts');
 			if ($context['drafts_autosave'])
 			{
 				// WYSIWYG editor
