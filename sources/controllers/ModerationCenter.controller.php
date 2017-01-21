@@ -398,7 +398,7 @@ class ModerationCenter_Controller extends Action_Controller
 		$context['page_title'] = $txt['show_notice'];
 		$context['sub_template'] = 'show_notice';
 
-		Template_Layers::getInstance()->removeAll();
+		theme()->getLayers()->removeAll();
 		loadTemplate('ModerationCenter');
 	}
 

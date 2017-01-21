@@ -28,7 +28,7 @@ class Post_Controller extends Action_Controller
 	/** @var null|ErrorContext The post (messages) errors object */
 	protected $_post_errors = null;
 
-	/** @var null|Template_Layers The template layers object */
+	/** @var null|ElkArte\Theme\TemplateLayers The template layers object */
 	protected $_template_layers = null;
 
 	/** @var array An array of attributes of the topic (if not new) */
@@ -49,7 +49,7 @@ class Post_Controller extends Action_Controller
 	public function pre_dispatch()
 	{
 		$this->_post_errors = ErrorContext::context('post', 1);
-		$this->_template_layers = Template_Layers::getInstance();
+		$this->_template_layers = theme()->getLayers();
 
 		$this->preparse = \BBC\PreparseCode::getInstance();
 

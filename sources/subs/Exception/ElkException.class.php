@@ -115,8 +115,6 @@ class Elk_Exception extends Exception
 			}
 		}
 
-		loadLanguage($language);
-
 		return array($msg, $language);
 	}
 
@@ -134,7 +132,7 @@ class Elk_Exception extends Exception
 
 		list ($msg, $lang) = $this->parseMessage($message);
 		$this->logMessage($message, $lang);
-		loadLanguage($lang);
+		//~ loadLanguage($lang);
 
 		$msg = !isset($txt[$msg]) ? $msg : (empty($this->sprintf) ? $txt[$msg] : vsprintf($txt[$msg], $this->sprintf));
 
@@ -154,10 +152,6 @@ class Elk_Exception extends Exception
 	{
 		global $user_info, $language, $txt;
 
-		// Don't need to reload the language file if both the user and
-		// the forum share the same languasge.
-		if ($language == $user_info['language'])
-			loadLanguage($lang, $language);
 
 		$msg = !isset($txt[$msg]) ? $msg : (empty($this->sprintf) ? $txt[$msg] : vsprintf($txt[$msg], $this->sprintf));
 		E::instance()->log_error($msg, 'general', $this->getFile(), $this->getLine());

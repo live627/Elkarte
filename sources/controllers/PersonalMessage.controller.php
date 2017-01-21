@@ -384,7 +384,7 @@ class PersonalMessage_Controller extends Action_Controller
 		// Set the template for this area and add the profile layer.
 		if (!isset($this->_req->query->xml))
 		{
-			$template_layers = Template_Layers::getInstance();
+			$template_layers = theme()->getLayers();
 			$template_layers->add('pm');
 		}
 	}
@@ -429,7 +429,7 @@ class PersonalMessage_Controller extends Action_Controller
 		$context['disabled_fields'] = isset($modSettings['disabled_profile_fields']) ? array_flip(explode(',', $modSettings['disabled_profile_fields'])) : array();
 
 		// Set the template layers we need
-		$template_layers = Template_Layers::getInstance();
+		$template_layers = theme()->getLayers();
 		$template_layers->addAfter('subject_list', 'pm');
 
 		$labelQuery = $context['folder'] !== 'sent' ? '
@@ -672,7 +672,7 @@ class PersonalMessage_Controller extends Action_Controller
 
 		if (!empty($messages_request) && !empty($context['show_delete']))
 		{
-			Template_Layers::getInstance()->addEnd('pm_pages_and_buttons');
+			theme()->getLayers()->addEnd('pm_pages_and_buttons');
 		}
 
 		// Set up the page index.

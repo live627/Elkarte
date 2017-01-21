@@ -110,7 +110,7 @@ class Drafts_Post_Module implements ElkArte\sources\modules\Module_Interface
 	 * @param array $editorOptions
 	 * @param int $board
 	 * @param int $topic
-	 * @param Template_Layers $template_layers
+	 * @param ElkArte\Theme\TemplateLayers $template_layers
 	 */
 	public function finalize_post_form(&$editorOptions, $board, $topic, $template_layers)
 	{

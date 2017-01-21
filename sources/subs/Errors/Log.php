@@ -13,7 +13,7 @@
 namespace ElkArte\Errors;
 
 use Elk_Exception;
-use Template_Layers;
+use ElkArte\Theme\TemplateLayers;
 use AbstractModel;
 
 /**

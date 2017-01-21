@@ -1154,7 +1154,7 @@ class ProfileInfo_Controller extends Action_Controller
 		$this->_define_user_values();
 
 		// This is returned only for ajax request to a jqueryUI tab
-		Template_Layers::getInstance()->removeAll();
+		theme()->getLayers()->removeAll();
 		header('Content-Type: text/html; charset=UTF-8');
 
 		// Some buddies for you
@@ -1186,7 +1186,7 @@ class ProfileInfo_Controller extends Action_Controller
 		$context['profile_blocks'] = array();
 
 		// Flush everything since we intend to return the information to an ajax handler
-		Template_Layers::getInstance()->removeAll();
+		theme()->getLayers()->removeAll();
 		header('Content-Type: text/html; charset=UTF-8');
 
 		// So, just what have you been up to?

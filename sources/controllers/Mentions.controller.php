@@ -322,7 +322,7 @@ class Mentions_Controller extends Action_Controller
 
 		loadTemplate('Json');
 		$context['sub_template'] = 'send_json';
-		$template_layers = Template_Layers::getInstance();
+		$template_layers = theme()->getLayers();
 		$template_layers->removeAll();
 		require_once(SUBSDIR . '/Mentions.subs.php');
 

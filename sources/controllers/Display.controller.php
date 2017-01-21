@@ -120,7 +120,7 @@ class Display_Controller extends Action_Controller
 
 		// How much are we sticking on each page?
 		$context['messages_per_page'] = empty($modSettings['disableCustomPerPage']) && !empty($options['messages_per_page']) ? $options['messages_per_page'] : $modSettings['defaultMaxMessages'];
-		$this->_template_layers = Template_Layers::getInstance();
+		$this->_template_layers = theme()->getLayers();
 		$this->_template_layers->addEnd('messages_informations');
 		$includeUnapproved = !$modSettings['postmod_active'] || allowedTo('approve_posts');
 

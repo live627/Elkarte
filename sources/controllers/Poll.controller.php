@@ -742,7 +742,7 @@ class Poll_Controller extends Action_Controller
 
 		loadTemplate('Poll');
 		loadLanguage('Post');
-		Template_Layers::getInstance()->removeAll();
+		theme()->getLayers()->removeAll();
 
 		$db_show_debug = false;
 

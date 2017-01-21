@@ -113,7 +113,7 @@ class Reports_Controller extends Action_Controller
 			// Are we disabling the other layers - print friendly for example?
 			if ($reportTemplates[$set_template]['layers'] !== null)
 			{
-				$template_layers = Template_Layers::getInstance();
+				$template_layers = theme()->getLayers();
 				$template_layers->removeAll();
 				foreach ($reportTemplates[$set_template]['layers'] as $layer)
 					$template_layers->add($layer);

@@ -114,7 +114,7 @@ class Emailuser_Controller extends Action_Controller
 
 		loadTemplate('Xml');
 
-		Template_Layers::getInstance()->removeAll();
+		theme()->getLayers()->removeAll();
 		$context['sub_template'] = 'generic_xml_buttons';
 
 		if (empty($this->_req->post->send))

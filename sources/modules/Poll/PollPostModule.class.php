@@ -156,7 +156,7 @@ class Poll_Post_Module implements ElkArte\sources\modules\Module_Interface
 	 *
 	 * @param string $destination
 	 * @param string $page_title
-	 * @param Template_Layers $template_layers
+	 * @param ElkArte\Theme\TemplateLayers $template_layers
 	 */
 	public function finalize_post_form(&$destination, &$page_title, $template_layers)
 	{

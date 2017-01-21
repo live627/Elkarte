@@ -179,7 +179,7 @@ class ManageFeatures_Controller extends Action_Controller
 		{
 			$clean_hives_result = theme()->cleanHives();
 
-			Template_Layers::getInstance()->removeAll();
+			theme()->getLayers()->removeAll();
 			loadTemplate('Json');
 			addJavascriptVar(array('txt_invalid_response' => $txt['ajax_bad_response']), true);
 			$context['sub_template'] = 'send_json';

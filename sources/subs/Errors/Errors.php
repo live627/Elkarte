@@ -20,7 +20,6 @@
 namespace ElkArte\Errors;
 
 use Elk_Exception;
-use Template_Layers;
 use AbstractModel;
 
 /**
@@ -283,9 +282,7 @@ class Errors extends AbstractModel
 		// Load the template and set the sub template.
 		loadTemplate('Errors');
 		$context['sub_template'] = 'fatal_error';
-
-		if (class_exists('Template_Layers'))
-			Template_Layers::getInstance()->isError();
+		theme()->getLayers()->isError();
 
 		// If this is SSI, what do they want us to do?
 		if (ELK === 'SSI')

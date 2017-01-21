@@ -77,7 +77,7 @@ class AdminDebug_Controller extends Action_Controller
 		$query_id = $query_id === null ? -1 : $query_id - 1;
 
 		// Just to stay on the safe side, better remove any layer and add back only html
-		$layers = Template_Layers::getInstance();
+		$layers = theme()->getLayers();
 		$layers->removeAll();
 		$layers->add('html');
 		loadTemplate('Admin');

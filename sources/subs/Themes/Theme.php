@@ -7,9 +7,11 @@
  * @copyright ElkArte Forum contributors
  * @license   BSD http://opensource.org/licenses/BSD-3-Clause
  *
- * @version 1.1 beta 4
+ * @version   1.1 beta 4
  *
  */
+
+namespace ElkArte\Themes;
 
 /**
  * Class Theme
@@ -27,59 +29,57 @@ abstract class Theme
 	protected $id;
 
 	/**
-	 * Holds the Templates instance
-	 * @var Templates
+	 * @var ElkArte\Theme\Templates
 	 */
-	protected $templates;
+	private $templates;
 
 	/**
-	 * Holds the Template_Layers instance
-	 * @var Template_Layers
+	 * @var ElkArte\Theme\TemplateLayers
 	 */
-	protected $layers;
-
-	/**
-	 * @var array
-	 */
-	protected $html_headers = array();
+	private $layers;
 
 	/**
 	 * @var array
 	 */
-	protected $links = array();
+	protected $html_headers = [];
+
+	/**
+	 * @var array
+	 */
+	protected $links = [];
 
 	/**
 	 * All of the JS files to include
 	 * @var array
 	 */
-	protected $js_files = array();
+	protected $js_files = [];
 
 	/**
 	 * Any inline JS to output
 	 * @var array
 	 */
-	protected $js_inline = array(
-		'standard' => array(),
-		'defer' => array()
-	);
+	protected $js_inline = [
+		'standard' => [],
+		'defer' => [],
+	];
 
 	/**
 	 * JS variables to output
 	 * @var array
 	 */
-	protected $js_vars = array();
+	protected $js_vars = [];
 
 	/**
 	 * Inline CSS
 	 * @var array
 	 */
-	protected $css_rules = array();
+	protected $css_rules = [];
 
 	/**
 	 * CSS files
 	 * @var array
 	 */
-	protected $css_files = array();
+	protected $css_files = [];
 
 	/**
 	 * Right to left language support
@@ -94,26 +94,48 @@ abstract class Theme
 	 */
 	public function __construct($id)
 	{
-		$this->layers = Template_Layers::getInstance();
-		$this->templates = Templates::getInstance();
+		$this->layers = new TemplateLayers;
+		$this->templates = new Templates;
 
 		$this->css_files = &$GLOBALS['context']['css_files'];
 		$this->js_files = &$GLOBALS['context']['js_files'];
 		$this->css_rules = &$GLOBALS['context']['css_rules'];
 		if (empty($this->css_rules))
 		{
-			$this->css_rules = array(
+			$this->css_rules = [
 				'all' => '',
-				'media' => array(),
-			);
+				'media' => [],
+			];
 		}
+	}
+	/**
+	 * Initialize the template... mainly little settings.
+	 *
+	 * @return array Theme settings
+	 */
+	abstract public function getSetings();
+
+	/**
+	 * @return ElkArte\Theme\TemplateLayers
+	 */
+	public function getLayers()
+	{
+		return $this->layers;
+	}
+
+	/**
+	 * @return ElkArte\Theme\Templates
+	 */
+	public function getTemplates()
+	{
+		return $this->templates;
 	}
 
 	/**
 	 * Add a Javascript variable for output later (for feeding text strings and similar to JS)
 	 *
-	 * @param mixed[] $vars array of vars to include in the output done as 'varname' => 'var value'
-	 * @param bool $escape = false, whether or not to escape the value
+	 * @param mixed[] $vars   array of vars to include in the output done as 'varname' => 'var value'
+	 * @param bool    $escape = false, whether or not to escape the value
 	 */
 	public function addJavascriptVar($vars, $escape = false)
 	{
@@ -123,13 +145,15 @@ abstract class Theme
 		}
 
 		foreach ($vars as $key => $value)
+		{
 			$this->js_vars[$key] = !empty($escape) ? JavaScriptEscape($value) : $value;
+		}
 	}
 
 	/**
 	 * Add a CSS rule to a style tag in head.
 	 *
-	 * @param string $rules the CSS rule/s
+	 * @param string      $rules the CSS rule/s
 	 * @param null|string $media = null, the media query the rule belongs to
 	 */
 	public function addCSSRules($rules, $media = null)
@@ -202,7 +226,7 @@ abstract class Theme
 	 * - all code added with this function is added to the same <script> tag so do make sure your JS is clean!
 	 *
 	 * @param string $javascript
-	 * @param bool $defer = false, define if the script should load in <head> or before the closing <html> tag
+	 * @param bool   $defer = false, define if the script should load in <head> or before the closing <html> tag
 	 */
 	public function addInlineJavascript($javascript, $defer = false)
 	{

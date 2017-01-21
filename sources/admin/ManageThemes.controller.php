@@ -196,7 +196,7 @@ class ManageThemes_Controller extends Action_Controller
 		loadTemplate('Xml');
 
 		// Remove any template layers that may have been created, this is XML!
-		Template_Layers::getInstance()->removeAll();
+		theme()->getLayers()->removeAll();
 		$context['sub_template'] = 'generic_xml_buttons';
 
 		// No guests in here.

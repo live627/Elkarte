@@ -98,7 +98,7 @@ class Notify_Controller extends Action_Controller
 
 		loadTemplate('Xml');
 
-		Template_Layers::getInstance()->removeAll();
+		theme()->getLayers()->removeAll();
 		$context['sub_template'] = 'generic_xml_buttons';
 
 		// Even with Ajax, guests still can't do this
@@ -226,7 +226,7 @@ class Notify_Controller extends Action_Controller
 
 		loadTemplate('Xml');
 
-		Template_Layers::getInstance()->removeAll();
+		theme()->getLayers()->removeAll();
 		$context['sub_template'] = 'generic_xml_buttons';
 
 		// Permissions are an important part of anything ;).
@@ -327,7 +327,7 @@ class Notify_Controller extends Action_Controller
 
 		loadTemplate('Xml');
 
-		Template_Layers::getInstance()->removeAll();
+		theme()->getLayers()->removeAll();
 		$context['sub_template'] = 'generic_xml_buttons';
 
 		// Sorry guests just can't do this
