@@ -1338,7 +1338,7 @@ function loadEssentialThemeData()
  * @return boolean|null
  * @throws Elk_Exception
  */
-function theme()->getTemplates()->load($template_name, $style_sheets = array(), $fatal = true)
+function loadTemplate($template_name, $style_sheets = array(), $fatal = true)
 {
 	return theme()->getTemplates()->load($template_name, $style_sheets, $fatal);
 }
