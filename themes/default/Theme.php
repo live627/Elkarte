@@ -1071,7 +1071,7 @@ class Theme extends BaseTheme
 		global $settings, $context, $modSettings, $scripturl, $txt, $options;
 
 		// Queue our Javascript
-		$this->loadJavascriptFile(array('elk_jquery_plugins.js', 'script.js', 'script_elk.js', 'theme.js'));
+		loadJavascriptFile(array('elk_jquery_plugins.js', 'script.js', 'script_elk.js', 'theme.js'));
 
 		// Default JS variables for use in every theme
 		$this->addJavascriptVar(array(
