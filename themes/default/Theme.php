@@ -585,7 +585,7 @@ class Theme extends BaseTheme
 			loadCSSFile('prettify.css');
 			loadJavascriptFile('prettify.min.js', array('defer' => true));
 
-			theme()->addInlineJavascript('
+			$this->addInlineJavascript('
 			$(function() {
 				prettyPrint();
 			});', true);
@@ -601,7 +601,7 @@ class Theme extends BaseTheme
 
 		if (!empty($modSettings['enableVideoEmbeding']))
 		{
-			theme()->addInlineJavascript('
+			$this->addInlineJavascript('
 			var oEmbedtext = ({
 				preview_image : ' . JavaScriptEscape($txt['preview_image']) . ',
 				ctp_video : ' . JavaScriptEscape($txt['ctp_video']) . ',
@@ -643,7 +643,7 @@ class Theme extends BaseTheme
 			$type = empty($modSettings['next_task_time']) || $modSettings['next_task_time'] < time() ? 'task' : 'mailq';
 			$ts = $type == 'mailq' ? $modSettings['mail_next_send'] : $modSettings['next_task_time'];
 
-			theme()->addInlineJavascript('
+			$this->addInlineJavascript('
 		function elkAutoTask()
 		{
 			var tempImage = new Image();
@@ -663,7 +663,7 @@ class Theme extends BaseTheme
 		// Relative times?
 		if (!empty($modSettings['todayMod']) && $modSettings['todayMod'] > 2)
 		{
-			theme()->addInlineJavascript('
+			$this->addInlineJavascript('
 			var oRttime = ({
 				referenceTime : ' . forum_time() * 1000 . ',
 				now : ' . JavaScriptEscape($txt['rt_now']) . ',
@@ -804,7 +804,7 @@ class Theme extends BaseTheme
 		// Add the PM popup here instead. Theme authors can still override it simply by editing/removing the 'fPmPopup' in the array.
 		if ($context['show_pm_popup'])
 		{
-			theme()->addInlineJavascript('
+			$this->addInlineJavascript('
 			$(function() {
 				new smc_Popup({
 					heading: ' . JavaScriptEscape($txt['show_personal_messages_heading']) . ',
@@ -833,7 +833,7 @@ class Theme extends BaseTheme
 
 		if (empty($settings['theme_version']))
 		{
-			theme()->addJavascriptVar(array('elk_scripturl' => '\'' . $scripturl . '\''));
+			$this->addJavascriptVar(array('elk_scripturl' => '\'' . $scripturl . '\''));
 		}
 
 		if (!isset($context['page_title']))
@@ -1071,10 +1071,10 @@ class Theme extends BaseTheme
 		global $settings, $context, $modSettings, $scripturl, $txt, $options;
 
 		// Queue our Javascript
-		loadJavascriptFile(array('elk_jquery_plugins.js', 'script.js', 'script_elk.js', 'theme.js'));
+		$this->loadJavascriptFile(array('elk_jquery_plugins.js', 'script.js', 'script_elk.js', 'theme.js'));
 
 		// Default JS variables for use in every theme
-		$this->theme()->addJavascriptVar(array(
+		$this->addJavascriptVar(array(
 				'elk_theme_url' => JavaScriptEscape($settings['theme_url']),
 				'elk_default_theme_url' => JavaScriptEscape($settings['default_theme_url']),
 				'elk_images_url' => JavaScriptEscape($settings['images_url']),
@@ -1131,14 +1131,14 @@ class Theme extends BaseTheme
 		// Output is fully XML
 		if (isset($_REQUEST['xml']))
 		{
-			theme()->getTemplates()->loadLanguageFile('index+Addons');
+			$this->getTemplates()->loadLanguageFile('index+Addons');
 			$this->getTemplates()->load('Xml');
 			$this->getLayers()->removeAll();
 		}
 		// These actions don't require the index template at all.
 		elseif (!empty($_REQUEST['action']) && in_array($_REQUEST['action'], $simpleActions))
 		{
-			theme()->getTemplates()->loadLanguageFile('index+Addons');
+			$this->getTemplates()->loadLanguageFile('index+Addons');
 			$this->getLayers()->removeAll();
 		}
 		else
@@ -1159,7 +1159,7 @@ class Theme extends BaseTheme
 
 			// ...and attempt to load their associated language files.
 			$required_files = implode('+', array_merge($templates, array('Addons')));
-			theme()->getTemplates()->loadLanguageFile($required_files, '', false);
+			$this->getTemplates()->loadLanguageFile($required_files, '', false);
 
 			// Custom template layers?
 			if (isset($settings['theme_layers']))
