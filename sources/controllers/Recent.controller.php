@@ -273,7 +273,7 @@ class Recent_Controller extends Action_Controller
 			$name = categoryName($categories[0]);
 
 			if (empty($name))
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 
 			$context['linktree'][] = array(
 				'url' => $scripturl . '#c' . $categories[0],

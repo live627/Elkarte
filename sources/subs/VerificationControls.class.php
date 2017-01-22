@@ -100,7 +100,7 @@ function create_control_verification(&$verificationOptions, $do_test = false)
 	{
 		// This cannot happen!
 		if (!isset($_SESSION[$verificationOptions['id'] . '_vv']['count']))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		foreach ($instances as $instance)
 		{
@@ -652,7 +652,7 @@ class Verification_Controls_Questions implements Verification_Controls
 	public function doTest()
 	{
 		if ($this->_number_questions && (!isset($_SESSION[$this->_options['id'] . '_vv']['q']) || !isset($_REQUEST[$this->_options['id'] . '_vv']['q'])))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		if (!$this->_verifyAnswers())
 			return 'wrong_verification_answer';

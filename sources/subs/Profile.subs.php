@@ -50,7 +50,7 @@ function currentMemberID($fatal = true, $reload_id = false)
 		is_not_guest('', $fatal);
 
 		if ($fatal)
-			throw new Elk_Exception('not_a_user', false);
+			throw new Elk_Exception('not_a_user');
 		else
 			return false;
 	}
@@ -1290,7 +1290,7 @@ function makeThemeChanges($memID, $id_theme)
 
 	// Can't change reserved vars.
 	if ((isset($_POST['options']) && count(array_intersect(array_keys($_POST['options']), $reservedVars)) != 0) || (isset($_POST['default_options']) && count(array_intersect(array_keys($_POST['default_options']), $reservedVars)) != 0))
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 
 	// Don't allow any overriding of custom fields with default or non-default options.
 	$request = $db->query('', '

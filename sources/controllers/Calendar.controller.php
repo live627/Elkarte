@@ -57,7 +57,7 @@ class Calendar_Controller extends Action_Controller
 
 		// You can't do anything if the calendar is off.
 		if (empty($modSettings['cal_enabled']))
-			throw new Elk_Exception('calendar_off', false);
+			throw new Elk_Exception('calendar_off');
 
 		// Set the page title to mention the calendar ;).
 		$context['page_title'] = $txt['calendar'];
@@ -85,16 +85,16 @@ class Calendar_Controller extends Action_Controller
 
 		// Make sure the year and month are in valid ranges.
 		if ($curPage['month'] < 1 || $curPage['month'] > 12)
-			throw new Elk_Exception('invalid_month', false);
+			throw new Elk_Exception('invalid_month');
 
 		if ($curPage['year'] < $context['cal_minyear'] || $curPage['year'] > $context['cal_maxyear'])
-			throw new Elk_Exception('invalid_year', false);
+			throw new Elk_Exception('invalid_year');
 
 		// If we have a day clean that too.
 		if ($context['view_week'])
 		{
 			if ($curPage['day'] > 31 || !mktime(0, 0, 0, $curPage['month'], $curPage['day'], $curPage['year']))
-				throw new Elk_Exception('invalid_day', false);
+				throw new Elk_Exception('invalid_day');
 		}
 
 		// Load all the context information needed to show the calendar grid.
@@ -344,11 +344,11 @@ class Calendar_Controller extends Action_Controller
 
 		// You can't export if the calendar export feature is off.
 		if (empty($modSettings['cal_export']))
-			throw new Elk_Exception('calendar_export_off', false);
+			throw new Elk_Exception('calendar_export_off');
 
 		// Goes without saying that this is required.
 		if (!isset($_REQUEST['eventid']))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// This is kinda wanted.
 		require_once(SUBSDIR . '/Calendar.subs.php');
@@ -357,7 +357,7 @@ class Calendar_Controller extends Action_Controller
 		$event = getEventProperties($_REQUEST['eventid']);
 
 		if ($event === false)
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		$filecontents = build_ical_content($event);
 

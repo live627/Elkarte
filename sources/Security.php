@@ -428,7 +428,7 @@ function is_not_banned($forceCheck = false)
 		writeLog(true);
 
 		// You banned, sucka!
-		throw new Elk_Exception(sprintf($txt['your_ban'], $old_name) . (empty($_SESSION['ban']['cannot_access']['reason']) ? '' : '<br />' . $_SESSION['ban']['cannot_access']['reason']) . '<br />' . (!empty($_SESSION['ban']['expire_time']) ? sprintf($txt['your_ban_expires'], standardTime($_SESSION['ban']['expire_time'], false)) : $txt['your_ban_expires_never']), 'user');
+		throw new Elk_Exception(sprintf($txt['your_ban'], $old_name) . (empty($_SESSION['ban']['cannot_access']['reason']) ? '' : '<br />' . $_SESSION['ban']['cannot_access']['reason']) . '<br />' . (!empty($_SESSION['ban']['expire_time']) ? sprintf($txt['your_ban_expires'], standardTime($_SESSION['ban']['expire_time'])) : $txt['your_ban_expires_never']), 'user');
 	}
 	// You're not allowed to log in but yet you are. Let's fix that.
 	elseif (isset($_SESSION['ban']['cannot_login']) && !$user_info['is_guest'])
@@ -469,7 +469,7 @@ function is_not_banned($forceCheck = false)
 		$controller->action_logout(true, false);
 
 		// Tell them thanks
-		throw new Elk_Exception(sprintf($txt['your_ban'], $old_name) . (empty($_SESSION['ban']['cannot_login']['reason']) ? '' : '<br />' . $_SESSION['ban']['cannot_login']['reason']) . '<br />' . (!empty($_SESSION['ban']['expire_time']) ? sprintf($txt['your_ban_expires'], standardTime($_SESSION['ban']['expire_time'], false)) : $txt['your_ban_expires_never']) . '<br />' . $txt['ban_continue_browse'], 'user');
+		throw new Elk_Exception(sprintf($txt['your_ban'], $old_name) . (empty($_SESSION['ban']['cannot_login']['reason']) ? '' : '<br />' . $_SESSION['ban']['cannot_login']['reason']) . '<br />' . (!empty($_SESSION['ban']['expire_time']) ? sprintf($txt['your_ban_expires'], standardTime($_SESSION['ban']['expire_time'])) : $txt['your_ban_expires_never']) . '<br />' . $txt['ban_continue_browse'], 'user');
 	}
 
 	// Fix up the banning permissions.
@@ -671,14 +671,14 @@ function isBannedEmail($email, $restriction, $error)
 		log_ban($_SESSION['ban']['cannot_access']['ids']);
 		$_SESSION['ban']['last_checked'] = time();
 
-		throw new Elk_Exception(sprintf($txt['your_ban'], $txt['guest_title']) . $_SESSION['ban']['cannot_access']['reason'], false);
+		throw new Elk_Exception(sprintf($txt['your_ban'], $txt['guest_title']) . $_SESSION['ban']['cannot_access']['reason']);
 	}
 
 	if (!empty($ban_ids))
 	{
 		// Log this ban for future reference.
 		log_ban($ban_ids, $email);
-		throw new Elk_Exception($error . $ban_reason, false);
+		throw new Elk_Exception($error . $ban_reason);
 	}
 }
 
@@ -902,7 +902,7 @@ function validateToken($action, $type = 'post', $reset = true, $fatal = true)
 		createToken($action, $type);
 
 		if ($fatal)
-			throw new Elk_Exception('token_verify_fail', false);
+			throw new Elk_Exception('token_verify_fail');
 	}
 	// You don't get a new token
 	else
@@ -991,7 +991,7 @@ function checkSubmitOnce($action, $is_fatal = false)
 			return true;
 		}
 		elseif ($is_fatal)
-			throw new Elk_Exception('error_form_already_submitted', false);
+			throw new Elk_Exception('error_form_already_submitted');
 		else
 			return false;
 	}
@@ -1137,7 +1137,7 @@ function isAllowedTo($permission, $boards = null)
 		$_GET['topic'] = '';
 		writeLog(true);
 
-		throw new Elk_Exception('cannot_' . $error_permission, false);
+		throw new Elk_Exception('cannot_' . $error_permission);
 	}
 
 	// If you're doing something on behalf of some "heavy" permissions, validate your session.
@@ -1549,7 +1549,7 @@ function validatePasswordFlood($id_member, $password_flood_value = false, $was_c
 		redirectexit();
 
 		// Probably not needed, but still make sure...
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 	}
 
 	// Let's just initialize to something (and 0 is better than nothing)

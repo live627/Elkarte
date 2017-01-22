@@ -465,7 +465,7 @@ class ManagePermissions_Controller extends Action_Controller
 		if (!empty($this->_pid))
 		{
 			if (!isset($context['profiles'][$this->_pid]))
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 
 			// Change the selected tab to better reflect that this really is a board profile.
 			$context[$context['admin_menu_name']]['current_subsection'] = 'profiles';
@@ -580,7 +580,7 @@ class ManagePermissions_Controller extends Action_Controller
 
 		// Make sure only one of the quick options was selected.
 		if ((!empty($this->_req->post->predefined) && ((isset($this->_req->post->copy_from) && $this->_req->post->copy_from != 'empty') || !empty($this->_req->post->permissions))) || (!empty($this->_req->post->copy_from) && $this->_req->post->copy_from != 'empty' && !empty($this->_req->post->permissions)))
-			throw new Elk_Exception('permissions_only_one_option', false);
+			throw new Elk_Exception('permissions_only_one_option');
 
 		if (empty($this->_req->post->group) || !is_array($this->_req->post->group))
 			$this->_req->post->group = array();
@@ -597,7 +597,7 @@ class ManagePermissions_Controller extends Action_Controller
 
 		// No modifying the predefined profiles.
 		if ($this->_pid > 1 && $this->_pid < 5)
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Clear out any cached authority.
 		updateSettings(array('settings_updated' => time()));
@@ -702,7 +702,7 @@ class ManagePermissions_Controller extends Action_Controller
 		global $context, $txt;
 
 		if (!isset($this->_req->query->group))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		require_once(SUBSDIR . '/ManagePermissions.subs.php');
 		$context['group']['id'] = (int) $this->_req->query->group;
@@ -811,7 +811,7 @@ class ManagePermissions_Controller extends Action_Controller
 
 		// Cannot modify predefined profiles.
 		if ($this->_pid > 1 && $this->_pid < 5)
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Verify this isn't inherited.
 		if ($current_group_id == -1 || $current_group_id == 0)

@@ -273,7 +273,7 @@ class ModerationCenter_Controller extends Action_Controller
 
 		// We got something - didn't we? DIDN'T WE!
 		if ($mod_include_data === false)
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Retain the ID information in case required by a subaction.
 		$context['moderation_menu_id'] = $context['max_menu_id'];
@@ -388,7 +388,7 @@ class ModerationCenter_Controller extends Action_Controller
 
 		// legit?
 		if (empty($notice) || !$context['can_moderate_boards'])
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		list ($context['notice_body'], $context['notice_subject']) = $notice;
 

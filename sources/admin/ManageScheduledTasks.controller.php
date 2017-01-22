@@ -267,7 +267,7 @@ class ManageScheduledTasks_Controller extends Action_Controller
 
 		// Cleaning...
 		if (!isset($this->_req->query->tid))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		$this->_req->query->tid = (int) $this->_req->query->tid;
 
 		// Saving?

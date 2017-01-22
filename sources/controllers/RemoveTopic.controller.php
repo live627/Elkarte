@@ -260,7 +260,7 @@ class RemoveTopic_Controller extends Action_Controller
 				&& !empty($modSettings['edit_disable_time'])
 				&& $this->_topic_info['poster_time'] + $modSettings['edit_disable_time'] * 60 < time())
 			{
-				throw new Elk_Exception('modify_post_time_passed', false);
+				throw new Elk_Exception('modify_post_time_passed');
 			}
 		}
 		elseif ($this->_topic_info['id_member_started'] == $user_info['id'] && !allowedTo('delete_any'))

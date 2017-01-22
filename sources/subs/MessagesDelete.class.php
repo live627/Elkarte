@@ -759,7 +759,7 @@ class MessagesDelete
 							throw new Elk_Exception('cannot_delete_own', 'permission');
 					}
 					elseif (($row['id_member_poster'] != $user_info['id'] || !$delete_replies) && !empty($modSettings['edit_disable_time']) && $row['poster_time'] + $modSettings['edit_disable_time'] * 60 < time())
-						throw new Elk_Exception('modify_post_time_passed', false);
+						throw new Elk_Exception('modify_post_time_passed');
 				}
 				elseif ($row['id_member_poster'] == $user_info['id'])
 				{
@@ -791,7 +791,7 @@ class MessagesDelete
 						isAllowedTo('delete_own');
 				}
 				elseif (!allowedTo('delete_any') && ($row['id_member_poster'] != $user_info['id'] || !allowedTo('delete_replies')) && !empty($modSettings['edit_disable_time']) && $row['poster_time'] + $modSettings['edit_disable_time'] * 60 < time())
-					throw new Elk_Exception('modify_post_time_passed', false);
+					throw new Elk_Exception('modify_post_time_passed');
 			}
 			elseif ($row['id_member_poster'] == $user_info['id'] && !allowedTo('delete_any'))
 				isAllowedTo('delete_replies');
@@ -833,7 +833,7 @@ class MessagesDelete
 
 			// ...if there is only one post.
 			if (!empty($row['num_replies']))
-				throw new Elk_Exception('delFirstPost', false);
+				throw new Elk_Exception('delFirstPost');
 
 			return true;
 		}

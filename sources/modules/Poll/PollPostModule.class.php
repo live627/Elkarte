@@ -214,7 +214,7 @@ class Poll_Post_Module extends ElkArte\sources\modules\Abstract_Module
 
 		// Validate the poll...
 		if (!empty($topic_info) && !isset($_REQUEST['msg']))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// This is a new topic... so it's a new poll.
 		if (empty($topic_info))
@@ -369,7 +369,7 @@ class Poll_Post_Module extends ElkArte\sources\modules\Abstract_Module
 		// If the user tries to set the poll too far in advance, don't let them.
 		if (!empty($poll_expire) && $poll_expire < 1)
 			// @todo this fatal error should not be here
-			throw new Elk_Exception('poll_range_error', false);
+			throw new Elk_Exception('poll_range_error');
 		// Don't allow them to select option 2 for hidden results if it's not time limited.
 		elseif (empty($poll_expire) && $poll_hide == 2)
 			$poll_hide = 1;

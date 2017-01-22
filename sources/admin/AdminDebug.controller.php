@@ -54,7 +54,7 @@ class AdminDebug_Controller extends Action_Controller
 
 		// We should have debug mode enabled, as well as something to display!
 		if ($db_show_debug !== true || !isset($this->_req->session->debug))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Don't allow except for administrators.
 		isAllowedTo('admin_forum');

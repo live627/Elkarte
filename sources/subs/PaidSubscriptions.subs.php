@@ -886,7 +886,7 @@ function validateSubscriptionID($id)
 
 	// Humm this should not happen, if it does, boom
 	if ($sub_id === null)
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 
 	return $sub_id;
 }
@@ -950,7 +950,7 @@ function getSubscriptionStatus($log_id)
 
 	// Nothing found?
 	if (empty($status))
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 
 	return $status;
 }

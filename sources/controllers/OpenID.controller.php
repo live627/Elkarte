@@ -47,11 +47,11 @@ class OpenID_Controller extends Action_Controller
 
 		// Is OpenID even enabled?
 		if (empty($modSettings['enableOpenID']))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// The OpenID provider did not respond with the OpenID mode? Throw an error..
 		if (!isset($this->_req->query->openid_mode))
-			throw new Elk_Exception('openid_return_no_mode', false);
+			throw new Elk_Exception('openid_return_no_mode');
 
 		// @todo Check for error status!
 		if ($this->_req->query->openid_mode !== 'id_res')

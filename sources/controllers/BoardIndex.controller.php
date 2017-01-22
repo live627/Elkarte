@@ -178,7 +178,7 @@ class BoardIndex_Controller extends Action_Controller implements Frontpage_Inter
 		checkSession('request');
 
 		if (!isset($this->_req->query->sa))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Check if the input values are correct.
 		if (in_array($this->_req->query->sa, array('expand', 'collapse', 'toggle')) && isset($this->_req->query->c))

@@ -91,7 +91,7 @@ class Draft_Controller extends Post_Controller
 
 		// Safe is safe.
 		if ($this->_memID != $user_info['id'])
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		require_once(SUBSDIR . '/Drafts.subs.php');
 
@@ -196,7 +196,7 @@ class Draft_Controller extends Post_Controller
 		// Quick check how we got here.
 		if ($this->_memID != $user_info['id'])
 			// empty($modSettings['drafts_enabled']) || empty($modSettings['drafts_pm_enabled']))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Set up what we will need
 		$context['start'] = $this->_req->getQuery('start', 'intval', 0);

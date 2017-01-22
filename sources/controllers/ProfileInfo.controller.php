@@ -97,7 +97,7 @@ class ProfileInfo_Controller extends Action_Controller
 
 		// Attempt to load the member's profile data.
 		if (!loadMemberContext($this->_memID) || !isset($memberContext[$this->_memID]))
-			throw new Elk_Exception('not_a_user', false);
+			throw new Elk_Exception('not_a_user');
 
 		theme()->getTemplates()->load('ProfileInfo');
 
@@ -464,7 +464,7 @@ class ProfileInfo_Controller extends Action_Controller
 
 		// Is the load average too high to allow searching just now?
 		if (!empty($modSettings['loadavg_show_posts']) && $modSettings['current_load'] >= $modSettings['loadavg_show_posts'])
-			throw new Elk_Exception('loadavg_show_posts_disabled', false);
+			throw new Elk_Exception('loadavg_show_posts_disabled');
 
 		// If we're specifically dealing with attachments use that function!
 		if ($this->_req->getQuery('sa', 'trim', '') === 'attach')
@@ -906,7 +906,7 @@ class ProfileInfo_Controller extends Action_Controller
 
 		// Is the load average too high to allow searching just now?
 		if (!empty($modSettings['loadavg_userstats']) && $modSettings['current_load'] >= $modSettings['loadavg_userstats'])
-			throw new Elk_Exception('loadavg_userstats_disabled', false);
+			throw new Elk_Exception('loadavg_userstats_disabled');
 
 		theme()->getTemplates()->load('ProfileInfo');
 
@@ -1038,7 +1038,7 @@ class ProfileInfo_Controller extends Action_Controller
 
 		// Firstly, can we actually even be here?
 		if (!allowedTo('issue_warning') && (empty($modSettings['warning_show']) || ($modSettings['warning_show'] == 1 && !$context['user']['is_owner'])))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		theme()->getTemplates()->load('ProfileInfo');
 

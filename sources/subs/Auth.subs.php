@@ -782,7 +782,7 @@ function findUser($where, $where_params, $fatal = true)
 		if ($db->num_rows($request) == 0)
 		{
 			if ($fatal)
-				throw new Elk_Exception('no_user_with_email', false);
+				throw new Elk_Exception('no_user_with_email');
 			else
 				return false;
 		}

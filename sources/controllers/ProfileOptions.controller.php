@@ -64,7 +64,7 @@ class ProfileOptions_Controller extends Action_Controller
 
 		// Do a quick check to ensure people aren't getting here illegally!
 		if (!$context['user']['is_owner'] || empty($modSettings['enable_buddylist']))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		theme()->getTemplates()->load('ProfileOptions');
 
@@ -948,7 +948,7 @@ class ProfileOptions_Controller extends Action_Controller
 		$group_id = $this->_req->getPost('gid', 'intval', $this->_req->getQuery('gid', 'intval', null));
 
 		if (!isset($group_id) && !isset($this->_req->post->primary))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// GID may be from a link or a form
 		checkSession(isset($this->_req->query->gid) ? 'get' : 'post');
@@ -990,12 +990,12 @@ class ProfileOptions_Controller extends Action_Controller
 
 				// Does the group type match what we're doing - are we trying to request a non-requestable group?
 				if ($changeType === 'request' && $row['group_type'] != 2)
-					throw new Elk_Exception('no_access', false);
+					throw new Elk_Exception('no_access');
 				// What about leaving a requestable group we are not a member of?
 				elseif ($changeType === 'free' && $row['group_type'] == 2 && $old_profile['id_group'] != $row['id_group'] && !isset($addGroups[$row['id_group']]))
-					throw new Elk_Exception('no_access', false);
+					throw new Elk_Exception('no_access');
 				elseif ($changeType === 'free' && $row['group_type'] != 3 && $row['group_type'] != 2)
-					throw new Elk_Exception('no_access', false);
+					throw new Elk_Exception('no_access');
 
 				// We can't change the primary group if this is hidden!
 				if ($row['hidden'] == 2)
@@ -1017,7 +1017,7 @@ class ProfileOptions_Controller extends Action_Controller
 
 		// Didn't find the target?
 		if (!$foundTarget)
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Final security check, don't allow users to promote themselves to admin.
 		require_once(SUBSDIR . '/ProfileOptions.subs.php');

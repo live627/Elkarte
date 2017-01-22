@@ -857,7 +857,7 @@ class Search
 
 			if ($this->_db->num_rows($request) == 0)
 			{
-				throw new \Elk_Exception('topic_gone', false);
+				throw new \Elk_Exception('topic_gone');
 			}
 
 			$this->_search_params['brd'] = array();

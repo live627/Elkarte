@@ -231,10 +231,10 @@ class Calendar_Post_Module extends ElkArte\sources\modules\Abstract_Module
 
 			// Make sure the year and month are in the valid range.
 			if ($context['event']['month'] < 1 || $context['event']['month'] > 12)
-				throw new Elk_Exception('invalid_month', false);
+				throw new Elk_Exception('invalid_month');
 
 			if ($context['event']['year'] < $modSettings['cal_minyear'] || $context['event']['year'] > date('Y') + $modSettings['cal_limityear'])
-				throw new Elk_Exception('invalid_year', false);
+				throw new Elk_Exception('invalid_year');
 
 			// Get a list of boards they can post in.
 			require_once(SUBSDIR . '/Boards.subs.php');

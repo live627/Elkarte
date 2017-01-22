@@ -171,7 +171,7 @@ class Post_Controller extends Action_Controller
 
 		// You must be posting to *some* board.
 		if (empty($board) && !$context['make_event'])
-			throw new Elk_Exception('no_board', false);
+			throw new Elk_Exception('no_board');
 
 		// All those wonderful modifiers and attachments
 		$this->_template_layers->add('additional_options', 200);
@@ -276,7 +276,7 @@ class Post_Controller extends Action_Controller
 
 		// Don't allow a post if it's locked and you aren't all powerful.
 		if ($this->_topic_attributes['locked'] && !allowedTo('moderate_board'))
-			throw new Elk_Exception('topic_locked', false);
+			throw new Elk_Exception('topic_locked');
 	}
 
 	protected function _generating_message()
@@ -410,7 +410,7 @@ class Post_Controller extends Action_Controller
 				// The message they were trying to edit was most likely deleted.
 				// @todo Change this error message?
 				if ($message === false)
-					throw new Elk_Exception('no_board', false);
+					throw new Elk_Exception('no_board');
 
 				$errors = checkMessagePermissions($message['message']);
 				if (!empty($errors))
@@ -446,7 +446,7 @@ class Post_Controller extends Action_Controller
 
 			// The message they were trying to edit was most likely deleted.
 			if ($message === false)
-				throw new Elk_Exception('no_message', false);
+				throw new Elk_Exception('no_message');
 
 			// Trigger the prepare_editing event
 			$this->_events->trigger('prepare_editing', array('topic' => $topic, 'message' => &$message));
@@ -659,7 +659,7 @@ class Post_Controller extends Action_Controller
 			if (empty($_SERVER['CONTENT_LENGTH']))
 				redirectexit('action=post;board=' . $board . '.0');
 			else
-				throw new Elk_Exception('post_upload_error', false);
+				throw new Elk_Exception('post_upload_error');
 		}
 		elseif (empty($_POST) && !empty($topic))
 			redirectexit('action=post;topic=' . $topic . '.0');
@@ -715,7 +715,7 @@ class Post_Controller extends Action_Controller
 		{
 			// Don't allow a post if it's locked.
 			if ($topic_info['locked'] != 0 && !allowedTo('moderate_board'))
-				throw new Elk_Exception('topic_locked', false);
+				throw new Elk_Exception('topic_locked');
 
 			// Do the permissions and approval stuff...
 			$becomesApproved = true;
@@ -800,13 +800,13 @@ class Post_Controller extends Action_Controller
 			$msgInfo = basicMessageInfo($_REQUEST['msg'], true);
 
 			if (empty($msgInfo))
-				throw new Elk_Exception('cant_find_messages', false);
+				throw new Elk_Exception('cant_find_messages');
 
 			// Trigger teh save_modify event
 			$this->_events->trigger('save_modify', array('msgInfo' => &$msgInfo));
 
 			if (!empty($topic_info['locked']) && !allowedTo('moderate_board'))
-				throw new Elk_Exception('topic_locked', false);
+				throw new Elk_Exception('topic_locked');
 
 			if (isset($_POST['lock']))
 			{
@@ -820,7 +820,7 @@ class Post_Controller extends Action_Controller
 			if ($msgInfo['id_member'] == $user_info['id'] && !allowedTo('modify_any'))
 			{
 				if ((!$modSettings['postmod_active'] || $msgInfo['approved']) && !empty($modSettings['edit_disable_time']) && $msgInfo['poster_time'] + ($modSettings['edit_disable_time'] + 5) * 60 < time())
-					throw new Elk_Exception('modify_post_time_passed', false);
+					throw new Elk_Exception('modify_post_time_passed');
 				elseif ($topic_info['id_member_started'] == $user_info['id'] && !allowedTo('modify_own'))
 					isAllowedTo('modify_replies');
 				else
@@ -1236,7 +1236,7 @@ class Post_Controller extends Action_Controller
 		$row = getTopicInfoByMsg($topic, empty($_REQUEST['msg']) ? 0 : (int) $_REQUEST['msg']);
 
 		if (empty($row))
-			throw new Elk_Exception('no_board', false);
+			throw new Elk_Exception('no_board');
 
 		// Change either body or subject requires permissions to modify messages.
 		if (isset($_POST['message']) || isset($_POST['subject']) || isset($_REQUEST['icon']))
@@ -1247,7 +1247,7 @@ class Post_Controller extends Action_Controller
 			if ($row['id_member'] == $user_info['id'] && !allowedTo('modify_any'))
 			{
 				if ((!$modSettings['postmod_active'] || $row['approved']) && !empty($modSettings['edit_disable_time']) && $row['poster_time'] + ($modSettings['edit_disable_time'] + 5) * 60 < time())
-					throw new Elk_Exception('modify_post_time_passed', false);
+					throw new Elk_Exception('modify_post_time_passed');
 				elseif ($row['id_member_started'] == $user_info['id'] && !allowedTo('modify_own'))
 					isAllowedTo('modify_replies');
 				else

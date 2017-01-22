@@ -339,7 +339,7 @@ function setPermissionLevel($level, $group = null, $profile = null)
 	}
 	// $profile and $group are both null!
 	else
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 }
 
 /**
@@ -1270,7 +1270,7 @@ function deletePermissionProfiles($profiles)
 		)
 	);
 	if ($db->num_rows($request) != 0)
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 	$db->free_result($request);
 
 	// Oh well, delete.

@@ -247,9 +247,9 @@ function modifyBoard($board_id, &$boardOptions)
 
 			// People can be creative, in many ways...
 			if (isChildOf($id_parent, $board_id))
-				throw new Elk_Exception('mboards_parent_own_child_error', false);
+				throw new Elk_Exception('mboards_parent_own_child_error');
 			elseif ($id_parent == $board_id)
-				throw new Elk_Exception('mboards_board_own_child_error', false);
+				throw new Elk_Exception('mboards_board_own_child_error');
 
 			$after = $boards[$boardOptions['target_board']]['order'];
 

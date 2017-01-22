@@ -77,7 +77,7 @@ class Display_Controller extends Action_Controller
 
 		if (!empty($topic) && empty($board_info['cur_topic_approved']) && !allowedTo('approve_posts') && ($user_info['id'] != $board_info['cur_topic_starter'] || $user_info['is_guest']))
 		{
-			throw new Elk_Exception('not_a_topic', false);
+			throw new Elk_Exception('not_a_topic');
 		}
 
 		return parent::trackStats($action);
@@ -106,7 +106,7 @@ class Display_Controller extends Action_Controller
 
 		// What are you gonna display if these are empty?!
 		if (empty($topic))
-			throw new Elk_Exception('no_board', false);
+			throw new Elk_Exception('no_board');
 
 		// Load the template
 		theme()->getTemplates()->load('Display');
@@ -176,7 +176,7 @@ class Display_Controller extends Action_Controller
 		// Load the topic details
 		$topicinfo = getTopicInfo($topic_parameters, 'all', $topic_selects, $topic_tables);
 		if (empty($topicinfo))
-			throw new Elk_Exception('not_a_topic', false);
+			throw new Elk_Exception('not_a_topic');
 
 		// Is this a moved topic that we are redirecting to?
 		if (!empty($topicinfo['id_redirect_topic']) && !isset($this->_req->query->noredir))

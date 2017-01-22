@@ -62,7 +62,7 @@ class Register_Controller extends Action_Controller
 
 		// Check if the administrator has it disabled.
 		if (!empty($modSettings['registration_method']) && $modSettings['registration_method'] == '3')
-			throw new Elk_Exception('registration_disabled', false);
+			throw new Elk_Exception('registration_disabled');
 	}
 
 	/**
@@ -536,11 +536,11 @@ class Register_Controller extends Action_Controller
 
 		// You can't register if it's disabled.
 		if (!empty($modSettings['registration_method']) && $modSettings['registration_method'] == 3)
-			throw new Elk_Exception('registration_disabled', false);
+			throw new Elk_Exception('registration_disabled');
 
 		// Make sure they didn't just register with this session.
 		if (!empty($_SESSION['just_registered']) && empty($modSettings['disableRegisterCheck']))
-			throw new Elk_Exception('register_only_once', false);
+			throw new Elk_Exception('register_only_once');
 	}
 
 	/**
@@ -667,7 +667,7 @@ class Register_Controller extends Action_Controller
 				// No file found or a blank file, log the error so the admin knows there is a problem!
 				theme()->getTemplates()->loadLanguageFile('Errors');
 				Errors::instance()->log_error($txt['registration_agreement_missing'], 'critical');
-				throw new Elk_Exception('registration_disabled', false);
+				throw new Elk_Exception('registration_disabled');
 			}
 		}
 	}
@@ -783,7 +783,7 @@ class Register_Controller extends Action_Controller
 		{
 			// Immediate 0 or disabled 3 means no need to try and activate
 			if (empty($modSettings['registration_method']) || $modSettings['registration_method'] == '3')
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 
 			// Otherwise its simply invalid
 			$context['member_id'] = 0;
@@ -866,13 +866,13 @@ class Register_Controller extends Action_Controller
 		{
 			if (empty($modSettings['registration_method']) || $modSettings['registration_method'] == 3)
 			{
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 			}
 
 			// @todo Separate the sprintf?
 			if (!Data_Validator::is_valid($this->_req->post, array('new_email' => 'valid_email|required|max_length[255]'), array('new_email' => 'trim')))
 			{
-				throw new Elk_Exception(sprintf($txt['valid_email_needed'], htmlspecialchars($this->_req->post->new_email, ENT_COMPAT, 'UTF-8')), false);
+				throw new Elk_Exception(sprintf($txt['valid_email_needed'], htmlspecialchars($this->_req->post->new_email, ENT_COMPAT, 'UTF-8')));
 			}
 
 			// Make sure their email isn't banned.
@@ -943,7 +943,7 @@ class Register_Controller extends Action_Controller
 
 			// This will ensure we don't actually get an error message if it works!
 			$context['error_title'] = $txt['invalid_activation_resend'];
-			throw new Elk_Exception(!empty($email_change) ? 'change_email_success' : 'resend_email_success', false);
+			throw new Elk_Exception(!empty($email_change) ? 'change_email_success' : 'resend_email_success');
 		}
 	}
 
@@ -962,14 +962,14 @@ class Register_Controller extends Action_Controller
 		{
 			if (!empty($this->_row['is_activated']) && $this->_row['is_activated'] == 1)
 			{
-				throw new Elk_Exception('already_activated', false);
+				throw new Elk_Exception('already_activated');
 			}
 			elseif ($this->_row['validation_code'] === '')
 			{
 				theme()->getTemplates()->loadLanguageFile('Profile');
 
 				// @fixme seperate this into a sprintf.
-				throw new Elk_Exception($txt['registration_not_approved'] . ' <a href="' . $scripturl . '?action=register;sa=activate;user=' . $this->_row['member_name'] . '">' . $txt['here'] . '</a>.', false);
+				throw new Elk_Exception($txt['registration_not_approved'] . ' <a href="' . $scripturl . '?action=register;sa=activate;user=' . $this->_row['member_name'] . '">' . $txt['here'] . '</a>.');
 			}
 
 			$context['sub_template'] = 'retry_activate';
@@ -996,7 +996,7 @@ class Register_Controller extends Action_Controller
 
 		// No User ID??
 		if (!isset($this->_req->query->member))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Get the user details...
 		require_once(SUBSDIR . '/Members.subs.php');
@@ -1004,7 +1004,7 @@ class Register_Controller extends Action_Controller
 
 		// If doesn't exist or not pending coppa
 		if (empty($member) || $member['is_activated'] != 5)
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		if (isset($this->_req->query->form))
 		{

@@ -56,7 +56,7 @@ class Notify_Controller extends Action_Controller
 
 		// Make sure the topic has been specified.
 		if (empty($topic))
-			throw new Elk_Exception('not_a_topic', false);
+			throw new Elk_Exception('not_a_topic');
 
 		// What do we do?  Better ask if they didn't say..
 		if (empty($this->_req->query->sa))
@@ -184,7 +184,7 @@ class Notify_Controller extends Action_Controller
 
 		// You have to specify a board to turn notifications on!
 		if (empty($board))
-			throw new Elk_Exception('no_board', false);
+			throw new Elk_Exception('no_board');
 
 		// No subaction: find out what to do.
 		if (empty($this->_req->query->sa))

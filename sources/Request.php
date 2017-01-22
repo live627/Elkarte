@@ -421,7 +421,7 @@ final class Request
 		if (strpos($_SERVER['QUERY_STRING'], 'http') === 0)
 		{
 			header('HTTP/1.1 400 Bad Request');
-			throw new Elk_Exception('', false);
+			throw new Elk_Exception('');
 		}
 
 		$this->_server_query_string = $_SERVER['QUERY_STRING'];
@@ -436,13 +436,13 @@ final class Request
 	private function _checkNumericKeys()
 	{
 		if (isset($_REQUEST['GLOBALS']) || isset($_COOKIE['GLOBALS']))
-			throw new Elk_Exception('Invalid request variable.', false);
+			throw new Elk_Exception('Invalid request variable.');
 
 		// Same goes for numeric keys.
 		foreach (array_merge(array_keys($_POST), array_keys($_GET), array_keys($_FILES)) as $key)
 		{
 			if (is_numeric($key))
-				throw new Elk_Exception('Numeric request keys are invalid.', false);
+				throw new Elk_Exception('Numeric request keys are invalid.');
 		}
 
 		// Numeric keys in cookies are less of a problem. Just unset those.

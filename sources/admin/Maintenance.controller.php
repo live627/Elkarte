@@ -643,7 +643,7 @@ class Maintenance_Controller extends Action_Controller
 		// If there aren't any tables then I believe that would mean the world has exploded...
 		$context['num_tables'] = count($tables);
 		if ($context['num_tables'] == 0)
-			throw new Elk_Exception('You appear to be running ElkArte in a flat file mode... fantastic!', false);
+			throw new Elk_Exception('You appear to be running ElkArte in a flat file mode... fantastic!');
 
 		// For each table....
 		$context['optimized_tables'] = array();

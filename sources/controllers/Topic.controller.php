@@ -64,7 +64,7 @@ class Topic_Controller extends Action_Controller
 
 		// Just quit if there's no topic to lock.
 		if (empty($topic))
-			throw new Elk_Exception('not_a_topic', false);
+			throw new Elk_Exception('not_a_topic');
 
 		checkSession('get');
 
@@ -131,7 +131,7 @@ class Topic_Controller extends Action_Controller
 
 		// You can't sticky a board or something!
 		if (empty($topic))
-			throw new Elk_Exception('not_a_topic', false);
+			throw new Elk_Exception('not_a_topic');
 
 		checkSession('get');
 
@@ -183,7 +183,7 @@ class Topic_Controller extends Action_Controller
 		{
 			unset($this->_req->query->action);
 			$context['theme_loaded'] = false;
-			throw new Elk_Exception('feature_disabled', false);
+			throw new Elk_Exception('feature_disabled');
 		}
 
 		// Clean out the template layers

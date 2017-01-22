@@ -62,7 +62,7 @@ class Poll_Controller extends Action_Controller
 		$row = checkVote($topic);
 
 		if (empty($row))
-			throw new Elk_Exception('poll_error', false);
+			throw new Elk_Exception('poll_error');
 
 		// If this is a guest can they vote?
 		if ($user_info['is_guest'])
@@ -95,7 +95,7 @@ class Poll_Controller extends Action_Controller
 						unset($this->_req->cookie->guest_poll_vote);
 				}
 				else
-					throw new Elk_Exception('poll_error', false);
+					throw new Elk_Exception('poll_error');
 
 				unset($guestinfo, $guestvoted, $i);
 			}
@@ -103,11 +103,11 @@ class Poll_Controller extends Action_Controller
 
 		// Is voting locked or has it expired?
 		if (!empty($row['voting_locked']) || (!empty($row['expire_time']) && time() > $row['expire_time']))
-			throw new Elk_Exception('poll_error', false);
+			throw new Elk_Exception('poll_error');
 
 		// If they have already voted and aren't allowed to change their vote - hence they are outta here!
 		if (!$user_info['is_guest'] && $row['selected'] != -1 && empty($row['change_vote']))
-			throw new Elk_Exception('poll_error', false);
+			throw new Elk_Exception('poll_error');
 		// Otherwise if they can change their vote yet they haven't sent any options... remove their vote and redirect.
 		elseif (!empty($row['change_vote']) && !$user_info['is_guest'] && empty($this->_req->post->options))
 		{
@@ -135,7 +135,7 @@ class Poll_Controller extends Action_Controller
 
 		// Make sure the option(s) are valid.
 		if (empty($this->_req->post->options))
-			throw new Elk_Exception('didnt_select_vote', false);
+			throw new Elk_Exception('didnt_select_vote');
 
 		// Too many options checked!
 		if (count($this->_req->post->options) > $row['max_votes'])
@@ -251,7 +251,7 @@ class Poll_Controller extends Action_Controller
 
 		// No topic, means you can't edit the poll
 		if (empty($topic))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// We work hard with polls.
 		require_once(SUBSDIR . '/Poll.subs.php');
@@ -521,7 +521,7 @@ class Poll_Controller extends Action_Controller
 
 		// HACKERS (!!) can't edit :P.
 		if (empty($topic))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Is this a new poll, or editing an existing?
 		$isEdit = isset($this->_req->post->add) ? 0 : 1;
@@ -702,7 +702,7 @@ class Poll_Controller extends Action_Controller
 
 		// Make sure the topic is not empty.
 		if (empty($topic))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Verify the session.
 		checkSession('get');
@@ -715,7 +715,7 @@ class Poll_Controller extends Action_Controller
 		{
 			$pollStarters = pollStarters($topic);
 			if (empty($pollStarters))
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 
 			list ($topicStarter, $pollStarter) = $pollStarters;
 			if ($topicStarter == $user_info['id'] || ($pollStarter != 0 && $pollStarter == $user_info['id']))

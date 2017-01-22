@@ -260,7 +260,7 @@ class Attachment_Controller extends Action_Controller
 
 		// Make sure some attachment was requested!
 		if (!isset($this->_req->query->attach) && !isset($this->_req->query->id))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// We need to do some work on attachments and avatars.
 		require_once(SUBSDIR . '/Attachments.subs.php');
@@ -363,7 +363,7 @@ class Attachment_Controller extends Action_Controller
 
 		if (empty($attachment))
 		{
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		}
 
 		list ($id_folder, $real_filename, $file_hash, $file_ext, $id_attach, $attachment_type, $mime_type, $is_approved, $id_member) = $attachment;
@@ -536,7 +536,7 @@ class Attachment_Controller extends Action_Controller
 
 		// Make sure some attachment was requested!
 		if (!isset($this->_req->query->attach))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// We need to do some work on attachments and avatars.
 		require_once(SUBSDIR . '/Attachments.subs.php');
@@ -561,7 +561,7 @@ class Attachment_Controller extends Action_Controller
 				$attachment = getAttachmentFromTopic($id_attach, $topic);
 
 				if (empty($attachment))
-					throw new Elk_Exception('no_access', false);
+					throw new Elk_Exception('no_access');
 
 				list ($id_folder, $real_filename, $file_hash, $file_ext, $id_attach, $attachment_type, $mime_type, $is_approved, $id_member) = $attachment;
 
@@ -574,7 +574,7 @@ class Attachment_Controller extends Action_Controller
 		}
 		catch (\Exception $e)
 		{
-			throw new Elk_Exception($e->getMessage(), false);
+			throw new Elk_Exception($e->getMessage());
 		}
 		$resize = true;
 

@@ -571,7 +571,7 @@ class Admin_Controller extends Action_Controller
 
 		// Nothing valid?
 		if ($admin_include_data === false)
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Make a note of the Unique ID for this menu.
 		$context['admin_menu_id'] = $context['max_menu_id'];

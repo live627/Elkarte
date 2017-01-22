@@ -183,7 +183,7 @@ class Packages_Controller extends Action_Controller
 
 		// If we can't find the file, our install ends here
 		if (!file_exists(BOARDDIR . '/packages/' . $this->_filename))
-			throw new Elk_Exception('package_no_file', false);
+			throw new Elk_Exception('package_no_file');
 
 		// Do we have an existing id, for uninstalls and the like.
 		$this->install_id = $this->_req->getQuery('pid', 'intval', 0);
@@ -411,7 +411,7 @@ class Packages_Controller extends Action_Controller
 		}
 		// Well we don't know what it is then, so we stop
 		else
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 	}
 
 	/**
@@ -439,7 +439,7 @@ class Packages_Controller extends Action_Controller
 			if (!isset($package_installed['old_version']))
 			{
 				deltree(BOARDDIR . '/packages/temp');
-				throw new Elk_Exception('package_cant_uninstall', false);
+				throw new Elk_Exception('package_cant_uninstall');
 			}
 
 			$actions = parsePackageInfo($packageInfo['xml'], $testing, 'uninstall');
@@ -448,7 +448,7 @@ class Packages_Controller extends Action_Controller
 			if (empty($actions))
 			{
 				deltree(BOARDDIR . '/packages/temp');
-				throw new Elk_Exception('package_uninstall_cannot', false);
+				throw new Elk_Exception('package_uninstall_cannot');
 			}
 
 			// Can't edit the custom themes it's edited if you're uninstalling, they must be removed.
@@ -515,7 +515,7 @@ class Packages_Controller extends Action_Controller
 				// No temp directory was able to be made, that's fatal
 				deltree(BOARDDIR . '/packages/temp', false);
 				if (!mktree(BOARDDIR . '/packages/temp', 0777))
-					throw new Elk_Exception('package_cant_download', false);
+					throw new Elk_Exception('package_cant_download');
 			}
 		}
 	}
@@ -538,7 +538,7 @@ class Packages_Controller extends Action_Controller
 
 		// And if the file does not exist there is a problem
 		if (!file_exists(BOARDDIR . '/packages/' . $this->_filename))
-			throw new Elk_Exception('package_no_file', false);
+			throw new Elk_Exception('package_no_file');
 
 		// If this is an uninstall, we'll have an id.
 		$this->install_id = $this->_req->getQuery('pid', 'intval', 0);
@@ -1191,7 +1191,7 @@ class Packages_Controller extends Action_Controller
 		if (isset($this->_req->query->restore))
 		{
 			create_chmod_control(array(), array(), true);
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		}
 
 		// This is a time and memory eating ...
@@ -1559,7 +1559,7 @@ class Packages_Controller extends Action_Controller
 			}
 			// Should never get here,
 			else
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 
 			// Setup the custom value.
 			$custom_value = octdec('0' . $context['custom_value']);
@@ -2058,7 +2058,7 @@ function fetchPerms__recursive($path, &$data, $level)
 
 	// @todo Shouldn't happen - but better error message?
 	if (!is_dir($path))
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 
 	// This is where we put stuff we've found for sorting.
 	$foundData = array(

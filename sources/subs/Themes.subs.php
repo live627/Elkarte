@@ -733,7 +733,7 @@ function deleteTheme($id)
 
 	// Make sure we never ever delete the default theme!
 	if ($id === 1)
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 
 	$db->query('', '
 		DELETE FROM {db_prefix}themes

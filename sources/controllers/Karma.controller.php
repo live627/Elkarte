@@ -149,7 +149,7 @@ class Karma_Controller extends Action_Controller
 
 		// And you can't modify your own, punk! (use the profile if you need to.)
 		if (empty($id_target) || $id_target == $user_info['id'])
-			throw new Elk_Exception('cant_change_own_karma', false);
+			throw new Elk_Exception('cant_change_own_karma');
 
 		// Delete any older items from the log so we can get the go ahead or not
 		clearKarma($modSettings['karmaWaitTime']);

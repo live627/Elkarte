@@ -800,7 +800,7 @@ class ManagePaid_Controller extends Action_Controller
 			$context['sub_id'] = validateSubscriptionID($context['log_id']);
 
 		if (!isset($context['subscriptions'][$context['sub_id']]))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		$context['current_subscription'] = $context['subscriptions'][$context['sub_id']];
 
@@ -938,7 +938,7 @@ class ManagePaid_Controller extends Action_Controller
 		{
 			$row = getPendingSubscriptions($context['log_id']);
 			if (empty($row))
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 
 			// Any pending payments?
 			$context['pending_payments'] = array();

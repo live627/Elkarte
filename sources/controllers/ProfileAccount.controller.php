@@ -84,7 +84,7 @@ class ProfileAccount_Controller extends Action_Controller
 			|| ($context['user']['is_owner'] && !$cur_profile['warning'])
 			|| !allowedTo('issue_warning'))
 		{
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		}
 
 		// Get the base (errors related) stuff done.
@@ -552,7 +552,7 @@ class ProfileAccount_Controller extends Action_Controller
 		// Check we got here as we should have!
 		if ($cur_profile != $user_profile[$this->_memID])
 		{
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		}
 
 		$old_profile = &$cur_profile;

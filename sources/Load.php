@@ -464,7 +464,7 @@ function loadBoard()
 		{
 			loadPermissions();
 			loadTheme();
-			throw new Elk_Exception('topic_gone', false);
+			throw new Elk_Exception('topic_gone');
 		}
 	}
 
@@ -684,7 +684,7 @@ function loadBoard()
 			is_not_guest($txt['topic_gone']);
 		}
 		else
-			throw new Elk_Exception('topic_gone', false);
+			throw new Elk_Exception('topic_gone');
 	}
 
 	if ($user_info['is_mod'])

@@ -58,7 +58,7 @@ class SplitTopics_Controller extends Action_Controller
 
 		// And... which topic were you splitting, again?
 		if (empty($topic))
-			throw new Elk_Exception('numbers_one_to_nine', false);
+			throw new Elk_Exception('numbers_one_to_nine');
 
 		// Load up the "dependencies" - the template, getMsgMemberID().
 		if (!isset($this->_req->query->xml))
@@ -104,7 +104,7 @@ class SplitTopics_Controller extends Action_Controller
 
 		// Validate "at".
 		if (empty($this->_req->query->at))
-			throw new Elk_Exception('numbers_one_to_nine', false);
+			throw new Elk_Exception('numbers_one_to_nine');
 
 		// We deal with topics here.
 		require_once(SUBSDIR . '/Boards.subs.php');
@@ -131,7 +131,7 @@ class SplitTopics_Controller extends Action_Controller
 
 		// Check if there is more than one message in the topic.  (there should be.)
 		if ($messageInfo['num_replies'] < 1)
-			throw new Elk_Exception('topic_one_post', false);
+			throw new Elk_Exception('topic_one_post');
 
 		// Check if this is the first message in the topic (if so, the first and second option won't be available)
 		if ($messageInfo['id_first_msg'] == $splitAt)
@@ -180,7 +180,7 @@ class SplitTopics_Controller extends Action_Controller
 		if (!empty($_SESSION['messageRedirect']) && empty($_SESSION['reason']))
 		{
 			$this->_unset_session_values();
-			throw new Elk_Exception('splittopic_no_reason', false);
+			throw new Elk_Exception('splittopic_no_reason');
 		}
 
 		// Redirect to the selector if they chose selective.
@@ -215,7 +215,7 @@ class SplitTopics_Controller extends Action_Controller
 		else
 		{
 			$this->_unset_session_values();
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		}
 
 		$context['old_topic'] = $topic;
@@ -259,7 +259,7 @@ class SplitTopics_Controller extends Action_Controller
 		if (empty($_SESSION['split_selection'][$topic]))
 		{
 			$this->_unset_session_values();
-			throw new Elk_Exception('no_posts_selected', false);
+			throw new Elk_Exception('no_posts_selected');
 		}
 
 		// This is here because there are two fatal_lang_errors in there

@@ -119,7 +119,7 @@ class Mentions_Controller extends Action_Controller
 
 		// I'm not sure this is needed, though better have it. :P
 		if (empty($modSettings['mentions_enabled']))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		Elk_Autoloader::getInstance()->register(SUBSDIR . '/MentionType', '\\ElkArte\\sources\\subs\\MentionType');
 

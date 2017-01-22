@@ -56,7 +56,7 @@ class Who_Controller extends Action_Controller
 
 		// You can't do anything if this is off.
 		if (empty($modSettings['who_enabled']))
-			throw new Elk_Exception('who_off', false);
+			throw new Elk_Exception('who_off');
 
 		// Load the 'Who' template.
 		theme()->getTemplates()->load('Who');

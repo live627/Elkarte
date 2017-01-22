@@ -367,7 +367,7 @@ class PersonalMessage_Controller extends Action_Controller
 		// No menu means no access.
 		if (!$pm_include_data && (!$user_info['is_guest'] || validateSession() !== true))
 		{
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		}
 
 		// Make a note of the Unique ID for this menu.
@@ -504,7 +504,7 @@ class PersonalMessage_Controller extends Action_Controller
 			// Make sure you have access to this PM.
 			if (!isAccessiblePM($pmID, $context['folder'] === 'sent' ? 'outbox' : 'inbox'))
 			{
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 			}
 
 			$context['current_pm'] = $pmID;
@@ -532,7 +532,7 @@ class PersonalMessage_Controller extends Action_Controller
 
 			if (!isAccessiblePM($pmsg, $context['folder'] === 'sent' ? 'outbox' : 'inbox'))
 			{
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 			}
 		}
 
@@ -563,7 +563,7 @@ class PersonalMessage_Controller extends Action_Controller
 		// Make sure that we have been given a correct head pm id if we are in conversation mode
 		if ($context['display_mode'] == 2 && !empty($pmID) && $pmID != $lastData['id'])
 		{
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		}
 
 		// If loadPMs returned results, lets show the pm subject list
@@ -766,7 +766,7 @@ class PersonalMessage_Controller extends Action_Controller
 			// Make sure this is accessible (not deleted)
 			if (!isAccessiblePM($pmsg))
 			{
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 			}
 
 			// Validate that this is one has been received?
@@ -776,7 +776,7 @@ class PersonalMessage_Controller extends Action_Controller
 			$row_quoted = loadPMQuote($pmsg, $isReceived);
 			if ($row_quoted === false)
 			{
-				throw new Elk_Exception('pm_not_yours', false);
+				throw new Elk_Exception('pm_not_yours');
 			}
 
 			// Censor the message.
@@ -1326,7 +1326,7 @@ class PersonalMessage_Controller extends Action_Controller
 			{
 				if (!isset($this->_req->query->xml))
 				{
-					throw new Elk_Exception('pm_not_yours', false);
+					throw new Elk_Exception('pm_not_yours');
 				}
 				else
 				{
@@ -1858,14 +1858,14 @@ class PersonalMessage_Controller extends Action_Controller
 		// Check that this feature is even enabled!
 		if (empty($modSettings['enableReportPM']) || empty($this->_req->query->pmsg))
 		{
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		}
 
 		$pmsg = $this->_req->getQuery('pmsg', 'intval', $this->_req->getPost('pmsg', 'intval', 0));
 
 		if (!isAccessiblePM($pmsg, 'inbox'))
 		{
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 		}
 
 		$context['pm_id'] = $pmsg;
@@ -1882,7 +1882,7 @@ class PersonalMessage_Controller extends Action_Controller
 
 			if (Util::strlen($poster_comment) > 254)
 			{
-				throw new Elk_Exception('post_too_long', false);
+				throw new Elk_Exception('post_too_long');
 			}
 
 			// Check the session before proceeding any further!
@@ -1920,7 +1920,7 @@ class PersonalMessage_Controller extends Action_Controller
 			// Maybe we shouldn't advertise this?
 			if (empty($admins))
 			{
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 			}
 
 			$memberFromName = un_htmlspecialchars($memberFromName);
@@ -2120,13 +2120,13 @@ class PersonalMessage_Controller extends Action_Controller
 			$ruleName = Util::htmlspecialchars(trim($this->_req->post->rule_name));
 			if (empty($ruleName))
 			{
-				throw new Elk_Exception('pm_rule_no_name', false);
+				throw new Elk_Exception('pm_rule_no_name');
 			}
 
 			// Sanity check...
 			if (empty($this->_req->post->ruletype) || empty($this->_req->post->acttype))
 			{
-				throw new Elk_Exception('pm_rule_no_criteria', false);
+				throw new Elk_Exception('pm_rule_no_criteria');
 			}
 
 			// Let's do the criteria first - it's also hardest!
@@ -2195,7 +2195,7 @@ class PersonalMessage_Controller extends Action_Controller
 
 			if (empty($criteria) || (empty($actions) && !$doDelete))
 			{
-				throw new Elk_Exception('pm_rule_no_criteria', false);
+				throw new Elk_Exception('pm_rule_no_criteria');
 			}
 
 			// What are we storing?
@@ -2248,7 +2248,7 @@ class PersonalMessage_Controller extends Action_Controller
 		// Make sure the server is able to do this right now
 		if (!empty($modSettings['loadavg_search']) && $modSettings['current_load'] >= $modSettings['loadavg_search'])
 		{
-			throw new Elk_Exception('loadavg_search_disabled', false);
+			throw new Elk_Exception('loadavg_search_disabled');
 		}
 
 		// Some useful general permissions.
@@ -2919,7 +2919,7 @@ class PersonalMessage_Controller extends Action_Controller
 			// Make sure this is accessible, should be of course
 			if (!isAccessiblePM($pmsg, 'inbox'))
 			{
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 			}
 
 			// Well then, you get to hear about it all over again

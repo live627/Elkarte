@@ -274,10 +274,10 @@ class ManageThemes_Controller extends Action_Controller
 					$this->_req->post->options['known_themes'][$key] = (int) $id;
 			}
 			else
-				throw new Elk_Exception('themes_none_selectable', false);
+				throw new Elk_Exception('themes_none_selectable');
 
 			if (!in_array($this->_req->post->options['theme_guests'], $this->_req->post->options['known_themes']))
-				throw new Elk_Exception('themes_default_selectable', false);
+				throw new Elk_Exception('themes_default_selectable');
 
 			// Commit the new settings.
 			updateSettings(array(
@@ -641,7 +641,7 @@ class ManageThemes_Controller extends Action_Controller
 
 		// Validate inputs/user.
 		if (empty($theme))
-			throw new Elk_Exception('no_theme', false);
+			throw new Elk_Exception('no_theme');
 
 		// Select the best fitting tab.
 		$context[$context['admin_menu_name']]['current_subsection'] = 'list';
@@ -819,7 +819,7 @@ class ManageThemes_Controller extends Action_Controller
 
 		// You can't delete the default theme!
 		if ($theme == 1)
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		// Its no longer known
 		$known = explode(',', $modSettings['knownThemes']);
@@ -956,7 +956,7 @@ class ManageThemes_Controller extends Action_Controller
 		require_once(SUBSDIR . '/Themes.subs.php');
 
 		if (!$modSettings['theme_allow'] && $settings['disable_user_variant'] && !allowedTo('admin_forum'))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		theme()->getTemplates()->loadLanguageFile('Profile');
 		theme()->getTemplates()->load('ManageThemes');
@@ -1171,7 +1171,7 @@ class ManageThemes_Controller extends Action_Controller
 		elseif ($method == 'upload')
 			$this->installFromZip();
 		else
-			throw new Elk_Exception('theme_install_general', false);
+			throw new Elk_Exception('theme_install_general');
 
 		// Something go wrong?
 		if ($this->theme_dir != '' && basename($this->theme_dir) != 'themes')
@@ -1302,7 +1302,7 @@ class ManageThemes_Controller extends Action_Controller
 	public function installFromDir()
 	{
 		if (!is_dir($this->_req->post->theme_dir) || !file_exists($this->_req->post->theme_dir . '/theme_info.xml'))
-			throw new Elk_Exception('theme_install_error', false);
+			throw new Elk_Exception('theme_install_error');
 
 		$this->theme_name = basename($this->_req->post->theme_dir);
 		$this->theme_dir = $this->_req->post->theme_dir;
@@ -1821,7 +1821,7 @@ class ManageThemes_Controller extends Action_Controller
 
 		// Eh? not trying to sneak a peek outside the theme directory are we
 		if (!file_exists($theme_dir . '/index.template.php') && !file_exists($theme_dir . '/css/index.css'))
-			throw new Elk_Exception('theme_edit_missing', false);
+			throw new Elk_Exception('theme_edit_missing');
 
 		// Now, where exactly are you?
 		if (isset($this->_req->query->directory))
@@ -1938,7 +1938,7 @@ class ManageThemes_Controller extends Action_Controller
 			elseif (file_exists($settings['default_theme_dir'] . '/' . $this->_req->query->template . '.template.php'))
 				$filename = $settings['default_theme_dir'] . '/' . $this->_req->query->template . '.template.php';
 			else
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 
 			$fp = fopen($theme_dirs['theme_dir'] . '/' . $this->_req->query->template . '.template.php', 'w');
 			fwrite($fp, file_get_contents($filename));
@@ -1956,7 +1956,7 @@ class ManageThemes_Controller extends Action_Controller
 			elseif (file_exists($settings['default_theme_dir'] . '/languages/' . $this->_req->query->template . '.php'))
 				$filename = $settings['default_theme_dir'] . '/languages/' . $this->_req->query->template . '.php';
 			else
-				throw new Elk_Exception('no_access', false);
+				throw new Elk_Exception('no_access');
 
 			$fp = fopen($theme_dirs['theme_dir'] . '/languages/' . $this->_req->query->lang_file . '.php', 'w');
 			fwrite($fp, file_get_contents($filename));
@@ -2067,7 +2067,7 @@ class ManageThemes_Controller extends Action_Controller
 
 		// Eh? not trying to sneak a peek outside the theme directory are we
 		if (!file_exists($this->theme_dir . '/index.template.php') && !file_exists($this->theme_dir . '/css/index.css'))
-			throw new Elk_Exception('theme_edit_missing', false);
+			throw new Elk_Exception('theme_edit_missing');
 
 		// Get the filename from the appropriate spot
 		$filename = isset($this->_req->post->save) ? $this->_req->getPost('filename', 'strval', '') : $this->_req->getQuery('filename', 'strval', '');
@@ -2086,7 +2086,7 @@ class ManageThemes_Controller extends Action_Controller
 
 		// We shouldn't end up with no file
 		if (empty($filename))
-			throw new Elk_Exception('theme_edit_missing', false);
+			throw new Elk_Exception('theme_edit_missing');
 
 		// Initialize context
 		$context['allow_save'] = is_writable($this->theme_dir . '/' . $filename);

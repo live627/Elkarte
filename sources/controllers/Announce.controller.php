@@ -42,7 +42,7 @@ class Announce_Controller extends Action_Controller
 
 		// You need to announce something
 		if (empty($topic))
-			throw new Elk_Exception('topic_gone', false);
+			throw new Elk_Exception('topic_gone');
 
 		// Language files
 		theme()->getTemplates()->loadLanguageFile('Post');

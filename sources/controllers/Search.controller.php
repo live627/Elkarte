@@ -80,7 +80,7 @@ class Search_Controller extends Action_Controller
 
 		// If load management is on and the load is high, no need to even show the form.
 		if (!empty($modSettings['loadavg_search']) && $modSettings['current_load'] >= $modSettings['loadavg_search'])
-			throw new Elk_Exception('loadavg_search_disabled', false);
+			throw new Elk_Exception('loadavg_search_disabled');
 
 	}
 
@@ -118,7 +118,7 @@ class Search_Controller extends Action_Controller
 
 		// Is the load average too high to allow searching just now?
 		if (!empty($modSettings['loadavg_search']) && $modSettings['current_load'] >= $modSettings['loadavg_search'])
-			throw new Elk_Exception('loadavg_search_disabled', false);
+			throw new Elk_Exception('loadavg_search_disabled');
 
 		theme()->getTemplates()->loadLanguageFile('Search');
 

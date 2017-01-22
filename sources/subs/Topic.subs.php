@@ -2392,7 +2392,7 @@ function splitTopic($split1_ID_TOPIC, $splitMessages, $new_subject)
 
 	// Nothing to split?
 	if (empty($splitMessages))
-		throw new Elk_Exception('no_posts_selected', false);
+		throw new Elk_Exception('no_posts_selected');
 
 	// Get some board info.
 	$topicAttribute = topicAttribute($split1_ID_TOPIC, array('id_board', 'approved'));
@@ -2417,7 +2417,7 @@ function splitTopic($split1_ID_TOPIC, $splitMessages, $new_subject)
 	);
 	// You can't select ALL the messages!
 	if ($db->num_rows($request) == 0)
-		throw new Elk_Exception('selected_all_posts', false);
+		throw new Elk_Exception('selected_all_posts');
 
 	$split1_first_msg = null;
 	$split1_last_msg = null;
@@ -2507,7 +2507,7 @@ function splitTopic($split1_ID_TOPIC, $splitMessages, $new_subject)
 
 	// You cannot split off the first message of a topic.
 	if ($split1_first_msg > $split2_first_msg)
-		throw new Elk_Exception('split_first_post', false);
+		throw new Elk_Exception('split_first_post');
 
 	// The message that is starting the new topic may have likes, these become topic likes
 	require_once(SUBSDIR . '/Likes.subs.php');
@@ -3195,7 +3195,7 @@ function getSubject($id_topic)
 	);
 
 	if ($db->num_rows($request) == 0)
-		throw new Elk_Exception('topic_gone', false);
+		throw new Elk_Exception('topic_gone');
 
 	list ($subject) = $db->fetch_row($request);
 	$db->free_result($request);

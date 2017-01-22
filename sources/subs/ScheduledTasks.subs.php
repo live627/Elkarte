@@ -340,7 +340,7 @@ function loadTaskDetails($id_task)
 	);
 	// Should never, ever, happen!
 	if ($db->num_rows($request) == 0)
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 	while ($row = $db->fetch_assoc($request))
 	{
 		$task = array(

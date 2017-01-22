@@ -639,7 +639,7 @@ class ManageBoards_Controller extends Action_Controller
 			elseif (!empty($this->_req->post->placement) && !empty($this->_req->post->board_order))
 			{
 				if (!in_array($this->_req->post->placement, array('before', 'after', 'child')))
-					throw new Elk_Exception('mangled_post', false);
+					throw new Elk_Exception('mangled_post');
 
 				$boardOptions['move_to'] = $this->_req->post->placement;
 				$boardOptions['target_board'] = (int) $this->_req->post->board_order;
@@ -664,7 +664,7 @@ class ManageBoards_Controller extends Action_Controller
 			}
 
 			if (strlen(implode(',', $boardOptions['access_groups'])) > 255 || strlen(implode(',', $boardOptions['deny_groups'])) > 255)
-				throw new Elk_Exception('too_many_groups', false);
+				throw new Elk_Exception('too_many_groups');
 
 			// Change '1 & 2' to '1 &amp; 2', but not '&amp;' to '&amp;amp;'...
 			$boardOptions['board_name'] = preg_replace('~[&]([^;]{8}|[^;]{0,8}$)~', '&amp;$1', $this->_req->post->board_name);

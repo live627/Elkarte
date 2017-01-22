@@ -2148,7 +2148,7 @@ function loadPersonalMessage($pm_id)
 	);
 	// Can only be a hacker here!
 	if ($db->num_rows($request) == 0)
-		throw new Elk_Exception('no_access', false);
+		throw new Elk_Exception('no_access');
 	$pm_details = $db->fetch_row($request);
 	$db->free_result($request);
 

@@ -1472,7 +1472,7 @@ class ManageSmileys_Controller extends Action_Controller
 		}
 
 		if (!file_exists($destination))
-			throw new Elk_Exception('package_no_file', false);
+			throw new Elk_Exception('package_no_file');
 
 		// Make sure temp directory exists and is empty.
 		if (file_exists(BOARDDIR . '/packages/temp'))
@@ -1489,7 +1489,7 @@ class ManageSmileys_Controller extends Action_Controller
 
 				deltree(BOARDDIR . '/packages/temp', false);
 				if (!mktree(BOARDDIR . '/packages/temp', 0777))
-					throw new Elk_Exception('package_cant_download', false);
+					throw new Elk_Exception('package_cant_download');
 			}
 		}
 
@@ -1515,7 +1515,7 @@ class ManageSmileys_Controller extends Action_Controller
 			$base_path = '';
 
 		if (!file_exists(BOARDDIR . '/packages/temp/' . $base_path . 'package-info.xml'))
-			throw new Elk_Exception('package_get_error_missing_xml', false);
+			throw new Elk_Exception('package_get_error_missing_xml');
 
 		$smileyInfo = getPackageInfo($context['filename']);
 		if (!is_array($smileyInfo))

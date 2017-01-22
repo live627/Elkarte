@@ -277,9 +277,9 @@ function canLinkEvent()
 
 	// No board?  No topic?!?
 	if (empty($board))
-		throw new Elk_Exception('missing_board_id', false);
+		throw new Elk_Exception('missing_board_id');
 	if (empty($topic))
-		throw new Elk_Exception('missing_topic_id', false);
+		throw new Elk_Exception('missing_topic_id');
 
 	// Administrator, Moderator, or owner.  Period.
 	if (!allowedTo('admin_forum') && !allowedTo('moderate_board'))

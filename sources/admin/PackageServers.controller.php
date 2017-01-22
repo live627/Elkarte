@@ -133,7 +133,7 @@ class PackageServers_Controller extends Action_Controller
 
 		// Minimum required parameter did not exist so dump out.
 		else
-			throw new Elk_Exception('couldnt_connect', false);
+			throw new Elk_Exception('couldnt_connect');
 
 		// Might take some time.
 		detectServer()->setTimeLimit(60);
@@ -389,7 +389,7 @@ class PackageServers_Controller extends Action_Controller
 
 		// To download something, we need either a valid server or url.
 		if (empty($this->_req->query->server) && (!empty($this->_req->query->get) && !empty($this->_req->post->package)))
-			throw new Elk_Exception('package_get_error_is_zero', false);
+			throw new Elk_Exception('package_get_error_is_zero');
 
 		// Start off with nothing
 		$server = '';
@@ -418,7 +418,7 @@ class PackageServers_Controller extends Action_Controller
 			}
 			// Not found or some monkey business
 			else
-				throw new Elk_Exception('package_cant_download', false);
+				throw new Elk_Exception('package_cant_download');
 		}
 		// Entered a url and optional filename
 		elseif (isset($this->_req->post->byurl) && !empty($this->_req->post->filename))
@@ -481,7 +481,7 @@ class PackageServers_Controller extends Action_Controller
 		$context['package'] = getPackageInfo($package_name);
 
 		if (!is_array($context['package']))
-			throw new Elk_Exception('package_cant_download', false);
+			throw new Elk_Exception('package_cant_download');
 
 		if ($context['package']['type'] == 'modification')
 			$context['package']['install']['link'] = '<a href="' . $scripturl . '?action=admin;area=packages;sa=install;package=' . $context['package']['filename'] . '">[ ' . $txt['install_mod'] . ' ]</a>';
@@ -529,7 +529,7 @@ class PackageServers_Controller extends Action_Controller
 
 			// If server does not exist then dump out.
 			if (empty($url))
-				throw new Elk_Exception('couldnt_connect', false);
+				throw new Elk_Exception('couldnt_connect');
 		}
 
 		return array($name, $url, $server);

@@ -73,7 +73,7 @@ class MergeTopics_Controller extends Action_Controller
 		// If we don't know where you are from we know where you go
 		$from = $this->_req->getQuery('from', 'intval', null);
 		if (!isset($from))
-			throw new Elk_Exception('no_access', false);
+			throw new Elk_Exception('no_access');
 
 		$target_board = $this->_req->getPost('targetboard', 'intval', $board);
 		$context['target_board'] = $target_board;
