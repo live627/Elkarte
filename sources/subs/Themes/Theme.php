@@ -137,7 +137,7 @@ abstract class Theme
 	 * @param mixed[] $vars   array of vars to include in the output done as 'varname' => 'var value'
 	 * @param bool    $escape = false, whether or not to escape the value
 	 */
-	public function theme()->addJavascriptVar($vars, $escape = false)
+	public function addJavascriptVar($vars, $escape = false)
 	{
 		if (empty($vars) || !is_array($vars))
 		{
