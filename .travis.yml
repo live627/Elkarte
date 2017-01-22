@@ -19,8 +19,7 @@ matrix:
         postgresql: "9.4"
   fast_finish: true
 
-# Create a Travis memcached enabled environment for the test suite to run in and
-# ensure that we test against localhost on Travis-CI.
+# Start a memcached service on localhost using the default port.
 services: memcached
 
 # Find all PHP files excluding those within Composer's ./vendor directrory and

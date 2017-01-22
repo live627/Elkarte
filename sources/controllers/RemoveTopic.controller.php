@@ -213,7 +213,7 @@ class RemoveTopic_Controller extends Action_Controller
 		// Didn't find some things?
 		if ($restorer->unfoundRestoreMessages())
 		{
-			throw new Elk_Exception('restore_not_found', '' array('<ul><li>' . implode('</li><li>', $restorer->unfoundRestoreMessages(true)) . '</li></ul>'));
+			throw new Elk_Exception('restore_not_found', '', array('<ul><li>' . implode('</li><li>', $restorer->unfoundRestoreMessages(true)) . '</li></ul>'));
 		}
 
 		// Lets send them back somewhere that may make sense

@@ -133,7 +133,7 @@ class Elk_Exception extends Exception
 
 		if (!empty($this->log))
 		{
-			$msg = !isset($txt[$msg]) ? $msg : vsprintf($txt[$msg], $this->sprintf));
+			$msg = !isset($txt[$msg]) ? $msg : vsprintf($txt[$msg], $this->sprintf);
 			E::instance()->log_error($msg, $this->log, $this->getFile(), $this->getLine());
 		}
 	}

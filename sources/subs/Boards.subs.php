@@ -895,7 +895,7 @@ function getBoardTree($query = array())
 			{
 				// Parent doesn't exist!
 				if (!isset($boards[$row['id_parent']]['tree']))
-					throw new Elk_Exception('no_valid_parent', '' array($row['board_name']));
+					throw new Elk_Exception('no_valid_parent', '', array($row['board_name']));
 
 				// Wrong childlevel...we can silently fix this...
 				if ($boards[$row['id_parent']]['tree']['node']['level'] != $row['child_level'] - 1)

@@ -36,7 +36,8 @@ class TestFiles extends PHPUnit_Framework_TestCase
 
 	/**
 	 * Test that the headers are in place
-	 * @todo distinguish between SMF-derived and non-SMF-derived
+	 *
+	 * @todo this may be able to go into a shell script
 	 */
 	public function testHeaders()
 	{
@@ -49,7 +50,7 @@ class TestFiles extends PHPUnit_Framework_TestCase
  \* @copyright ElkArte Forum contributors
  \* @license\s+?BSD http:\/\/opensource\.org\/licenses\/BSD-3-Clause
  \*
- \* @version \d+\.\d+(?:\.\d+|\sdev|\s(beta|RC|Release Candidate)\s\d+)
+ \* @version\s+?\d+\.\d+(?:\.\d+|\sdev|\s(beta|RC|Release Candidate)\s\d+)
 (?:(?: \*\n)?|(?: \*(?:\s.{0,200})?\n))+ \*\/',
 			// Pure ElkArte with php path
 			'^#!\/usr\/bin\/php -q
@@ -60,7 +61,7 @@ class TestFiles extends PHPUnit_Framework_TestCase
  \* @copyright ElkArte Forum contributors
  \* @license\s+?BSD http:\/\/opensource\.org\/licenses\/BSD-3-Clause
  \*
- \* @version \d+\.\d+(?:\.\d+|\sdev|\s(beta|RC|Release Candidate)\s\d+)
+ \* @version\s+?\d+\.\d+(?:\.\d+|\sdev|\s(beta|RC|Release Candidate)\s\d+)
 (?:(?: \*\n)?|(?: \*(?:\s.{0,200})?\n))+ \*\/',
 			// SMF-derived
 			'^<\?php
@@ -77,7 +78,7 @@ class TestFiles extends PHPUnit_Framework_TestCase
  \* copyright:\s+?2004-2011, GreyWyvern - All rights reserved\.
  \* license:\s+?BSD, See included LICENSE.TXT for terms and conditions.)?
  \*
- \* @version \d+\.\d+(?:\.\d+|\sdev|\s(beta|RC|Release Candidate)\s\d+)
+ \* @version\s+?\d+\.\d+(?:\.\d+|\sdev|\s(beta|RC|Release Candidate)\s\d+)
 (?:(?: \*\n)?|(?: \*(?:\s.{0,200})?\n))+ \*\/',
 		);
 		foreach ($this->_ourFiles as $file)

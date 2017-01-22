@@ -455,7 +455,7 @@ class ManageSmileys_Controller extends Action_Controller
 					$dir->close();
 
 					if (empty($smileys))
-						throw new Elk_Exception('smiley_set_dir_not_found', '' array($context['current_set']['name']));
+						throw new Elk_Exception('smiley_set_dir_not_found', '', array($context['current_set']['name']));
 
 					// Exclude the smileys that are already in the database.
 					$found = smileyExists($smileys);
@@ -587,7 +587,7 @@ class ManageSmileys_Controller extends Action_Controller
 
 				// We only allow image files - it's THAT simple - no messing around here...
 				if (!in_array(strtolower(substr(strrchr($_FILES['uploadSmiley']['name'], '.'), 1)), $allowedTypes))
-					throw new Elk_Exception('smileys_upload_error_types', '' array(implode(', ', $allowedTypes)));
+					throw new Elk_Exception('smileys_upload_error_types', '', array(implode(', ', $allowedTypes)));
 
 				// We only need the filename...
 				$destName = basename($_FILES['uploadSmiley']['name']);
@@ -660,7 +660,7 @@ class ManageSmileys_Controller extends Action_Controller
 
 					// We only allow image files - it's THAT simple - no messing around here...
 					if (!in_array(strtolower(substr(strrchr($_FILES['individual_' . $set['name']]['name'], '.'), 1)), $allowedTypes))
-						throw new Elk_Exception('smileys_upload_error_types', '' array(implode(', ', $allowedTypes)));
+						throw new Elk_Exception('smileys_upload_error_types', '', array(implode(', ', $allowedTypes)));
 
 					// We only need the filename...
 					$destName = basename($_FILES['individual_' . $set['name']]['name']);
@@ -1497,7 +1497,7 @@ class ManageSmileys_Controller extends Action_Controller
 
 		// @todo needs to change the URL in the next line ;)
 		if (!$extracted)
-			throw new Elk_Exception('packageget_unable', '' array('http://custom.elkarte.net/index.php?action=search;type=12;basic_search=' . $name));
+			throw new Elk_Exception('packageget_unable', '', array('http://custom.elkarte.net/index.php?action=search;type=12;basic_search=' . $name));
 
 		if ($extracted && !file_exists(BOARDDIR . '/packages/temp/package-info.xml'))
 		{
