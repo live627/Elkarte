@@ -318,7 +318,7 @@ class ManageLanguages_Controller extends Action_Controller
 			{
 				// Check it's not very bad.
 				if (strpos($file, '..') !== false || (strpos($file, 'themes') !== 0 && !preg_match('~agreement\.[A-Za-z-_0-9]+\.txt$~', $file)))
-					throw new Elk_Exception($txt['languages_download_illegal_paths']);
+					throw new Elk_Exception('languages_download_illegal_paths');
 
 				$chmod_files[] = BOARDDIR . '/' . $file;
 				$install_files[] = $file;
@@ -349,7 +349,7 @@ class ManageLanguages_Controller extends Action_Controller
 		$archive_content = read_tgz_file('http://download.elkarte.net/fetch_language.php?version=' . urlencode(strtr(FORUM_VERSION, array('ElkArte ' => ''))) . ';fetch=' . urlencode($this->_req->query->did), null);
 
 		if (empty($archive_content))
-			throw new Elk_Exception($txt['add_language_error_no_response']);
+			throw new Elk_Exception('add_language_error_no_response');
 
 		// Now for each of the files, let's do some *stuff*
 		$context['files'] = array(

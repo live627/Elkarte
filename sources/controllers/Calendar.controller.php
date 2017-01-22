@@ -263,14 +263,7 @@ class Calendar_Controller extends Action_Controller
 		$save_data = array();
 		if (!isset($_POST['link_to_board']))
 		{
-			try
-			{
-				$save_data = $event->validate($_POST);
-			}
-			catch (Elk_Exception $e)
-			{
-				$e->fatalLangError();
-			}
+			$save_data = $event->validate($_POST);
 		}
 
 		// If you're not allowed to edit any events, you have to be the poster.

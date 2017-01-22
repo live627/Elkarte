@@ -1550,7 +1550,7 @@ class Packages_Controller extends Action_Controller
 				if ($validate_custom)
 				{
 					if (!preg_match('~^[4567][4567][4567]$~', $context['custom_value']))
-						throw new Elk_Exception($txt['chmod_value_invalid']);
+						throw new Elk_Exception('chmod_value_invalid');
 				}
 
 				// Nothing to do?

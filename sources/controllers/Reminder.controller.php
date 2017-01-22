@@ -101,6 +101,7 @@ class Reminder_Controller extends Action_Controller
 		if ($member['is_activated'] != 1)
 		{
 			// Awaiting approval...
+			// @fixme seperate these into a sprintf and simplify.
 			if (trim($member['validation_code']) === '')
 				throw new Elk_Exception($txt['registration_not_approved'] . ' <a class="linkbutton" href="' . $scripturl . '?action=register;sa=activate;user=' . $this->_req->post->user . '">' . $txt['here'] . '</a>.', false);
 			else
@@ -110,6 +111,7 @@ class Reminder_Controller extends Action_Controller
 		// You can't get emailed if you have no email address.
 		$member['email_address'] = trim($member['email_address']);
 		if ($member['email_address'] === '')
+			// @todo can this be seperated into a sprintf?
 			throw new Elk_Exception($txt['no_reminder_email'] . '<br />' . $txt['send_email'] . ' <a href="mailto:' . $webmaster_email . '">webmaster</a> ' . $txt['to_ask_password'] . '.');
 
 		// If they have no secret question then they can only get emailed the item, or they are requesting the email, send them an email.
@@ -238,7 +240,7 @@ class Reminder_Controller extends Action_Controller
 			// Stop brute force attacks like this.
 			validatePasswordFlood($member_id, $member['passwd_flood'], false);
 
-			throw new Elk_Exception($txt['invalid_activation_code'], false);
+			throw new Elk_Exception('invalid_activation_code', false);
 		}
 
 		// Just in case, flood control.

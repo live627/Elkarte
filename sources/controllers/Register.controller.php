@@ -967,6 +967,8 @@ class Register_Controller extends Action_Controller
 			elseif ($this->_row['validation_code'] === '')
 			{
 				theme()->getTemplates()->loadLanguageFile('Profile');
+
+				// @fixme seperate this into a sprintf.
 				throw new Elk_Exception($txt['registration_not_approved'] . ' <a href="' . $scripturl . '?action=register;sa=activate;user=' . $this->_row['member_name'] . '">' . $txt['here'] . '</a>.', false);
 			}
 
