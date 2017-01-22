@@ -137,7 +137,7 @@ abstract class Theme
 	 * @param mixed[] $vars   array of vars to include in the output done as 'varname' => 'var value'
 	 * @param bool    $escape = false, whether or not to escape the value
 	 */
-	public function addJavascriptVar($vars, $escape = false)
+	public function theme()->addJavascriptVar($vars, $escape = false)
 	{
 		if (empty($vars) || !is_array($vars))
 		{
@@ -185,7 +185,7 @@ abstract class Theme
 	}
 
 	/**
-	 * Returns javascript vars loaded with addJavascriptVar function
+	 * Returns javascript vars loaded with theme()->addJavascriptVar function
 	 *
 	 * @return array
 	 */
@@ -195,7 +195,7 @@ abstract class Theme
 	}
 
 	/**
-	 * Returns inline javascript of a give type that was added with addInlineJavascript function
+	 * Returns inline javascript of a give type that was added with theme()->addInlineJavascript function
 	 *
 	 * @param int $type One of ALL, SELF, DEFERRED class constants
 	 *
@@ -228,7 +228,7 @@ abstract class Theme
 	 * @param string $javascript
 	 * @param bool   $defer = false, define if the script should load in <head> or before the closing <html> tag
 	 */
-	public function addInlineJavascript($javascript, $defer = false)
+	public function theme()->addInlineJavascript($javascript, $defer = false)
 	{
 		if (!empty($javascript))
 		{

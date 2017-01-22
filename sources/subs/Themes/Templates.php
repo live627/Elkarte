@@ -257,6 +257,12 @@ class Templates
 			$this->loadEssentialThemeData();
 		}
 
+		// Do we want the English version of language file as fallback?
+		if (empty($modSettings['disable_language_fallback']) && $lang != 'english')
+		{
+			$this->loadLanguageFiles($template_name, 'english', false);
+		}
+
 		$fix_arrays = false;
 		// For each file open it up and write it out!
 		foreach ($template_name as $template)
@@ -269,12 +275,6 @@ class Templates
 			if (!$force_reload && isset($already_loaded[$template]) && $already_loaded[$template] == $lang)
 			{
 				return $lang;
-			}
-
-			// Do we want the English version of language file as fallback?
-			if (empty($modSettings['disable_language_fallback']) && $lang != 'english')
-			{
-				$this->loadLanguageFiles($template, 'english', false);
 			}
 
 			// Try to find the language file.

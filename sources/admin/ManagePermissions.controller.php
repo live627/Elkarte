@@ -523,7 +523,7 @@ class ManagePermissions_Controller extends Action_Controller
 			foreach ($context['profiles'] as $id => $profile)
 				$js .= '{name: ' . JavaScriptEscape($profile['name']) . ', id: ' . $id . '},';
 
-			addJavascriptVar(array(
+			theme()->addJavascriptVar(array(
 				'permission_profiles' => substr($js, 0, -1) . ')',
 				'txt_save' => JavaScriptEscape($txt['save']),
 			));
@@ -1026,7 +1026,7 @@ class ManagePermissions_Controller extends Action_Controller
 			$context['profiles'][$id]['can_delete'] = $context['profiles'][$id]['can_edit'] && empty($profile['in_use']) ? true : false;
 		}
 
-		addJavascriptVar(array(
+		theme()->addJavascriptVar(array(
 			'txt_permissions_commit' => $txt['permissions_commit'],
 			'txt_permissions_profile_rename' => $txt['permissions_profile_rename'],
 		), true);

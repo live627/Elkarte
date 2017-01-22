@@ -46,10 +46,8 @@ class Elk_Exception extends Exception
 	 * @param int       $code
 	 * @param Exception $previous
 	 */
-	public function __construct($message, $log = '', $sprintf = [], $code = 0, Exception $previous = null)
+	public function __construct($message, $log = '', array $sprintf = [], $code = 0, Exception $previous = null)
 	{
-		global $txt;
-
 		$this->log = $log;
 		$this->sprintf = $sprintf;
 
@@ -74,29 +72,17 @@ class Elk_Exception extends Exception
 	 */
 	private function parseMessage($message)
 	{
-		// Load message with language support
-		if (is_array($message))
+		// Assume it's a simple error message
+		$language = 'Errors';
+
+		// language.messageIndex
+		if (preg_match('/^(\w+)\.(.+)$/', $message, $matches) !== 0)
 		{
-			$language = $message[0];
-			$msg = $message[1];
-		}
-		else
-		{
-			// language.messageIndex
-			if (preg_match('/^(\w+)\.(.+)$/', $message, $matches) !== 0)
-			{
-				$language = $matches[1];
-				$msg = $matches[2];
-			}
-			// Simple Error message
-			else
-			{
-				$language = 'Errors';
-				$msg = $message;
-			}
+			$language = $matches[1];
+			$message = $matches[2];
 		}
 
-		return [$msg, $language];
+		return [$message, $language];
 	}
 
 	/**
@@ -113,9 +99,10 @@ class Elk_Exception extends Exception
 
 		list ($msg, $lang) = $this->parseMessage($message);
 		theme()->getTemplates()->loadLanguageFile($lang);
+		$message = !isset($txt[$msg]) ? $msg : vsprintf($txt[$msg], $this->sprintf);
 		$this->logMessage($msg, $lang);
 
-		return !isset($txt[$msg]) ? $msg : vsprintf($txt[$msg], $this->sprintf);
+		return $message;
 	}
 
 	/**

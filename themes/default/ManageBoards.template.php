@@ -513,7 +513,7 @@ function template_modify_board()
 				<hr />';
 
 	// Add a select all box for the allowed groups section
-	theme()->addInlineJavascript('
+	theme()->theme()->addInlineJavascript('
 		$(function() {
 			$(".select_all_box").each(function () {
 				$(this).removeClass(\'select_all_box\');
@@ -675,7 +675,7 @@ function template_modify_board()
 			]
 		});';
 
-	addInlineJavascript($js, true);
+	theme()->addInlineJavascript($js, true);
 
 	// Javascript for deciding what to show.
 	echo '

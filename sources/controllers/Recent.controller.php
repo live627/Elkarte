@@ -383,7 +383,7 @@ class Recent_Controller extends Action_Controller
 		if (!empty($modSettings['likes_enabled']))
 		{
 			// Just the message id please
-			$messages = array_map('intval', array_column('id', $messages));
+			$messages = array_column($messages, 'id');
 
 			require_once(SUBSDIR . '/Likes.subs.php');
 			$likes = loadLikes($messages, true);
@@ -403,13 +403,13 @@ class Recent_Controller extends Action_Controller
 
 		// ajax controller for likes
 		loadJavascriptFile('like_posts.js', array('defer' => true));
-		addJavascriptVar(array(
+		theme()->addJavascriptVar(array(
 			'likemsg_are_you_sure' => JavaScriptEscape($txt['likemsg_are_you_sure']),
 		));
 		theme()->getTemplates()->loadLanguageFile('Errors');
 
 		// Initiate likes and the tooltips for likes
-		addInlineJavascript('
+		theme()->addInlineJavascript('
 			$(function() {
 				var likePostInstance = likePosts.prototype.init({
 					oTxt: ({

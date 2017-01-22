@@ -1314,7 +1314,7 @@ function determineSmileySet($user_smiley_set, $known_smiley_sets)
  */
 function loadEssentialThemeData()
 {
-	return theme()->getTemplates()->load($template_name, $style_sheets, $fatal);
+	return theme()->getTemplates()->loadEssentialThemeData();
 }
 
 /**

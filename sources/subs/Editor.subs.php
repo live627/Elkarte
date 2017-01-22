@@ -144,7 +144,7 @@ function create_control_richedit($editorOptions)
 
 		// JS makes the editor go round
 		loadJavascriptFile(array('jquery.sceditor.bbcode.min.js', 'jquery.sceditor.elkarte.js', 'post.js', 'splittag.plugin.js', 'undo.plugin.min.js', 'dropAttachments.js'));
-		addJavascriptVar(array(
+		theme()->addJavascriptVar(array(
 			'post_box_name' => $editorOptions['id'],
 			'elk_smileys_url' => $settings['smileys_url'],
 			'bbc_quote_from' => $txt['quote_from'],
@@ -222,7 +222,7 @@ function create_control_richedit($editorOptions)
 		// and display details of any added buttons must be defined in the javascript files
 		// see jquery.sceditor.elkarte.js under the $.sceditor.plugins.bbcode.bbcode area
 		// for examples of how to use the .set command to add codes.  Include your new
-		// JS with addInlineJavascript() or loadJavascriptFile()
+		// JS with theme()->addInlineJavascript() or loadJavascriptFile()
 		$bbc_tags['row1'] = array(
 			array('bold', 'italic', 'underline', 'strike', 'superscript', 'subscript'),
 			array('left', 'center', 'right', 'pre', 'tt'),
@@ -466,7 +466,7 @@ function create_control_richedit($editorOptions)
 	{
 		theme()->getTemplates()->loadLanguageFile('Errors');
 
-		addInlineJavascript('
+		theme()->addInlineJavascript('
 	error_txts[\'no_subject\'] = ' . JavaScriptEscape($txt['error_no_subject']) . ';
 	error_txts[\'no_message\'] = ' . JavaScriptEscape($txt['error_no_message']) . ';
 
