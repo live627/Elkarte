@@ -897,7 +897,7 @@ function moveTopicConcurrence($move_from = null, $id_board = null, $id_topic = n
 
 		$board_link = '<a href="' . $scripturl . '?board=' . $id_board . '.0">' . $board_name . '</a>';
 		$topic_link = '<a href="' . $scripturl . '?topic=' . $id_topic . '.0">' . $topic_subject . '</a>';
-		throw new Elk_Exception('topic_already_moved', false, array($topic_link, $board_link));
+		throw new Elk_Exception('topic_already_moved', '' array($topic_link, $board_link));
 	}
 }
 
@@ -929,7 +929,7 @@ function removeDeleteConcurrence()
 			}
 
 			// Give them a prompt before we remove the message
-			throw new Elk_Exception('post_already_deleted', false, array($confirm_url));
+			throw new Elk_Exception('post_already_deleted', '' array($confirm_url));
 		}
 	}
 }

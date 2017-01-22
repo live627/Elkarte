@@ -248,7 +248,7 @@ class ManagePaid_Controller extends Action_Controller
 
 		// Not made the settings yet?
 		if (empty($modSettings['paid_currency_symbol']))
-			throw new Elk_Exception('paid_not_set_currency', false, array($scripturl . '?action=admin;area=paidsubscribe;sa=settings'));
+			throw new Elk_Exception('paid_not_set_currency', '' array($scripturl . '?action=admin;area=paidsubscribe;sa=settings'));
 
 		// Some basic stuff.
 		$context['page_title'] = $txt['paid_subs_view'];

@@ -558,7 +558,7 @@ class PackageServers_Controller extends Action_Controller
 		$_FILES['package']['name'] = preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $_FILES['package']['name']);
 
 		if (strtolower(substr($_FILES['package']['name'], -4)) != '.zip' && strtolower(substr($_FILES['package']['name'], -4)) != '.tgz' && strtolower(substr($_FILES['package']['name'], -7)) != '.tar.gz')
-			throw new Elk_Exception('package_upload_error_supports', false, array('zip, tgz, tar.gz'));
+			throw new Elk_Exception('package_upload_error_supports', '' array('zip, tgz, tar.gz'));
 
 		// We only need the filename...
 		$packageName = basename($_FILES['package']['name']);
@@ -584,7 +584,7 @@ class PackageServers_Controller extends Action_Controller
 			@unlink($destination);
 			theme()->getTemplates()->loadLanguageFile('Errors');
 			$txt[$context['package']] = str_replace('{MANAGETHEMEURL}', $scripturl . '?action=admin;area=theme;sa=admin;' . $context['session_var'] . '=' . $context['session_id'] . '#theme_install', $txt[$context['package']]);
-			throw new Elk_Exception('package_upload_error_broken', false, $txt[$context['package']]);
+			throw new Elk_Exception('package_upload_error_broken', '' $txt[$context['package']]);
 		}
 		// Is it already uploaded, maybe?
 		else

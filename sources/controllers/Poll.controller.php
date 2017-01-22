@@ -139,7 +139,7 @@ class Poll_Controller extends Action_Controller
 
 		// Too many options checked!
 		if (count($this->_req->post->options) > $row['max_votes'])
-			throw new Elk_Exception('poll_too_many_votes', false, array($row['max_votes']));
+			throw new Elk_Exception('poll_too_many_votes', '' array($row['max_votes']));
 
 		$pollOptions = array();
 		$inserts = array();

@@ -110,7 +110,7 @@ class Karma_Controller extends Action_Controller
 		{
 			// If you are gonna try to repeat.... don't allow it.
 			if ($action == $dir)
-				throw new Elk_Exception('karma_wait_time', false, array($modSettings['karmaWaitTime'], ($modSettings['karmaWaitTime'] == 1 ? strtolower($txt['hour']) : $txt['hours'])));
+				throw new Elk_Exception('karma_wait_time', '' array($modSettings['karmaWaitTime'], ($modSettings['karmaWaitTime'] == 1 ? strtolower($txt['hour']) : $txt['hours'])));
 
 			updateKarma($id_executor, $id_target, $dir);
 		}

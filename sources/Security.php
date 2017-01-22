@@ -1353,7 +1353,7 @@ function spamProtection($error_type, $fatal = true)
 		// Spammer!  You only have to wait a *few* seconds!
 		if ($fatal)
 		{
-			throw new Elk_Exception($error_type . '_WaitTime_broken', false, array($timeLimit));
+			throw new Elk_Exception($error_type . '_WaitTime_broken', '' array($timeLimit));
 		}
 		else
 			return $timeLimit;

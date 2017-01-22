@@ -163,7 +163,7 @@ class Register_Controller extends Action_Controller
 				if (empty($modSettings['coppaType']) && empty($_SESSION['skip_coppa']))
 				{
 					theme()->getTemplates()->loadLanguageFile('Login');
-					throw new Elk_Exception('under_age_registration_prohibited', false, array($modSettings['coppaAge']));
+					throw new Elk_Exception('under_age_registration_prohibited', '' array($modSettings['coppaAge']));
 				}
 			}
 		}
@@ -285,7 +285,7 @@ class Register_Controller extends Action_Controller
 		if (!empty($modSettings['coppaAge']) && empty($modSettings['coppaType']) && empty($_SESSION['skip_coppa']))
 		{
 			theme()->getTemplates()->loadLanguageFile('Login');
-			throw new Elk_Exception('under_age_registration_prohibited', false, array($modSettings['coppaAge']));
+			throw new Elk_Exception('under_age_registration_prohibited', '' array($modSettings['coppaAge']));
 		}
 
 		// Check the time gate for miscreants. First make sure they came from somewhere that actually set it up.
@@ -882,7 +882,7 @@ class Register_Controller extends Action_Controller
 			// @todo Separate the sprintf?
 			if (userByEmail($this->_req->post->new_email))
 			{
-				throw new Elk_Exception('email_in_use', false, array(htmlspecialchars($this->_req->post->new_email, ENT_COMPAT, 'UTF-8')));
+				throw new Elk_Exception('email_in_use', '' array(htmlspecialchars($this->_req->post->new_email, ENT_COMPAT, 'UTF-8')));
 			}
 
 			require_once(SUBSDIR . '/Members.subs.php');
