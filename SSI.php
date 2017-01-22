@@ -506,7 +506,7 @@ function ssi_recentTopics($num_recent = 8, $exclude_boards = null, $include_boar
 	$request = $db->query('substring', '
 		SELECT
 			ml.poster_time, ml.id_member, ml.id_msg, ml.smileys_enabled, ml.icon,
-			mf.subject, mf.id_member AS id_op_member, 
+			mf.subject, mf.id_member AS id_op_member,
 			t.id_topic, t.num_replies, t.num_views, t.id_last_msg, t.id_first_msg,
 			mg.online_color,
 			COALESCE(mem.real_name, ml.poster_name) AS poster_name,
@@ -1398,7 +1398,6 @@ function ssi_showPoll($topicID = null, $output_method = 'echo')
 
 	if ($output_method != 'echo')
 		return $context['poll'];
-	}
 
 	echo '
 		<div class="content" id="poll_options">
