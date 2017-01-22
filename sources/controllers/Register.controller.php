@@ -119,7 +119,7 @@ class Register_Controller extends Action_Controller
 			redirectexit('action=register;sa=contact');
 
 		theme()->getTemplates()->loadLanguageFile('Login');
-		loadTemplate('Register');
+		theme()->getTemplates()->load('Register');
 
 		// Do we need them to agree to the registration agreement, first?
 		$context['require_agreement'] = !empty($modSettings['requireAgreement']);
@@ -508,7 +508,7 @@ class Register_Controller extends Action_Controller
 		// Basic template variable setup.
 		elseif (!empty($modSettings['registration_method']))
 		{
-			loadTemplate('Register');
+			theme()->getTemplates()->load('Register');
 
 			$context += array(
 				'page_title' => $txt['register'],
@@ -732,7 +732,7 @@ class Register_Controller extends Action_Controller
 		{
 			// Setup some important context.
 			theme()->getTemplates()->loadLanguageFile('Profile');
-			loadTemplate('Profile');
+			theme()->getTemplates()->load('Profile');
 
 			$context['user']['is_owner'] = true;
 
@@ -775,7 +775,7 @@ class Register_Controller extends Action_Controller
 			redirectexit();
 
 		theme()->getTemplates()->loadLanguageFile('Login');
-		loadTemplate('Login');
+		theme()->getTemplates()->load('Login');
 		loadJavascriptFile('sha256.js', array('defer' => true));
 
 		// Need a user id to activate
@@ -990,7 +990,7 @@ class Register_Controller extends Action_Controller
 		global $context, $modSettings, $txt;
 
 		theme()->getTemplates()->loadLanguageFile('Login');
-		loadTemplate('Register');
+		theme()->getTemplates()->load('Register');
 
 		// No User ID??
 		if (!isset($this->_req->query->member))
@@ -1078,7 +1078,7 @@ class Register_Controller extends Action_Controller
 		elseif (isset($this->_req->query->sound))
 		{
 			theme()->getTemplates()->loadLanguageFile('Login');
-			loadTemplate('Register');
+			theme()->getTemplates()->load('Register');
 
 			$context['verification_sound_href'] = $scripturl . '?action=register;sa=verificationcode;rand=' . md5(mt_rand()) . ($verification_id ? ';vid=' . $verification_id : '') . ';format=.wav';
 			$context['sub_template'] = 'verification_sound';
@@ -1137,7 +1137,7 @@ class Register_Controller extends Action_Controller
 			redirectexit();
 
 		theme()->getTemplates()->loadLanguageFile('Login');
-		loadTemplate('Register');
+		theme()->getTemplates()->load('Register');
 
 		// Submitted the contact form?
 		if (isset($this->_req->post->send))
@@ -1238,7 +1238,7 @@ class Register_Controller extends Action_Controller
 		global $context;
 
 		// This is XML!
-		loadTemplate('Xml');
+		theme()->getTemplates()->load('Xml');
 		$context['sub_template'] = 'check_username';
 		$context['checked_username'] = isset($this->_req->query->username) ? un_htmlspecialchars($this->_req->query->username) : '';
 		$context['valid_username'] = true;

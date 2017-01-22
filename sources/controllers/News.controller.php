@@ -241,7 +241,7 @@ class News_Controller extends Action_Controller
 		elseif ($xml_format === 'rdf')
 			header('Content-Type: ' . (isBrowser('ie') ? 'text/xml' : 'application/rdf+xml') . '; charset=UTF-8');
 
-		loadTemplate('Xml');
+		theme()->getTemplates()->load('Xml');
 		theme()->getLayers()->removeAll();
 
 		// Are we outputting an rss feed or one with more information?

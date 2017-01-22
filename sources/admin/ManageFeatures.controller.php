@@ -180,7 +180,7 @@ class ManageFeatures_Controller extends Action_Controller
 			$clean_hives_result = theme()->cleanHives();
 
 			theme()->getLayers()->removeAll();
-			loadTemplate('Json');
+			theme()->getTemplates()->load('Json');
 			addJavascriptVar(array('txt_invalid_response' => $txt['ajax_bad_response']), true);
 			$context['sub_template'] = 'send_json';
 			$context['json_data'] = array(
@@ -539,7 +539,7 @@ class ManageFeatures_Controller extends Action_Controller
 	{
 		global $txt, $scripturl, $context;
 
-		loadTemplate('ManageFeatures');
+		theme()->getTemplates()->load('ManageFeatures');
 		$context['page_title'] = $txt['custom_profile_title'];
 		$context['sub_template'] = 'show_custom_profile';
 
@@ -834,7 +834,7 @@ class ManageFeatures_Controller extends Action_Controller
 	{
 		global $txt, $scripturl, $context;
 
-		loadTemplate('ManageFeatures');
+		theme()->getTemplates()->load('ManageFeatures');
 
 		// Sort out the context!
 		$context['fid'] = $this->_req->getQuery('fid', 'intval', 0);

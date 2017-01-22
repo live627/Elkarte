@@ -66,7 +66,7 @@ class ProfileOptions_Controller extends Action_Controller
 		if (!$context['user']['is_owner'] || empty($modSettings['enable_buddylist']))
 			throw new Elk_Exception('no_access', false);
 
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 
 		// Can we email the user direct?
 		$context['can_moderate_forum'] = allowedTo('moderate_forum');
@@ -105,7 +105,7 @@ class ProfileOptions_Controller extends Action_Controller
 	{
 		global $context, $user_profile, $memberContext;
 
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 
 		// We want to view what we're doing :P
 		$context['sub_template'] = 'editBuddies';
@@ -215,7 +215,7 @@ class ProfileOptions_Controller extends Action_Controller
 	{
 		global $context, $user_profile, $memberContext;
 
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 
 		// We want to view what we're doing :P
 		$context['sub_template'] = 'editIgnoreList';
@@ -314,7 +314,7 @@ class ProfileOptions_Controller extends Action_Controller
 	{
 		global $modSettings, $context, $txt;
 
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 		$this->loadThemeOptions();
 
 		if (allowedTo(array('profile_identity_own', 'profile_identity_any')))
@@ -401,7 +401,7 @@ class ProfileOptions_Controller extends Action_Controller
 	{
 		global $context, $txt;
 
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 		$this->loadThemeOptions();
 
 		if (allowedTo(array('profile_extra_own', 'profile_extra_any')))
@@ -432,7 +432,7 @@ class ProfileOptions_Controller extends Action_Controller
 
 		$this->loadThemeOptions();
 		loadCustomFields($this->_memID, 'pmprefs');
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 
 		$context['sub_template'] = 'edit_options';
 		$context['page_desc'] = $txt['pm_settings_desc'];
@@ -461,7 +461,7 @@ class ProfileOptions_Controller extends Action_Controller
 		if (allowedTo(array('profile_extra_own', 'profile_extra_any')))
 			loadCustomFields($this->_memID, 'theme');
 
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 
 		$context['sub_template'] = 'edit_options';
 		$context['page_desc'] = $txt['theme_info'];
@@ -488,7 +488,7 @@ class ProfileOptions_Controller extends Action_Controller
 		global $context, $cur_profile, $post_errors, $modSettings;
 
 		theme()->getTemplates()->loadLanguageFile('Login');
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 
 		// We are saving?
 		if ($saving)
@@ -576,7 +576,7 @@ class ProfileOptions_Controller extends Action_Controller
 	{
 		global $txt, $scripturl, $user_profile, $context, $modSettings;
 
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 
 		// Going to need this for the list.
 		require_once(SUBSDIR . '/Boards.subs.php');
@@ -857,7 +857,7 @@ class ProfileOptions_Controller extends Action_Controller
 		if (empty($modSettings['allow_ignore_boards']))
 			throw new Elk_Exception('ignoreboards_disallowed', 'user');
 
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 
 		$context['sub_template'] = 'ignoreboards';
 		require_once(SUBSDIR . '/Boards.subs.php');
@@ -880,7 +880,7 @@ class ProfileOptions_Controller extends Action_Controller
 	{
 		global $txt, $user_profile, $context;
 
-		loadTemplate('ProfileOptions');
+		theme()->getTemplates()->load('ProfileOptions');
 		$context['sub_template'] = 'groupMembership';
 
 		$curMember = $user_profile[$this->_memID];
