@@ -26,6 +26,8 @@ use ElkArte\Menu\MenuSubsection;
  */
 function createMenu($menuData, $menuOptions = array())
 {
+	$menu = new Menu();
+	$menu->addOptions($menuOptions);
 	$newMenuData = [];
 	foreach ($menuData as $section_id => $section)
 	{
@@ -44,11 +46,8 @@ function createMenu($menuData, $menuOptions = array())
 			$newAreas['areas'][$area_id] = MenuArea::buildFromArray($area+$newSubsections);
 		}
 		unset($section['areas']);
-		$newMenuData[$section_id] = MenuSection::buildFromArray($section+$newAreas);
+		$menu->addSection($section_id, MenuSection::buildFromArray($section+$newAreas));
 	}
-	$menu = new Menu();
-	$menu->addOptions($menuOptions);
-	$menu->addAreas($newMenuData);
 	$include_data = $menu->prepareMenu();
 	$menu->setContext();
 

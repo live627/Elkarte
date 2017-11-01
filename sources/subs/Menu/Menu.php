@@ -83,23 +83,14 @@ Class Menu
 	public $menuData = [];
 
 	/**
-	 * Menu_Create constructor.
-	 */
-	public function _construct()
-	{
-	}
-
-	/**
 	 * Initial processing for the menu
-	 *
-	 * @return array|bool
 	 */
-	public function prepareMenu()
+	public function _construct($req = null)
 	{
 		global $context, $settings;
 
 		// Access to post/get data
-		$this->req = \HttpReq::instance();
+		$this->req = $req ?: \HttpReq::instance();
 
 		// Work out where we should get our menu images from.
 		$context['menu_image_path'] = file_exists($settings['theme_dir'] . '/images/admin/change_menu.png')
@@ -117,21 +108,15 @@ Class Menu
 
 		// We may have a current subaction
 		$this->current_subaction = isset($context['current_subaction']) ? $context['current_subaction'] : null;
-
-		// Create menu will return the include data
-		return $this->createMenu();
 	}
 
 	/**
 	 * Create a menu
 	 *
-	 * @return array|bool
+	 * @return array
 	 */
-	public function createMenu()
+	public function prepareMenu()
 	{
-		// Call this menus integration hook
-		$this->integrationHook();
-
 		// Process the menu Options
 		$this->processMenuOptions();
 
@@ -150,7 +135,7 @@ Class Menu
 		// Make sure we created some awesome sauce
 		if (!$this->validateData())
 		{
-			return false;
+			throw new \Elk_Exception('no_access', false);
 		}
 
 		// Finally - return information on the selected item.
@@ -199,25 +184,6 @@ Class Menu
 
 		// Check we had something - for sanity sake.
 		return !empty($this->include_data);
-	}
-
-	/**
-	 * Call the integration hook for this menu
-	 *
-	 * What it does:
-	 *   - If supplied a hook name in the menuOptions, calls the integration function
-	 *   - Called before other menu processing to allow hook full control
-	 */
-	private function integrationHook()
-	{
-		// Allow extend *any* menu with a single hook
-		if (!empty($this->menuOptions['hook']))
-		{
-			call_integration_hook(
-				'integrate_' . $this->menuOptions['hook'] . '_areas',
-				[&$this->menuData, &$this->menuOptions]
-			);
-		}
 	}
 
 	/**
@@ -635,40 +601,16 @@ Class Menu
 	}
 
 	/**
-	 * Add the data the is used to build the menu
+	 * @param             $id
+	 * @param MenuSection $section
 	 *
-	 * @param array $menuData the menu array
-	 *                        Possible indexes:
-	 *                        Menu name with named indexes as follows:
-	 *                        - string $title       => Section title
-	 *                        - bool $enabled       => Is the section enabled / shown
-	 *                        - array $areas        => Array of areas within this menu section, see below
-	 *                        - array $permission   => Permission required to access the whole section
-	 *
-	 *   areas sub array from above, named indexes as follows:
-	 *        - array $permission  => Array of permissions to determine who can access this area
-	 *        - string $label      => Optional text string for link (Otherwise $txt[$index] will be used)
-	 *        - string $controller => Name of controller required for this area
-	 *        - string $function   => Method in controller to call when area is selected
-	 *        - string $icon       => File name of an icon to use on the menu, if using a class set as transparent.png
-	 *        - string $class      => CSS class name to apply to the icon img, used to apply a sprite icon
-	 *        - string $custom_url => URL to call for this menu item
-	 *        - bool $enabled      => Should this area even be enabled / accessible?
-	 *        - bool $hidden       => If the area is visible in the menu
-	 *        - string $select     => If set, references another area
-	 *        - array $subsections => Array of subsections for this menu area, see below
-	 *
-	 *   subsections sub array from above, unnamed indexes interpreted as follows, single named index 'enabled'
-	 *        - string 0           => Label for this subsection
-	 *        - array 1            => Array of permissions to check for this subsection.
-	 *        - bool 2             => Is this the default subaction - if not set for any will default to first...
-	 *        - bool enabled       => Enabled or not
-	 *        - array active       => Set the button active for other subsections.
-	 *        - string url         => Custom url for the subsection
+	 * @return $this
 	 */
-	public function addAreas($menuData = [])
+	public function addSection($id, MenuSection $section)
 	{
-		$this->menuData = array_replace_recursive($this->menuData, $menuData);
+		$this->menuData[$id] = $section;
+
+		return $this;
 	}
 
 	/**
