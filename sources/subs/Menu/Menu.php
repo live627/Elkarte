@@ -93,7 +93,7 @@ Class Menu
 		$this->req = $req ?: \HttpReq::instance();
 
 		// Work out where we should get our menu images from.
-		$context['menu_image_path'] = file_exists($settings['theme_dir'] . '/images/admin/change_menu.png')
+		$this->menu_context['image_path'] = file_exists($settings['theme_dir'] . '/images/admin/change_menu.png')
 			? $settings['images_url'] . '/admin'
 			: $settings['default_images_url'] . '/admin';
 
@@ -434,7 +434,7 @@ Class Menu
 		if (isset($area->icon))
 		{
 			$this->menu_context['sections'][$section_id]['areas'][$area_id]['icon'] =
-				'<img ' . (isset($area->class) ? 'class="' . $area->class . '" ' : 'style="background: none"') . ' src="' . $context['menu_image_path'] . '/' . $area->icon . '" alt="" />&nbsp;&nbsp;';
+				'<img ' . (isset($area->class) ? 'class="' . $area->class . '" ' : 'style="background: none"') . ' src="' . $this->menu_context['image_path'] . '/' . $area->icon . '" alt="" />&nbsp;&nbsp;';
 		}
 		else
 		{

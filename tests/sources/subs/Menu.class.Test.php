@@ -13,7 +13,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 	{
 		global $context, $user_info;
 
-		$_GET['action'] = 'section2';
+		$_GET['action'] = 'section1';
 
 		$this->req = new \HttpReq;
 		$this->menu = (new Menu($this->req))->addSection(
@@ -132,7 +132,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 		$this->assertTrue($result['sections']['section2']['areas']['area3']['subsections']['sub3']['disabled']);
 		$this->assertTrue($result['sections']['section2']['areas']['area3']['subsections']['sub1']['is_first']);
 		$this->assertArrayNotHasKey('area2', $result['sections']['section2']['areas']);
-		var_dump('area2', $result, $context, $result);
+		var_export($context);
 	}
 
 	public function testOptions()
@@ -157,8 +157,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 	{
 		global $context;
 
-		$this->menu->addOption('action', 'section2');
-		$this->menu->addOption('current_area', 'area3');
+		$this->menu->addOptions(['action' => 'section2', 'current_area' => 'area3']);
 		$this->createMenu();
 
 		$this->assertContains('sub2', $context['linktree'][2]['url']);
