@@ -132,7 +132,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 		$this->assertTrue($result['sections']['section2']['areas']['area3']['subsections']['sub3']['disabled']);
 		$this->assertTrue($result['sections']['section2']['areas']['area3']['subsections']['sub1']['is_first']);
 		$this->assertArrayNotHasKey('area2', $result['sections']['section2']['areas']);
-		var_export($context);
+		var_export('area2', $result, $context, $);
 	}
 
 	public function testOptions()

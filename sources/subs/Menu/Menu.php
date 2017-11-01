@@ -85,7 +85,7 @@ Class Menu
 	/**
 	 * Initial processing for the menu
 	 */
-	public function _construct($req = null)
+	public function __construct($req = null)
 	{
 		global $context, $settings;
 
