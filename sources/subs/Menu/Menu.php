@@ -8,14 +8,16 @@
  * @license   BSD http://opensource.org/licenses/BSD-3-Clause
  *
  * This file contains code covered by:
- * copyright:    2011 Simple Machines (http://www.simplemachines.org)
- * license:        BSD, See included LICENSE.TXT for terms and conditions.
+ * copyright: 2011 Simple Machines (http://www.simplemachines.org)
+ * license:   BSD, See included LICENSE.TXT for terms and conditions.
  *
  * @version   1.1
  *
  */
 
 namespace ElkArte\Menu;
+
+use HttpReq;
 
 /**
  * This class implements a standard way of creating menus
@@ -85,12 +87,12 @@ Class Menu
 	/**
 	 * Initial processing for the menu
 	 */
-	public function __construct($req = null)
+	public function __construct(HttpReq $req = null)
 	{
 		global $context, $settings;
 
 		// Access to post/get data
-		$this->req = $req ?: \HttpReq::instance();
+		$this->req = $req ?: HttpReq::instance();
 
 		// Work out where we should get our menu images from.
 		$this->menu_context['image_path'] = file_exists($settings['theme_dir'] . '/images/admin/change_menu.png')
@@ -428,7 +430,12 @@ Class Menu
 	 */
 	private function setAreaIcon($section_id, $area_id, $area)
 	{
-		global $context;
+		global $context, $settings;
+
+		// Work out where we should get our menu images from.
+		$this->menu_context['image_path'] = file_exists($settings['theme_dir'] . '/images/admin/change_menu.png')
+			? $settings['images_url'] . '/admin'
+			: $settings['default_images_url'] . '/admin';
 
 		// Does this area have its own icon?
 		if (isset($area->icon))

@@ -105,7 +105,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * Create a menu
 	 *
-	 * @return array|bool
+	 * @return array
 	 */
 	public function createMenu()
 	{
