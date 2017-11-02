@@ -104,6 +104,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 								'function' => function () {
 								},
 							]
+						),
 						'area7' => MenuArea::buildFromArray(
 							[
 								'label' => 'Area7 Label',
