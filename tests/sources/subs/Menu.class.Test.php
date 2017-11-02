@@ -123,7 +123,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 
 	protected function tearDown()
 	{
-		$this->menu->destroyMenu('last');
+		unset($this->menu);
 	}
 
 	/**
