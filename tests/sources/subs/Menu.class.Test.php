@@ -119,6 +119,11 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 		//~ $context['current_subaction'] = '';
 	}
 
+	protected function tearDown()
+	{
+		$this->menu->destroyMenu('last');
+	}
+
 	/**
 	 * Create a menu
 	 *
