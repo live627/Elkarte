@@ -13,7 +13,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 	{
 		global $context, $user_info;
 
-		$_GET['action'] = 'section3';
+		$_GET['action'] = 'section4';
 
 		$this->req = new \HttpReq;
 		$this->menu = (new Menu($this->req))->addSection(
@@ -91,6 +91,23 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 					],
 				]
 			)
+		)->addSection(
+			'section4',
+			MenuSection::buildFromArray(
+				[
+					'title' => 'Four',
+					'permission' => ['admin_forum'],
+					'areas' => [
+						'area6' => MenuArea::buildFromArray(
+							[
+								'label' => 'Area6 Label',
+								'function' => function () {
+								},
+							]
+						),
+					],
+				]
+			)
 		);
 		$this->menu->addOptions(['extra_url_parameters' => ['extra' => 'param']]);
 
@@ -131,7 +148,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertTrue($result['sections']['section2']['areas']['area3']['subsections']['sub3']['disabled']);
 		$this->assertArrayNotHasKey('area2', $result['sections']['section2']['areas']);
-		fwrite(STDERR, print_r($context, true);
+		fwrite(STDERR, print_r($context, true));
 	}
 
 	public function testOptions()
