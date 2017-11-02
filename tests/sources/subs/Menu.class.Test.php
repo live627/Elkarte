@@ -187,6 +187,8 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 
 	public function optionsProvider()
 	{
+		global $context;
+
 		return [
 			[0, 'extra', 'param'],
 			[1, 'extra', 'param'],
