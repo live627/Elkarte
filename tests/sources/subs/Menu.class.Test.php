@@ -146,6 +146,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 		// These are long-ass arrays, y'all!
 		$result = $context['menu_data_'.$context['max_menu_id']];
 
+		$this->assertSame('section3', $context);
 		$this->assertArrayNotHasKey('section3', $result['sections']);
 		$this->assertCount(2, $result['sections']);
 		$this->assertCount(1, $result['sections']['section2']['areas']);
@@ -153,7 +154,6 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertTrue($result['sections']['section2']['areas']['area3']['subsections']['sub3']['disabled']);
 		$this->assertArrayNotHasKey('area2', $result['sections']['section2']['areas']);
-		fwrite(STDERR, print_r($context, true));
 	}
 
 	public function testOptions()
@@ -181,7 +181,6 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 		$this->menu->addOptions(['action' => 'section2', 'current_area' => 'area3']);
 		$this->createMenu();
 
-		$this->assertContains('sub2', $context['linktree'][2]['url']);
-		$this->assertCount(3, $context['linktree']);
+		$this->assertSame('section3', $context);
 	}
 }

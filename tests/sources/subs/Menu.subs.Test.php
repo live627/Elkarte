@@ -175,7 +175,7 @@ class TestMenuSubs extends PHPUnit_Framework_TestCase
 
 		// this subsection has a url and was enabled
 		$this->assertEquals('some url', $result['sections']['section2']['areas']['area3']['subsections']['sub1']['url']);
-		$this->assertEquals(true, $result['sections']['section2']['areas']['area3']['subsections']['sub1']['is_first']);
+		$this->assertEquals('sub1', key($result['sections']['section2']['areas']['area3']['subsections']));
 
 		// section 2 areas->area2 is hidden so should not be here
 		$this->assertArrayNotHasKey('area2', $result['sections']['section2']['areas']);
