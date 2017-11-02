@@ -89,15 +89,10 @@ Class Menu
 	 */
 	public function __construct(HttpReq $req = null)
 	{
-		global $context, $settings;
+		global $context;
 
 		// Access to post/get data
 		$this->req = $req ?: HttpReq::instance();
-
-		// Work out where we should get our menu images from.
-		$this->menu_context['image_path'] = file_exists($settings['theme_dir'] . '/images/admin/change_menu.png')
-			? $settings['images_url'] . '/admin'
-			: $settings['default_images_url'] . '/admin';
 
 		// Every menu gets a unique ID, these are shown in first in, first out order.
 		$this->max_menu_id = isset($context['max_menu_id']) ? $context['max_menu_id']++ : 1;
@@ -433,7 +428,7 @@ Class Menu
 		global $context, $settings;
 
 		// Work out where we should get our menu images from.
-		$this->menu_context['image_path'] = file_exists($settings['theme_dir'] . '/images/admin/change_menu.png')
+		$image_path = file_exists($settings['theme_dir'] . '/images/admin/change_menu.png')
 			? $settings['images_url'] . '/admin'
 			: $settings['default_images_url'] . '/admin';
 
@@ -441,7 +436,7 @@ Class Menu
 		if (isset($area->icon))
 		{
 			$this->menu_context['sections'][$section_id]['areas'][$area_id]['icon'] =
-				'<img ' . (isset($area->class) ? 'class="' . $area->class . '" ' : 'style="background: none"') . ' src="' . $this->menu_context['image_path'] . '/' . $area->icon . '" alt="" />&nbsp;&nbsp;';
+				'<img ' . (isset($area->class) ? 'class="' . $area->class . '" ' : 'style="background: none"') . ' src="' . $image_path . '/' . $area->icon . '" alt="" />&nbsp;&nbsp;';
 		}
 		else
 		{
