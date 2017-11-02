@@ -63,7 +63,7 @@ function createMenu($menuData, $menuOptions = array())
  *
  * @return false|null
  */
-public function destroyMenu($menu_id = 'last')
+fnction destroyMenu($menu_id = 'last')
 {
 	global $context;
 

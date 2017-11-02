@@ -660,7 +660,7 @@ Class Menu
 	{
 		global $context;
 
-		$menu_name 'menu_data_' . $this->max_menu_id;
+		$menu_name = 'menu_data_' . $this->max_menu_id;
 
 		if (!isset($context[$menu_name]))
 		{
