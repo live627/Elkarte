@@ -89,7 +89,7 @@ Class Menu
 	 */
 	public function __construct(HttpReq $req = null)
 	{
-		global $context;
+		global $context, $settings;
 
 		// Access to post/get data
 		$this->req = $req ?: HttpReq::instance();
@@ -196,10 +196,10 @@ Class Menu
 			: $context['current_action'];
 
 		// What is the current area selected?
-		if (isset($this->menuOptions['current_area']) || isset($this->req->query->area))
+		if (isset($this->menuOptions['area']) || isset($this->req->query->area))
 		{
-			$this->menu_context['current_area'] = isset($this->menuOptions['current_area'])
-				? $this->menuOptions['current_area']
+			$this->menu_context['current_area'] = isset($this->menuOptions['area'])
+				? $this->menuOptions['area']
 				: $this->req->query->area;
 		}
 
@@ -654,18 +654,13 @@ Class Menu
 	/**
 	 * Delete a menu.
 	 *
-	 * @param string $menu_id = 'last'
-	 *
 	 * @return false|null
 	 */
-	public function destroyMenu($menu_id = 'last')
+	public function __destroy()
 	{
 		global $context;
 
-		$menu_name =
-			$menu_id === 'last' && isset($context['max_menu_id'], $context['menu_data_' . $context['max_menu_id']])
-				? 'menu_data_' . $context['max_menu_id']
-				: 'menu_data_' . $menu_id;
+		$menu_name 'menu_data_' . $this->max_menu_id;
 
 		if (!isset($context[$menu_name]))
 		{

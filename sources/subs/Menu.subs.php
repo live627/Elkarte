@@ -60,11 +60,26 @@ function createMenu($menuData, $menuOptions = array())
  * @depreciated since 1.1 use MenuCreate.class
  *
  * @param string $menu_id
+ *
+ * @return false|null
  */
-function destroyMenu($menu_id = 'last')
+public function destroyMenu($menu_id = 'last')
 {
-	$menu = new Menu();
-	$menu->destroyMenu($menu_id);
+	global $context;
+
+	$menu_name =
+		$menu_id === 'last' && isset($context['max_menu_id'], $context['menu_data_' . $context['max_menu_id']])
+			? 'menu_data_' . $context['max_menu_id']
+			: 'menu_data_' . $menu_id;
+
+	if (!isset($context[$menu_name]))
+	{
+		return false;
+	}
+
+	theme()->getLayers()->remove($context[$menu_name]['layer_name']);
+
+	unset($context[$menu_name]);
 }
 
 /**
