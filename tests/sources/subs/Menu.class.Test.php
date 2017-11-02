@@ -13,7 +13,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 	{
 		global $context, $user_info;
 
-		$_GET['action'] = 'section1';
+		$_GET['action'] = 'section3';
 
 		$this->req = new \HttpReq;
 		$this->menu = (new Menu($this->req))->addSection(
@@ -130,9 +130,8 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 		$this->assertCount(3, $result['sections']['section2']['areas']['area3']['subsections']);
 
 		$this->assertTrue($result['sections']['section2']['areas']['area3']['subsections']['sub3']['disabled']);
-		$this->assertTrue($result['sections']['section2']['areas']['area3']['subsections']['sub1']['is_first']);
 		$this->assertArrayNotHasKey('area2', $result['sections']['section2']['areas']);
-		var_export('area2', $result, $context, $this->req);
+		fwrite(STDERR, print_r($context, true);
 	}
 
 	public function testOptions()
