@@ -173,7 +173,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 			$result['sections']['section2']['url'],
 			$result['sections']['section2']['areas']['area3']['url'],
 			$result['sections']['section2']['areas']['area3']['subsections']['sub1']['url']
-		]) as $key => $url)
+		] as $key => $url)
 		{
 			if ($k === $key)
 			{
