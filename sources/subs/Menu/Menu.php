@@ -166,16 +166,6 @@ Class Menu
 		// If still no data then reset - nothing to show!
 		if (empty($this->menu_context['sections']))
 		{
-			// Never happened!
-			$this->menu_context = [];
-			$this->max_menu_id--;
-			$context['max_menu_id'] = $this->max_menu_id;
-
-			if ($this->max_menu_id === 0)
-			{
-				unset($context['max_menu_id']);
-			}
-
 			return false;
 		}
 
