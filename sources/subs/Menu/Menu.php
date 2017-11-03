@@ -654,21 +654,27 @@ Class Menu
 	/**
 	 * Delete a menu.
 	 *
-	 * @return false|null
+	 * Checks to see if this menu been loaded into context
+	 * and, if so, resets $context['max_menu_id'] back to the
+	 * last known menu (if any) and remove the template layer
+	 * if there aren't any other knowm menus.
 	 */
 	public function __destroy()
 	{
 		global $context;
 
-		$menu_name = 'menu_data_' . $this->max_menu_id;
-
-		if (!isset($context[$menu_name]))
+		// Has this menu been loaded into context?
+		if (isset($context[$menu_name = 'menu_data_' . $this->max_menu_id]))
 		{
-			return false;
+			unset($context[$menu_name]);
+
+			// Remove the template layer if this is the only menu.
+			if ($this->max_menu_id == $context['max_menu_id'])
+			$context['max_menu_id'] = min($context['max_menu_id']--, 0);
+
+		// Remove the template layer if this was the only menu left.
+		if ($context['max_menu_id'] == 0)
+			theme()->getLayers()->remove($context[$menu_name]['layer_name']);
 		}
-
-		theme()->getLayers()->remove($context[$menu_name]['layer_name']);
-
-		unset($context[$menu_name]);
 	}
 }
