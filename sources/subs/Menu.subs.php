@@ -79,8 +79,6 @@ function destroyMenu($menu_id = 'last')
 	}
 	else
 	{
-		unset($context[$menu_name]);
-
 		// Decrement the pointer if this is the final menu in the series.
 		if ($menu_id === 'last' || $menu_id == $context['max_menu_id'])
 			$context['max_menu_id'] = min(--$context['max_menu_id'], 0);
@@ -88,6 +86,8 @@ function destroyMenu($menu_id = 'last')
 		// Remove the template layer if this was the only menu left.
 		if ($context['max_menu_id'] == 0)
 			theme()->getLayers()->remove($context[$menu_name]['layer_name']);
+
+		unset($context[$menu_name]);
 
 		return true;
 	}

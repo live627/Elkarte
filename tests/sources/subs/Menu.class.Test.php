@@ -94,6 +94,7 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 		$this->assertSame('sub2', $result['current_area']);
 
 		$this->tearDown();
+		$this->assertFalse(isset($context['menu_data_2'));
 		$this->assertSame(1, $context['max_menu_id']);
 		$this->assertContains(
 			$context['menu_data_' . $context['max_menu_id']]['layer_name'],
