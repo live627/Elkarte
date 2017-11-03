@@ -58,7 +58,6 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 
 		return [
 			[0, 'extra', 'param'],
-			[0, 'action', 'bubbh'],
 			[1, 'extra', 'param'],
 			[1, 'action', 'bubbh'],
 			[1, $context['session_var'], $context['session_id']],
