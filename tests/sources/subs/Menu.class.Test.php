@@ -36,11 +36,11 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 
 		$result = $context['menu_data_' . $context['max_menu_id']];
 		foreach ([
-			         $result['extra_parameters'],
-			         $result['sections']['section2']['url'],
-			         $result['sections']['section2']['areas']['area3']['url'],
-			         $result['sections']['section2']['areas']['area3']['subsections']['sub1']['url'],
-		         ] as $key => $url)
+			$result['extra_parameters'],
+			$result['sections']['section2']['url'],
+			$result['sections']['section2']['areas']['area3']['url'],
+			$result['sections']['section2']['areas']['area3']['subsections']['sub1']['url'],
+		] as $key => $url)
 		{
 			if ($k === $key)
 			{
@@ -88,10 +88,11 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 		$this->createMenu();
 		$result = $context['menu_data_' . $context['max_menu_id']];
 		$this->assertSame(1, $context['max_menu_id']);
-		$this->assertSame('sectio4', $result['current_action']);
-		$this->assertSame('area7', $result['current_area']);
+		$this->assertSame('bubbh', $result['current_action']);
+		$this->assertSame('section1', $result['current_section']);
+		$this->assertSame('area1', $result['current_area']);
 
-		$this->addOptions(['action' => 'section2', 'current_area' => 'area3']);
+		$this->addOptions(['action' => 'section2', 'area' => 'area3']);
 		$this->createMenu();
 		$result = $context['menu_data_' . $context['max_menu_id']];
 		$this->assertSame(2, $context['max_menu_id']);
@@ -269,8 +270,8 @@ class MenuTest extends BaseMenuTest
 
 class MenuTestOld extends BaseMenuTest
 {
-	private $sections;
-	private $options;
+	private $sections = [];
+	private $options = [];
 
 	protected function setUp()
 	{
