@@ -36,7 +36,7 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 
 		$result = $context['menu_data_' . $context['max_menu_id']];
 		foreach ([
-			$result['extra_parameters'],
+			trim($result['extra_parameters'], ';'),
 			$result['sections']['section2']['url'],
 			$result['sections']['section2']['areas']['area3']['url'],
 			$result['sections']['section2']['areas']['area3']['subsections']['sub1']['url'],
@@ -71,14 +71,6 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 			[3, 'area', 'area3'],
 			[3, 'sa', 'sub1'],
 		];
-	}
-
-	/**
-	 * @expectedException Elk_Exception
-	 */
-	public function testFail()
-	{
-		(new Menu())->prepareMenu();
 	}
 
 	public function testSelected()
@@ -286,12 +278,10 @@ class MenuTestOld extends BaseMenuTest
 					'permission' => ['admin_forum'],
 					'areas' => [
 						'area1' => [
-							[
 								'label' => 'Area1 Label',
 								'function' => function ()
 								{
 								},
-							],
 						],
 					],
 				],
@@ -301,17 +291,14 @@ class MenuTestOld extends BaseMenuTest
 					'permission' => ['admin_forum'],
 					'areas' => [
 						'area2' => [
-							[
 								'label' => 'Area2 Label',
 								'function' => function ()
 								{
 								},
 								'custom_url' => 'custom_url',
 								'hidden' => true,
-							],
 						],
 						'area3' => [
-							[
 								'permission' => 'area3 permission',
 								'label' => 'Area3 Label',
 								'function' => function ()
@@ -322,16 +309,13 @@ class MenuTestOld extends BaseMenuTest
 									'sub2' => [['Sub Two', ['admin_forum'], true]],
 									'sub3' => [['Sub Three', ['admin_forum'], false, 'enabled' => false]],
 								],
-							],
 						],
 						'area4' => [
-							[
 								'label' => 'Area4 Label',
 								'function' => function ()
 								{
 								},
 								'enabled' => false,
-							],
 						],
 					],
 				],
@@ -342,12 +326,10 @@ class MenuTestOld extends BaseMenuTest
 					'enabled' => false,
 					'areas' => [
 						'area5' => [
-							[
 								'label' => 'Area5 Label',
 								'function' => function ()
 								{
 								},
-							],
 						],
 					],
 				],
@@ -357,20 +339,16 @@ class MenuTestOld extends BaseMenuTest
 					'permission' => ['admin_forum'],
 					'areas' => [
 						'area6' => [
-							[
 								'label' => 'Area6 Label',
 								'function' => function ()
 								{
 								},
-							],
 						],
 						'area7' => [
-							[
 								'label' => 'Area7 Label',
 								'function' => function ()
 								{
 								},
-							],
 						],
 					],
 				],
