@@ -229,7 +229,7 @@ class MenuTest extends BaseMenuTest
 		$user_info['is_admin'] = true;
 
 		// @todo find test case that didn't clean up (destroyed its menu)
-		$context['max_menu_id']--;
+		$context['max_menu_id'] = 0;
 	}
 
 	protected function tearDown()
@@ -360,6 +360,9 @@ class MenuTestOld extends BaseMenuTest
 		$this->addOptions(['extra_url_parameters' => ['extra' => 'param']]);
 
 		$user_info['is_admin'] = true;
+
+		// @todo find test case that didn't clean up (destroyed its menu)
+		$context['max_menu_id'] = 0;
 	}
 
 	protected function tearDown()
