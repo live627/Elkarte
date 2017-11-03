@@ -177,7 +177,7 @@ class MenuTest extends \PHPUnit_Framework_TestCase
 		{
 			if ($k === $key)
 			{
-				parse_str(parse_url($url, PHP_URL_QUERY), $result);
+				parse_str(parse_url(strtr($url, ';', '&'), PHP_URL_QUERY), $result);
 				$this->assertArrayHasKey($expectedKey, $result);
 				$this->assertContains($expectedVal, $result);
 				break;
