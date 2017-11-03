@@ -73,33 +73,6 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 		];
 	}
 
-	public function testSelected()
-	{
-		global $context;
-
-		$this->createMenu();
-		$result = $context['menu_data_' . $context['max_menu_id']];
-		$this->assertSame(2, $context['max_menu_id']);
-		$this->assertSame('bubbh', $result['current_action']);
-		$this->assertSame('section1', $result['current_section']);
-		$this->assertSame('area1', $result['current_area']);
-
-		$this->addOptions(['action' => 'section2', 'area' => 'area3']);
-		$this->createMenu();
-		$result = $context['menu_data_' . $context['max_menu_id']];
-		$this->assertSame(3, $context['max_menu_id']);
-		$this->assertSame('section2', $result['current_action']);
-		$this->assertSame('area3', $result['current_area']);
-		$this->assertSame('sub1', $result['current_subsection']);
-
-		$this->tearDown();
-		$this->assertFalse(isset($context['menu_data_3']));
-		$this->assertSame(2, $context['max_menu_id']);
-		$this->assertContains(
-			$context['menu_data_' . $context['max_menu_id']]['layer_name'],
-			theme()->getLayers()->getLayers()
-		);
-	}
 }
 
 class MenuTest extends BaseMenuTest
