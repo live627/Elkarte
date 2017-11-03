@@ -36,7 +36,7 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 
 		$result = $context['menu_data_' . $context['max_menu_id']];
 		foreach ([
-			trim($result['extra_parameters'], ';'),
+			$result['base_url'],
 			$result['sections']['section2']['url'],
 			$result['sections']['section2']['areas']['area3']['url'],
 			$result['sections']['section2']['areas']['area3']['subsections']['sub1']['url'],
@@ -58,6 +58,7 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 
 		return [
 			[0, 'extra', 'param'],
+			[0, 'action', 'bubbh'],
 			[1, 'extra', 'param'],
 			[1, 'action', 'bubbh'],
 			[1, $context['session_var'], $context['session_id']],
@@ -278,10 +279,10 @@ class MenuTestOld extends BaseMenuTest
 					'permission' => ['admin_forum'],
 					'areas' => [
 						'area1' => [
-								'label' => 'Area1 Label',
-								'function' => function ()
-								{
-								},
+							'label' => 'Area1 Label',
+							'function' => function ()
+							{
+							},
 						],
 					],
 				],
@@ -291,31 +292,31 @@ class MenuTestOld extends BaseMenuTest
 					'permission' => ['admin_forum'],
 					'areas' => [
 						'area2' => [
-								'label' => 'Area2 Label',
-								'function' => function ()
-								{
-								},
-								'custom_url' => 'custom_url',
-								'hidden' => true,
+							'label' => 'Area2 Label',
+							'function' => function ()
+							{
+							},
+							'custom_url' => 'custom_url',
+							'hidden' => true,
 						],
 						'area3' => [
-								'permission' => 'area3 permission',
-								'label' => 'Area3 Label',
-								'function' => function ()
-								{
-								},
-								'subsections' => [
-									'sub1' => [['Sub One', ['admin_forum']]],
-									'sub2' => [['Sub Two', ['admin_forum'], true]],
-									'sub3' => [['Sub Three', ['admin_forum'], false, 'enabled' => false]],
-								],
+							'permission' => 'area3 permission',
+							'label' => 'Area3 Label',
+							'function' => function ()
+							{
+							},
+							'subsections' => [
+								'sub1' => ['Sub One', ['admin_forum']],
+								'sub2' => ['Sub Two', ['admin_forum'], true],
+								'sub3' => ['Sub Three', ['admin_forum'], false, 'enabled' => false],
+							],
 						],
 						'area4' => [
-								'label' => 'Area4 Label',
-								'function' => function ()
-								{
-								},
-								'enabled' => false,
+							'label' => 'Area4 Label',
+							'function' => function ()
+							{
+							},
+							'enabled' => false,
 						],
 					],
 				],
@@ -326,10 +327,10 @@ class MenuTestOld extends BaseMenuTest
 					'enabled' => false,
 					'areas' => [
 						'area5' => [
-								'label' => 'Area5 Label',
-								'function' => function ()
-								{
-								},
+							'label' => 'Area5 Label',
+							'function' => function ()
+							{
+							},
 						],
 					],
 				],
@@ -339,16 +340,16 @@ class MenuTestOld extends BaseMenuTest
 					'permission' => ['admin_forum'],
 					'areas' => [
 						'area6' => [
-								'label' => 'Area6 Label',
-								'function' => function ()
-								{
-								},
+							'label' => 'Area6 Label',
+							'function' => function ()
+							{
+							},
 						],
 						'area7' => [
-								'label' => 'Area7 Label',
-								'function' => function ()
-								{
-								},
+							'label' => 'Area7 Label',
+							'function' => function ()
+							{
+							},
 						],
 					],
 				],

@@ -95,7 +95,7 @@ Class Menu
 		$this->req = $req ?: HttpReq::instance();
 
 		// Every menu gets a unique ID, these are shown in first in, first out order.
-		$this->max_menu_id = isset($context['max_menu_id']) ? $context['max_menu_id']++ : 1;
+		$this->max_menu_id = isset($context['max_menu_id']) ? ++$context['max_menu_id'] : 1;
 
 		// This will be all the data for this menu
 		$this->menu_context = [];
