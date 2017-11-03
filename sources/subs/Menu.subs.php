@@ -43,10 +43,10 @@ function createMenu($menuData, $menuOptions = array())
 					unset($area['subsections']);
 				}
 			}
-			$newAreas['areas'][$area_id] = MenuArea::buildFromArray($area+$newSubsections);
+			$newAreas['areas'][$area_id] = MenuArea::buildFromArray($area + $newSubsections);
 		}
 		unset($section['areas']);
-		$menu->addSection($section_id, MenuSection::buildFromArray($section+$newAreas));
+		$menu->addSection($section_id, MenuSection::buildFromArray($section + $newAreas));
 	}
 	$include_data = $menu->prepareMenu();
 	$menu->setContext();
@@ -61,7 +61,7 @@ function createMenu($menuData, $menuOptions = array())
  *
  * @param string $menu_id
  *
- * @return false|null
+ * @return boolean
  */
 function destroyMenu($menu_id = 'last')
 {
