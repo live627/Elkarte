@@ -227,6 +227,8 @@ class MenuTest extends BaseMenuTest
 		$this->addOptions(['extra_url_parameters' => ['extra' => 'param']]);
 
 		$user_info['is_admin'] = true;
+
+		$this->assertSame(32, $context['max_menu_id']);
 	}
 
 	protected function tearDown()
