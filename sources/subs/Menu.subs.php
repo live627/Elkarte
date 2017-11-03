@@ -83,7 +83,7 @@ function destroyMenu($menu_id = 'last')
 
 		// Decrement the pointer if this is the final menu in the series.
 		if ($menu_id === 'last' || $menu_id == $context['max_menu_id'])
-			$context['max_menu_id'] = min($context['max_menu_id']--, 0);
+			$context['max_menu_id'] = min(--$context['max_menu_id'], 0);
 
 		// Remove the template layer if this was the only menu left.
 		if ($context['max_menu_id'] == 0)

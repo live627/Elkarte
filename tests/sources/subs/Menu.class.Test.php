@@ -17,7 +17,7 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 		$result = $context['menu_data_' . $context['max_menu_id']];
 
 		$this->assertArrayNotHasKey('section3', $result['sections']);
-		$this->assertCount(2, $result['sections']);
+		$this->assertCount(3, $result['sections']);
 		$this->assertCount(1, $result['sections']['section2']['areas']);
 		$this->assertCount(3, $result['sections']['section2']['areas']['area3']['subsections']);
 
@@ -45,8 +45,8 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 			if ($k === $key)
 			{
 				parse_str(parse_url(strtr($url, ';', '&'), PHP_URL_QUERY), $result);
-				$this->assertArrayHasKey($expectedKey, $result);
-				$this->assertContains($expectedVal, $result);
+				$this->assertArrayHasKey($expectedKey, $result, $key . ': ' . $url . implode($result));
+				$this->assertContains($expectedVal, $result, $key . ': ' . $url . implode($result));
 				break;
 			}
 		}

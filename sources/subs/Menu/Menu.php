@@ -668,13 +668,13 @@ Class Menu
 		{
 			unset($context[$menu_name]);
 
-			// Remove the template layer if this is the only menu.
+			// Decrement the pointer if this is the final menu in the series.
 			if ($this->max_menu_id == $context['max_menu_id'])
-			$context['max_menu_id'] = min($context['max_menu_id']--, 0);
+				$context['max_menu_id'] = min(--$context['max_menu_id'], 0);
 
-		// Remove the template layer if this was the only menu left.
-		if ($context['max_menu_id'] == 0)
-			theme()->getLayers()->remove($context[$menu_name]['layer_name']);
+			// Remove the template layer if this was the only menu left.
+			if ($context['max_menu_id'] == 0)
+				theme()->getLayers()->remove($context[$menu_name]['layer_name']);
 		}
 	}
 }
