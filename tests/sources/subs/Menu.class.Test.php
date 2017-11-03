@@ -90,7 +90,7 @@ abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 		$this->assertSame(2, $context['max_menu_id']);
 		$this->assertSame('section2', $result['current_action']);
 		$this->assertSame('area3', $result['current_area']);
-		$this->assertSame('sub2', $result['current_area']);
+		$this->assertSame('sub2', $result['current_subsection']);
 
 		$this->tearDown();
 		$this->assertFalse(isset($context['menu_data_2']));
@@ -113,6 +113,9 @@ class MenuTest extends BaseMenuTest
 		global $context, $user_info;
 
 		$context['current_action'] = 'bubbh';
+
+		// @todo find test case that didn't clean up (destroyed its menu)
+		$context['max_menu_id'] = 0;
 
 		$this->req = new \HttpReq;
 		$this->menu = (new Menu($this->req))->addSection(
@@ -227,9 +230,6 @@ class MenuTest extends BaseMenuTest
 		$this->addOptions(['extra_url_parameters' => ['extra' => 'param']]);
 
 		$user_info['is_admin'] = true;
-
-		// @todo find test case that didn't clean up (destroyed its menu)
-		$context['max_menu_id'] = 0;
 	}
 
 	protected function tearDown()
