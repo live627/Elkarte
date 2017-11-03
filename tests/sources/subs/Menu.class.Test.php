@@ -7,10 +7,6 @@ use ElkArte\Menu\MenuSubsection;
 
 abstract class BaseMenuTest extends PHPUnit_Framework_TestCase
 {
-	abstract function setUp();
-
-	abstract function tearDown();
-
 	abstract function createMenu();
 
 	abstract function addOptions();
