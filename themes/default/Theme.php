@@ -1227,7 +1227,7 @@ class Theme extends BaseTheme
 			// Variant icon definitions?
 			if (file_exists($settings['theme_dir'] . '/css/' . $context['theme_variant'] . '/icons_svg' . $context['theme_variant'] . '.css'))
 			{
-				loadCSSFile($context['theme_variant'] .  '/icons_svg' . $context['theme_variant'] . '.css');
+				loadCSSFile($context['theme_variant'] . '/icons_svg' . $context['theme_variant'] . '.css');
 			}
 
 			// Load a theme variant custom CSS
