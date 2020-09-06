@@ -1,0 +1,9 @@
+ersion: 2
+updates:
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "Composer"
+      include: "scope"
