@@ -28,7 +28,7 @@
 	},
 	"require-dev": {
 		"phpunit/phpunit-selenium": "~4.1",
-		"phpunit/dbunit": "~3.0",
+		"phpunit/dbunit": "~4.0",
 		"phpunit/phpunit": "6.4.4"
 	},
 	"autoload": {
